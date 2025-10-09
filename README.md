@@ -1,6 +1,6 @@
 # alg_problems_1
 Software project for algorithmic problems
-
+```
 project1/
 ├── src/
 │ ├── algorithms/
@@ -14,3 +14,4 @@ project1/
 ├── Makefile
 ├── .gitignore
 └── readme
+```
