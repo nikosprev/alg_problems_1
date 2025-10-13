@@ -3,10 +3,13 @@
 
 Config parseArguments(int argc, char* argv[]) {
     Config cfg;
-
+    if (argc <2 ) {
+        std::cerr << "Improper usage\n";
+        exit(1);
+    }
     for (int i = 1; i < argc; ++i) {   
         std::string arg = argv[i];
-
+        std::cout << "arg: " << arg << "\n";
         // Common parameters 
         if (arg == "-d" && i + 1 < argc) cfg.inputFile = argv[++i];
         else if (arg == "-q" && i + 1 < argc) cfg.queryFile = argv[++i];

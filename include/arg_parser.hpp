@@ -2,12 +2,12 @@
 
 struct Config {  //struct for the config parameters
     
-    string inputFile;
-    string queryFile;
-    string outputFile;
+    std::string inputFile;
+    std::string queryFile;
+    std::string outputFile;
     int N = 0;
     double R = 0.0;
-    string typeFlag;
+    std::string typeFlag;
     bool rangeFlag = false;
 
     // LSH
