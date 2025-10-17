@@ -17,14 +17,13 @@ project1/
 ```
 
 
-Step 1: Read data
+Step 1: Read data and make input file
     MNIST reader:
 
          Read 32-bit Big Endian integers for header (magic number, number of images, rows, cols).
 
         Read 784-byte image vectors.
 
-        Store images as std::vector<std::vector<uint8_t>> or std::vector<std::vector<double>>.
 
     SIFT reader:
 
