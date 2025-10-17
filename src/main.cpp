@@ -8,12 +8,11 @@ int main(int argc, char* argv[]) {
 
     
     // Parse the arguments and print the config parameters
-    //Config cfg = parseArguments(argc, argv);
-    //printConfig(cfg);
-    
-    prepare_sift();
+    Config cfg = parseArguments(argc, argv);
+    printConfig(cfg);
 
-    
 
+    //prepare_sift("data/sift.dat", "input.dat");
+   // prepare_mnist("data/mnist.dat", "input.dat");
     return 0;
 }

@@ -24,7 +24,7 @@ uint32_t readBigEndianInt(ifstream &f) {
 0x031F unsigned byte 0 pixel no 784
 
 */
-int prepare_mnist(void){
+int prepare_mnist(string inputFile, string outputFile){
 string inputFile = "t10k-images.idx3-ubyte";
     string outputFile = "input.dat";
 
