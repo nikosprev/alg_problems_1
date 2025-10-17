@@ -25,8 +25,7 @@ uint32_t readBigEndianInt(ifstream &f) {
 
 */
 int prepare_mnist(string inputFile, string outputFile){
-string inputFile = "t10k-images.idx3-ubyte";
-    string outputFile = "input.dat";
+
 
     ifstream in(inputFile, ios::binary);
     if (!in.is_open()) {
