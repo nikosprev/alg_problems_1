@@ -24,6 +24,25 @@ uint32_t readBigEndianInt(ifstream &f) {
 0x031F unsigned byte 0 pixel no 784
 
 */
+                                    //Reads 4 bytes directly into a float variable.                 
+static float read_float_native(ifstream &ifs) {
+    float v = 0.0f;
+    ifs.read(reinterpret_cast<char*>(&v), sizeof(float));
+    return v;
+}
+
+
+
+
+                                                // Read 32bit unsigned integer (big endian)
+static uint32_t read_u32_be(ifstream &ifs) {
+    uint8_t b[4];
+    ifs.read(reinterpret_cast<char*>(b), 4);
+    if (!ifs) return 0;
+    return (uint32_t(b[0])<<24) | (uint32_t(b[1])<<16) | (uint32_t(b[2])<<8) | uint32_t(b[3]);
+}
+
+
 int prepare_mnist(string inputFile, string outputFile){
 
 
