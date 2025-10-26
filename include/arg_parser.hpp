@@ -1,4 +1,6 @@
-#include <string>
+#pragma once
+#include <iostream>
+#include <string>  // ✅ add this line
 
 struct Config {  //struct for the config parameters
     
