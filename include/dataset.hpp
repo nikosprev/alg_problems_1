@@ -29,3 +29,7 @@ Dataset parseInputFile(const std::string &);
 std::string detectDatasetType(const std::vector<std::string> &);// Detect dataset type based on keywords
 
 std::string trim(const std::string &);// Helper function to trim whitespace
+
+void printRandomVectors(const Dataset &dataset, int num_vectors = 5);// Print random vectors from the dataset
+
+void printRandomImages(const Dataset &dataset, int num_images = 5);
