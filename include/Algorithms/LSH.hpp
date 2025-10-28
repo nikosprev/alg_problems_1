@@ -37,9 +37,13 @@ public:
 };
 
 // --- LSH main class ---
+/*
+Save all the points to a structure in the lsh once and reference them by pointer to the hashtables 
+*/
 class LSH {
-    std::vector<std::vector<std::vector<std::pair<uint64_t, std::vector<float>>>>> HashTables;
-    std::vector<AmplifiedHashFunction> IDs;
+    std::vector<std::vector<std::vector<std::pair<uint64_t, size_t > >>> HashTables; //save a pair of ID and an idx to the vectort 
+    std::vector<std::vector<float>> vectors; //Save the vectors 
+    std::vector<AmplifiedHashFunction> IDs; // Definition to the Amplified HashFunctions 
 
     size_t hashTable_size;
     int num_tables;
@@ -47,14 +51,11 @@ class LSH {
     int w;
     size_t vec_dim;
 
-    int positive_mod(int x, int m) const;
-
 public:
     LSH(size_t hashTable_size_, int num_tables_, int HashFunction_size_,
         int w_, size_t vec_dim_, int seed);
 
     void insert_to_hashTables(const std::vector<float>& p);
-    std::vector<std::vector<float>> return_candidates(const std::vector<float>& p) const;
     std::vector<Neighbor> returnANN(const std::vector<float>& p, int k) const;
 };
 

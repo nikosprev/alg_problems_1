@@ -7,10 +7,10 @@
 
 // --- Neighbor struct ---
 struct Neighbor {
-    const std::vector<float>* vec;
+    std::vector<float> vec;
     double distance;
 
-    Neighbor(const std::vector<float>* v, double d);
+    Neighbor(std::vector<float> v, double d);
     bool operator<(const Neighbor& rhs) const;
     friend std::ostream& operator<<(std::ostream& os, const Neighbor& n);
 };

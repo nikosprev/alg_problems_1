@@ -3,7 +3,7 @@
 #include <cmath>
 #include <cstdlib>
 #include <algorithm> 
-
+#include <unordered_set>
 
 // ----- GaussianProjection -----
 std::vector<float> GaussianProjection(size_t size, int* seed) {
@@ -16,12 +16,17 @@ std::vector<float> GaussianProjection(size_t size, int* seed) {
     return r;
 }
 
+int mod(int x, int m) {
+    int r = x % m;
+    return (r < 0) ? r + m : r;
+}
+
 // ----- HashFunction -----
 HashFunction::HashFunction(size_t dim_, int seed, int window_)
     : window(window_), dim(dim_) {
     w = GaussianProjection(dim, &seed);
     std::mt19937 gen(seed);
-    std::uniform_real_distribution<float> dist(2.0f, static_cast<float>(window));
+    std::uniform_real_distribution<float> dist(0.0f, static_cast<float>(window));
     t = dist(gen);
 }
 
@@ -52,7 +57,7 @@ uint64_t AmplifiedHashFunction::calculate_ID(const std::vector<float>& p) const 
     const uint64_t M = (1ULL << 16) - 5;
     uint64_t ID = 0;
     for (size_t i = 0; i < hf_table.size(); ++i) {
-        ID = (ID + (static_cast<uint64_t>(hf_table[i].calculate(p)) * r_table[i]) % M) % M;
+        ID +=  mod( mod(static_cast<uint64_t>(hf_table[i].calculate(p)) * r_table[i]  ,M) , M) ; 
     }
     return ID;
 }
@@ -70,39 +75,35 @@ LSH::LSH(size_t hashTable_size_, int num_tables_, int HashFunction_size_,
     }
 }
 
-int LSH::positive_mod(int x, int m) const {
-    int r = x % m;
-    return (r < 0) ? r + m : r;
-}
 
 void LSH::insert_to_hashTables(const std::vector<float>& p) {
+    size_t idx = vectors.size() ; 
+    vectors.push_back(p); //save the point to the vector 
     for (int t = 0; t < num_tables; ++t) {
         uint64_t id = IDs[t].calculate_ID(p);
-        int slot = positive_mod(static_cast<int>(id), hashTable_size);
-        HashTables[t][slot].emplace_back(id, p);
+        int slot = mod(static_cast<int>(id), hashTable_size);
+        HashTables[t][slot].emplace_back(id, idx);
     }
 }
 
-std::vector<std::vector<float>> LSH::return_candidates(const std::vector<float>& p) const {
-    std::vector<std::vector<float>> candidates;
-    for (int t = 0; t < num_tables; ++t) {
-        uint64_t id = IDs[t].calculate_ID(p);
-        int slot = positive_mod(static_cast<int>(id), hashTable_size);
-        for (const auto& entry : HashTables[t][slot])
-            if (entry.first == id)
-                candidates.push_back(entry.second);
-    }
-    return candidates;
-}
 
 std::vector<Neighbor> LSH::returnANN(const std::vector<float>& p, int k) const {
     std::priority_queue<Neighbor> topK;
+    std::unordered_set<size_t> idx_seen;
+
     for (int t = 0; t < num_tables; ++t) {
         uint64_t id = IDs[t].calculate_ID(p);
-        int slot = positive_mod(static_cast<int>(id), hashTable_size);
+        int slot = mod(static_cast<int>(id), hashTable_size);
         for (const auto& entry : HashTables[t][slot])
-            if (entry.first == id)
-                topK.emplace(&entry.second, euclidean_distance(p, entry.second));
+        {
+            if (entry.first == id){
+                size_t idx = entry.second;
+                if (idx_seen.find(idx) == idx_seen.end()) { // not yet seen
+                    idx_seen.insert(idx);
+                    topK.emplace(vectors[idx] ,euclidean_distance(p, vectors[idx]));
+                }
+            }
+        }
         while (topK.size() > static_cast<size_t>(k)) topK.pop();
     }
 

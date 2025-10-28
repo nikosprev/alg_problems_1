@@ -3,10 +3,8 @@ CC = g++
 
 # Directories
 SRC_DIR = src
-INC_DIR = headers
+INC_DIR = include
 BUILD_DIR = build
-
-
 
 
 # Files
@@ -27,4 +25,7 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
 
 clean:
 	rm -rf $(BUILD_DIR) ex
+
+run_lsh:
+	./ex -lsh -q ./data/sift/sift_query.fvecs -d ./data/sift/sift_base.fvecs -o out.txt -N 5 -k 4 -L 5 -w 100 -seed 1 
 

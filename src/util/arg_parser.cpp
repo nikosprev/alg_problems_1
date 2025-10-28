@@ -13,8 +13,8 @@ Config parseArguments(int argc, char* argv[]) {
         // Common parameters 
         if (arg == "-d" && i + 1 < argc) cfg.inputFile = argv[++i];
         else if (arg == "-q" && i + 1 < argc) cfg.queryFile = argv[++i];
-        else if (arg == "-ο" && i + 1 < argc) cfg.outputFile = argv[++i];
-        else if (arg == "-Ν" && i + 1 < argc) cfg.N = std::stoi(argv[++i]);
+        else if (arg == "-o" && i + 1 < argc) cfg.outputFile = argv[++i];
+        else if (arg == "-N" && i + 1 < argc) cfg.N = std::stoi(argv[++i]);
         else if (arg == "-R" && i + 1 < argc) cfg.R = std::stod(argv[++i]);
         else if (arg == "-type" && i + 1 < argc) cfg.typeFlag = argv[++i];
         else if (arg == "-range" && i + 1 < argc) {

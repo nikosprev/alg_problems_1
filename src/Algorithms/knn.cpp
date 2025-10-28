@@ -12,7 +12,7 @@ std::vector<Neighbor> kNN(const std::vector<std::vector<float>> &points ,const s
     std::priority_queue<Neighbor>  topK;
     for (auto&  q : points){ 
        double dist_qp =  euclidean_distance( q ,p); 
-       Neighbor pq = {&q ,dist_qp}; 
+       Neighbor pq = {q ,dist_qp}; 
        topK.push(pq); 
        if (topK.size() > k ) { 
         topK.pop() ; 
