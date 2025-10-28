@@ -19,6 +19,7 @@ int main(int argc, char* argv[]) {
     Dataset input_data = parseInputFile(input_file);
     Dataset query_data = parseInputFile(query_file); 
 
+    printRandomVectors(input_data , 1);
     
 
     
@@ -38,9 +39,9 @@ int main(int argc, char* argv[]) {
             }
             std::vector<Neighbor> closest_neighbors;
 
-            for(int i = 0 ; i < query_data.vectors.size() ; ++i){ 
+            for(int i = 0 ;i< 10 &&  i < query_data.vectors.size() ; ++i){ 
                 std::cout << "Using LSH : " << std::endl ; 
-                closest_neighbors = lsh.returnANN(query_data.vectors[i].coordinates ,N); 
+                closest_neighbors = lsh.returnANN(query_data.vectors[i].coordinates ,N , true ,0.5); 
                 for (const auto &neigh : closest_neighbors ){ 
                     std::cout << "    " << neigh ; 
                 }
@@ -60,7 +61,7 @@ int main(int argc, char* argv[]) {
         std::cerr << "No algorithm flag \n" ; 
         exit(1); 
     }
-
+     
 
 
     /* 

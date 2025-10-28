@@ -87,7 +87,7 @@ void LSH::insert_to_hashTables(const std::vector<float>& p) {
 }
 
 
-std::vector<Neighbor> LSH::returnANN(const std::vector<float>& p, int k) const {
+std::vector<Neighbor> LSH::returnANN(const std::vector<float>& p, int k , bool range_bool ,float range) const {
     std::priority_queue<Neighbor> topK;
     std::unordered_set<size_t> idx_seen;
 
@@ -100,11 +100,18 @@ std::vector<Neighbor> LSH::returnANN(const std::vector<float>& p, int k) const {
                 size_t idx = entry.second;
                 if (idx_seen.find(idx) == idx_seen.end()) { // not yet seen
                     idx_seen.insert(idx);
-                    topK.emplace(vectors[idx] ,euclidean_distance(p, vectors[idx]));
+                    double dist = euclidean_distance(p, vectors[idx]); 
+                    if (range_bool){ 
+                        if (dist < range){ 
+                            topK.emplace(vectors[idx] ,dist);
+                        }
+                    }else { 
+                        topK.emplace(vectors[idx] ,dist);
+                    }
                 }
             }
         }
-        while (topK.size() > static_cast<size_t>(k)) topK.pop();
+        while (topK.size() > static_cast<size_t>(k) && !range_bool) topK.pop();
     }
 
     std::vector<Neighbor> neighbors;

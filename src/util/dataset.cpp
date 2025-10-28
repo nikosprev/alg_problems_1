@@ -6,7 +6,7 @@
 #include <random>
 #include <algorithm>
 #include <stdexcept>
-
+#include "../../include/Algorithms/metrics.hpp"
 // Endianness Utilities
 uint32_t read_uint32_big(std::ifstream &f) {
     uint8_t bytes[4];
@@ -93,7 +93,8 @@ Dataset parseInputFile(const std::string &filename) {
         for (uint32_t i = 0; i < dim; ++i) {
             vec.coordinates[i] = read_float32_little(f);
         }
-
+        //Normalize vec here 
+        normalize(vec.coordinates); 
         dataset.vectors.push_back(std::move(vec));
         vectors_loaded++;
         if (vectors_loaded >= MAX_VECTORS) break;

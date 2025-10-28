@@ -56,7 +56,7 @@ public:
         int w_, size_t vec_dim_, int seed);
 
     void insert_to_hashTables(const std::vector<float>& p);
-    std::vector<Neighbor> returnANN(const std::vector<float>& p, int k) const;
+    std::vector<Neighbor> returnANN(const std::vector<float>& p, int k ,bool range_bool=false ,float range=0.0) const;
 };
 
 #endif // LSH_HPP
