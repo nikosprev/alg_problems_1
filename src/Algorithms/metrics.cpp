@@ -15,6 +15,14 @@ double euclidean_distance(const std::vector<float>  &x  ,const std::vector<float
     return sqrt(dist); 
 }
 
+double euclidean_distance(const std::vector<uint8_t>& x, const std::vector<uint8_t>& y) {
+    double sum = 0.0;
+    for (size_t i = 0; i < x.size(); ++i) {
+        double diff = static_cast<double>(x[i]) - static_cast<double>(y[i]);
+        sum += diff * diff;
+    }
+    return std::sqrt(sum);
+}
 
 
 double norm(const std::vector<float> &x){ 

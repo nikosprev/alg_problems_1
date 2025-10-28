@@ -19,29 +19,41 @@ int main(int argc, char* argv[]) {
     Dataset input_data = parseInputFile(input_file);
     Dataset query_data = parseInputFile(query_file); 
 
-    printRandomVectors(input_data , 1);
+    
     
 
     
     if (cfg.lshFlag){ 
-        int hashTable_size = 10000,num_tables = cfg.L  ,hashFunction_size = 5 ,seed = cfg.seed, vec_dim = 128 , N = cfg.N; 
+        int hashTable_size = 10000,num_tables = cfg.L  ,hashFunction_size = 5 ,seed = cfg.seed,  N = cfg.N; 
         float w = cfg.w ; 
         //initialize LSH solver 
-        LSH lsh(hashTable_size, num_tables, hashFunction_size, w, vec_dim, seed); 
         if (input_data.type == "image"){ 
+            int vec_dim = input_data.images[0].pixels.size() ; 
+            LSH<u_int8_t> lsh(hashTable_size, num_tables, hashFunction_size, w, vec_dim, seed); 
             for (auto image : input_data.images){ 
-                continue;   
+                lsh.insert_to_hashTables(image.pixels);
+            }
+            std::vector<Neighbor<uint8_t>> closest_neighbors;
+
+            for(int i = 0 ;i< 10 &&  i < query_data.images.size() ; ++i){ 
+                std::cout << "Using LSH : " << std::endl ; 
+                closest_neighbors = lsh.returnANN(query_data.images[i].pixels ,N ); 
+                for (const auto &neigh : closest_neighbors ){ 
+                    std::cout << "    " << neigh ; 
+                }
             }
         }
         else if (input_data.type == "vector"){ 
+            int vec_dim = input_data.vectors[0].coordinates.size() ; 
+            LSH<float> lsh(hashTable_size, num_tables, hashFunction_size, w, vec_dim, seed); 
             for (auto vector : input_data.vectors ){ 
                 lsh.insert_to_hashTables(vector.coordinates);
             }
-            std::vector<Neighbor> closest_neighbors;
+            std::vector<Neighbor<float>> closest_neighbors;
 
             for(int i = 0 ;i< 10 &&  i < query_data.vectors.size() ; ++i){ 
                 std::cout << "Using LSH : " << std::endl ; 
-                closest_neighbors = lsh.returnANN(query_data.vectors[i].coordinates ,N , true ,0.5); 
+                closest_neighbors = lsh.returnANN(query_data.vectors[i].coordinates ,N ); 
                 for (const auto &neigh : closest_neighbors ){ 
                     std::cout << "    " << neigh ; 
                 }
@@ -57,54 +69,39 @@ int main(int argc, char* argv[]) {
     else if (cfg.ivfpqFlag){ 
         std::cout << "In progress \n"; 
     }
-    else { 
-        std::cerr << "No algorithm flag \n" ; 
-        exit(1); 
+    else { //else use the knn algorithm 
+
+        if (input_data.type == "image"){ 
+            std::vector<std::vector<u_int8_t>> all_points;
+            for (const auto& v : input_data.images) {
+                all_points.push_back(v.pixels);
+            }
+            for(int i = 0 ;i< 10 &&  i < query_data.images.size() ; ++i){ 
+                 
+                std::vector<Neighbor<u_int8_t>> closest_neighbors = kNN(all_points ,query_data.images[i].pixels ,2); 
+                for (const auto &neigh : closest_neighbors ){ 
+                    std::cout << "    " << neigh ; 
+                }
+            }
+
+        }
+        else if (input_data.type == "vector"){ 
+            std::vector<std::vector<float>> all_points;
+            for (const auto& v : input_data.vectors) {
+                all_points.push_back(v.coordinates);
+            }
+            for(int i = 0 ;i< 10 &&  i < query_data.vectors.size() ; ++i){ 
+                
+                std::vector<Neighbor<float>> closest_neighbors = kNN(all_points ,query_data.vectors[i].coordinates ,2); 
+                for (const auto &neigh : closest_neighbors ){ 
+                    std::cout << "    " << neigh ; 
+                }
+            } 
+            
+        }
+
     }
      
-
-
-    /* 
-    size_t hashTable_size = 10000;   // slots per table
-    int num_tables = 5;          // number of hash tables
-    int hashFunction_size = 6;   // number of hash functions in amplified hash
-    int w = 20;                   // window size
-    size_t vec_dim = 128;        // SIFT vectors are 128-dimensional
-    int seed = 42;
-
-    LSH lsh(hashTable_size, num_tables, hashFunction_size, w, vec_dim, seed); 
-
-    // Load SIFT base vectors
-    auto base_vectors = read_fvecs("./data/sift/sift_base.fvecs");
-    std::cout << "Loaded " << base_vectors.size() << " base vectors." << std::endl;
-
-    // Insert vectors into all hash tables
-    for (const auto &vec : base_vectors) {
-        lsh.insert_to_hashTables(vec);
-    }
-
-    // Load SIFT query vectors
-    auto query_vectors = read_fvecs("./data/sift/sift_query.fvecs");
-    std::cout << "Loaded " << query_vectors.size() << " query vectors." << std::endl;
-
-    // Run queries and print candidate counts
-    std::vector<Neighbor> n; 
-    for (size_t i = 0; i < 2 &&  i < query_vectors.size(); ++i) {
-        std::cout << "Using LSH : " << std::endl ; 
-        n = lsh.returnANN(query_vectors[i] ,1); 
-        for (const auto &neigh : n ){ 
-            std::cout << "    " << neigh ; 
-        }
-        std::cout << "Using KNN : " << std::endl ; 
-        n = kNN(base_vectors ,query_vectors[i] ,1); 
-        for (const auto &neigh : n ){ 
-            std::cout << "    " << neigh ; 
-        }
-
-    }
-
-    */
-
     /*
     try {
         Dataset dataset = parseInputFile("input.dat");
