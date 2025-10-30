@@ -3,7 +3,7 @@
 #include "../include/Algorithms/LSH.hpp"
 #include "../include/Algorithms/knn.hpp"
 #include "../include/dataset.hpp"
-
+#include "../include/Algorithms/hypercube.hpp"
 
 
 int main(int argc, char* argv[]) {
@@ -62,6 +62,9 @@ int main(int argc, char* argv[]) {
 
 
 
+    }
+    else if (cfg.hypercubeFlag){ 
+        
     }
     else if (cfg.ivfflatFlag){ 
         std::cout << "In progress \n"; 
