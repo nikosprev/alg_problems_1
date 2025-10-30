@@ -2,6 +2,7 @@
 #include "../include/arg_parser.hpp"
 #include "../include/Algorithms/LSH.hpp"
 #include "../include/Algorithms/knn.hpp"
+#include "../include/Algorithms/ivfflat.hpp"
 #include "../include/dataset.hpp"
 #include "../include/Algorithms/hypercube.hpp"
 
@@ -67,7 +68,68 @@ int main(int argc, char* argv[]) {
         
     }
     else if (cfg.ivfflatFlag){ 
-        std::cout << "In progress \n"; 
+        int num_clusters = cfg.kclusters, nprobe = cfg.nprobe, N = cfg.N, seed = cfg.seed;
+        bool do_range = cfg.rangeFlag; double rangeR = cfg.R;
+        int iters = 15; // default k-means iterations; could be exposed if needed
+        
+        if (input_data.type == "image"){ 
+            int vec_dim = input_data.images[0].pixels.size();
+            
+            // Initialize IVFFlat (num_clusters, vec_dim, iters)
+            IVFFlat<uint8_t> ivf(num_clusters, vec_dim, iters);
+            
+            // Insert all data points first
+            for (const auto& image : input_data.images) {
+                ivf.add_vector(image.pixels);
+            }
+            
+            // Train on the stored vectors
+            std::cout << "Training IVFFlat with " << num_clusters << " clusters..." << std::endl;
+            ivf.train(seed);
+            
+            if (do_range) {
+                for (int i = 0; i < 10 && i < static_cast<int>(query_data.images.size()); ++i) {
+                    std::cout << "Using IVFFlat (range R=" << rangeR << ", nprobe=" << nprobe << ") :\n";
+                    auto neighbors = ivf.range_query(query_data.images[i].pixels, rangeR, nprobe);
+                    for (const auto &neigh : neighbors) std::cout << "    " << neigh;
+                }
+            } else {
+                for (int i = 0; i < 10 && i < static_cast<int>(query_data.images.size()); ++i) {
+                    std::cout << "Using IVFFlat (top-" << N << ", nprobe=" << nprobe << ") :\n";
+                    auto neighbors = ivf.query(query_data.images[i].pixels, N, nprobe);
+                    for (const auto &neigh : neighbors) std::cout << "    " << neigh;
+                }
+            }
+        }
+        else if (input_data.type == "vector"){ 
+            int vec_dim = input_data.vectors[0].coordinates.size();
+            
+            // Initialize IVFFlat
+            IVFFlat<float> ivf(num_clusters, vec_dim, iters);
+            
+            // Insert all data points first
+            for (const auto& vector : input_data.vectors) {
+                ivf.add_vector(vector.coordinates);
+            }
+            
+            // Train on the stored vectors
+            std::cout << "Training IVFFlat with " << num_clusters << " clusters..." << std::endl;
+            ivf.train(seed);
+            
+            if (do_range) {
+                for (int i = 0; i < 10 && i < static_cast<int>(query_data.vectors.size()); ++i) {
+                    std::cout << "Using IVFFlat (range R=" << rangeR << ", nprobe=" << nprobe << ") :\n";
+                    auto neighbors = ivf.range_query(query_data.vectors[i].coordinates, rangeR, nprobe);
+                    for (const auto &neigh : neighbors) std::cout << "    " << neigh;
+                }
+            } else {
+                for (int i = 0; i < 10 && i < static_cast<int>(query_data.vectors.size()); ++i) {
+                    std::cout << "Using IVFFlat (top-" << N << ", nprobe=" << nprobe << ") :\n";
+                    auto neighbors = ivf.query(query_data.vectors[i].coordinates, N, nprobe);
+                    for (const auto &neigh : neighbors) std::cout << "    " << neigh;
+                }
+            }
+        }
     }
     else if (cfg.ivfpqFlag){ 
         std::cout << "In progress \n"; 
