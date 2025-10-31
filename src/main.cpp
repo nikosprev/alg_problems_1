@@ -3,6 +3,8 @@
 #include "../include/Algorithms/LSH.hpp"
 #include "../include/Algorithms/knn.hpp"
 #include "../include/Algorithms/ivfflat.hpp"
+#include "../include/Algorithms/ivfpq.hpp"
+#include <fstream>
 #include "../include/dataset.hpp"
 
 
@@ -67,6 +69,8 @@ int main(int argc, char* argv[]) {
     else if (cfg.ivfflatFlag){ 
         int num_clusters = cfg.kclusters, nprobe = cfg.nprobe, N = cfg.N, seed = cfg.seed;
         bool do_range = cfg.rangeFlag; double rangeR = cfg.R;
+        std::ofstream out_ivf;
+        if (!cfg.outputFile.empty()) out_ivf.open(cfg.outputFile, std::ios::app);
         int iters = 15; // default k-means iterations; could be exposed if needed
         
         if (input_data.type == "image"){ 
@@ -88,13 +92,13 @@ int main(int argc, char* argv[]) {
                 for (int i = 0; i < 10 && i < static_cast<int>(query_data.images.size()); ++i) {
                     std::cout << "Using IVFFlat (range R=" << rangeR << ", nprobe=" << nprobe << ") :\n";
                     auto neighbors = ivf.range_query(query_data.images[i].pixels, rangeR, nprobe);
-                    for (const auto &neigh : neighbors) std::cout << "    " << neigh;
+                    for (const auto &neigh : neighbors) { std::cout << "    " << neigh; if (out_ivf.is_open()) out_ivf << neigh; }
                 }
             } else {
                 for (int i = 0; i < 10 && i < static_cast<int>(query_data.images.size()); ++i) {
                     std::cout << "Using IVFFlat (top-" << N << ", nprobe=" << nprobe << ") :\n";
                     auto neighbors = ivf.query(query_data.images[i].pixels, N, nprobe);
-                    for (const auto &neigh : neighbors) std::cout << "    " << neigh;
+                    for (const auto &neigh : neighbors) { std::cout << "    " << neigh; if (out_ivf.is_open()) out_ivf << neigh; }
                 }
             }
         }
@@ -117,19 +121,76 @@ int main(int argc, char* argv[]) {
                 for (int i = 0; i < 10 && i < static_cast<int>(query_data.vectors.size()); ++i) {
                     std::cout << "Using IVFFlat (range R=" << rangeR << ", nprobe=" << nprobe << ") :\n";
                     auto neighbors = ivf.range_query(query_data.vectors[i].coordinates, rangeR, nprobe);
-                    for (const auto &neigh : neighbors) std::cout << "    " << neigh;
+                    for (const auto &neigh : neighbors) { std::cout << "    " << neigh; if (out_ivf.is_open()) out_ivf << neigh; }
                 }
             } else {
                 for (int i = 0; i < 10 && i < static_cast<int>(query_data.vectors.size()); ++i) {
                     std::cout << "Using IVFFlat (top-" << N << ", nprobe=" << nprobe << ") :\n";
                     auto neighbors = ivf.query(query_data.vectors[i].coordinates, N, nprobe);
-                    for (const auto &neigh : neighbors) std::cout << "    " << neigh;
+                    for (const auto &neigh : neighbors) { std::cout << "    " << neigh; if (out_ivf.is_open()) out_ivf << neigh; }
                 }
             }
+            if (out_ivf.is_open()) out_ivf.close();
         }
     }
     else if (cfg.ivfpqFlag){ 
-        std::cout << "In progress \n"; 
+        int num_clusters = cfg.kclusters, nprobe = cfg.nprobe, N = cfg.N, seed = cfg.seed;
+        int M = cfg.M, nbits = cfg.nbits; int iters = 15;
+        size_t Ks = (nbits > 0 ? static_cast<size_t>(1u << nbits) : 256u);
+        bool do_range = cfg.rangeFlag; double rangeR = cfg.R;
+        std::ofstream out;
+        if (!cfg.outputFile.empty()) out.open(cfg.outputFile);
+        if (input_data.type == "image"){ 
+            int vec_dim = input_data.images[0].pixels.size();
+
+            IVFPQ<uint8_t> ivfpq(static_cast<size_t>(num_clusters), static_cast<size_t>(vec_dim), static_cast<size_t>(M), Ks, iters);
+            for (const auto& image : input_data.images) ivfpq.add_vector(image.pixels);
+            std::cout << "Training IVFPQ (nlist=" << num_clusters << ", M=" << M << ", nbits=" << nbits << ")...\n";
+            ivfpq.train(seed);
+            for (int i = 0; i < 10 && i < static_cast<int>(query_data.images.size()); ++i) {
+                if (do_range) {
+                    std::cout << "Using IVFPQ (range R=" << rangeR << ", nprobe=" << nprobe << ") :\n";
+                    auto neighbors = ivfpq.range_query(query_data.images[i].pixels, rangeR, nprobe);
+                    for (const auto &neigh : neighbors) {
+                        std::cout << "    " << neigh;
+                        if (out.is_open()) out << neigh;
+                    }
+                } else {
+                    std::cout << "Using IVFPQ (top-" << N << ", nprobe=" << nprobe << ") :\n";
+                    auto neighbors = ivfpq.query(query_data.images[i].pixels, N, nprobe);
+                    for (const auto &neigh : neighbors) {
+                        std::cout << "    " << neigh;
+                        if (out.is_open()) out << neigh;
+                    }
+                }
+            }
+        }
+        else if (input_data.type == "vector"){ 
+            int vec_dim = input_data.vectors[0].coordinates.size();
+
+            IVFPQ<float> ivfpq(static_cast<size_t>(num_clusters), static_cast<size_t>(vec_dim), static_cast<size_t>(M), Ks, iters);
+            for (const auto& v : input_data.vectors) ivfpq.add_vector(v.coordinates);
+            std::cout << "Training IVFPQ (nlist=" << num_clusters << ", M=" << M << ", nbits=" << nbits << ")...\n";
+            ivfpq.train(seed);
+            for (int i = 0; i < 10 && i < static_cast<int>(query_data.vectors.size()); ++i) {
+                if (do_range) {
+                    std::cout << "Using IVFPQ (range R=" << rangeR << ", nprobe=" << nprobe << ") :\n";
+                    auto neighbors = ivfpq.range_query(query_data.vectors[i].coordinates, rangeR, nprobe);
+                    for (const auto &neigh : neighbors) {
+                        std::cout << "    " << neigh;
+                        if (out.is_open()) out << neigh;
+                    }
+                } else {
+                    std::cout << "Using IVFPQ (top-" << N << ", nprobe=" << nprobe << ") :\n";
+                    auto neighbors = ivfpq.query(query_data.vectors[i].coordinates, N, nprobe);
+                    for (const auto &neigh : neighbors) {
+                        std::cout << "    " << neigh;
+                        if (out.is_open()) out << neigh;
+                    }
+                }
+            }
+            if (out.is_open()) out.close();
+        }
     }
     else { //else use the knn algorithm 
 
