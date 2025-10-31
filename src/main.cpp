@@ -6,7 +6,7 @@
 #include "../include/Algorithms/ivfpq.hpp"
 #include <fstream>
 #include "../include/dataset.hpp"
-
+#include "../include/Algorithms/hypercube.hpp"
 
 
 int main(int argc, char* argv[]) {
@@ -65,6 +65,9 @@ int main(int argc, char* argv[]) {
 
 
 
+    }
+    else if (cfg.hypercubeFlag){ 
+        
     }
     else if (cfg.ivfflatFlag){ 
         int num_clusters = cfg.kclusters, nprobe = cfg.nprobe, N = cfg.N, seed = cfg.seed;
