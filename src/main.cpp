@@ -64,9 +64,67 @@ int main(int argc, char* argv[]) {
 
 
     }
-    else if (cfg.hypercubeFlag){ 
-        
+    else if (cfg.hypercubeFlag) {
+    std::cout << "Using HyperCube : " << std::endl;
+
+    if (input_data.type == "image") {
+
+        size_t vec_dim = input_data.images[0].pixels.size();
+
+        // Collect data into vector<vector<uint8_t>>
+        std::vector<std::vector<uint8_t>> dataset;
+        dataset.reserve(input_data.images.size());
+        for (auto& img : input_data.images)
+            dataset.push_back(img.pixels);
+
+        // Construct HyperCube with full dataset
+        HyperCube<uint8_t> hypercube(dataset, cfg.kproj, cfg.w, vec_dim, 1);
+
+        std::vector<Neighbor<uint8_t>> closest_neighbors;
+
+        for (int i = 0; i < 10 && i < (int)query_data.images.size(); ++i) {
+            std::cout << "      Query: " << i + 1 << "\n";
+            closest_neighbors = hypercube.returnANN(
+                query_data.images[i].pixels,
+                cfg.M,
+                cfg.N,
+                cfg.probes
+            );
+
+            for (const auto& neigh : closest_neighbors)
+                std::cout << "        " << neigh;
+        }
     }
+
+    else if (input_data.type == "vector") {
+
+        size_t vec_dim = input_data.vectors[0].coordinates.size();
+
+        // Collect dataset
+        std::vector<std::vector<float>> dataset;
+        dataset.reserve(input_data.vectors.size());
+        for (auto& v : input_data.vectors)
+            dataset.push_back(v.coordinates);
+
+        HyperCube<float> hypercube(dataset, cfg.kproj, cfg.w, vec_dim, 1);
+
+        std::vector<Neighbor<float>> closest_neighbors;
+
+        for (int i = 0; i < 10 && i < (int)query_data.vectors.size(); ++i) {
+            std::cout << "      Query: " << i + 1 << "\n";
+            closest_neighbors = hypercube.returnANN(
+                query_data.vectors[i].coordinates,
+                cfg.M,
+                cfg.N,
+                cfg.probes
+            );
+
+            for (const auto& neigh : closest_neighbors)
+                std::cout << "        " << neigh;
+        }
+    }
+}
+
     else if (cfg.ivfflatFlag){ 
         int num_clusters = cfg.kclusters, nprobe = cfg.nprobe, N = cfg.N, seed = cfg.seed;
         bool do_range = cfg.rangeFlag; double rangeR = cfg.R;
@@ -135,17 +193,17 @@ int main(int argc, char* argv[]) {
         std::cout << "In progress \n"; 
     }
     else { //else use the knn algorithm 
-
+        std::cout << "Using KNN\n"; 
         if (input_data.type == "image"){ 
             std::vector<std::vector<u_int8_t>> all_points;
             for (const auto& v : input_data.images) {
                 all_points.push_back(v.pixels);
             }
-            for(int i = 0 ;i< 10 &&  i < query_data.images.size() ; ++i){ 
-                 
+            for(int i = 0 ;i< 1000 &&  i < query_data.images.size() ; ++i){ 
+                std::cout << "      Query :" << i+1 << "\n"; 
                 std::vector<Neighbor<u_int8_t>> closest_neighbors = kNN(all_points ,query_data.images[i].pixels ,2); 
                 for (const auto &neigh : closest_neighbors ){ 
-                    std::cout << "    " << neigh ; 
+                    std::cout << "          " << neigh ; 
                 }
             }
 
@@ -155,11 +213,11 @@ int main(int argc, char* argv[]) {
             for (const auto& v : input_data.vectors) {
                 all_points.push_back(v.coordinates);
             }
-            for(int i = 0 ;i< 10 &&  i < query_data.vectors.size() ; ++i){ 
-                
+            for(int i = 0 ;i< 1000 &&  i < query_data.vectors.size() ; ++i){ 
+                std::cout << "      Query :" << i+1 << "\n"; 
                 std::vector<Neighbor<float>> closest_neighbors = kNN(all_points ,query_data.vectors[i].coordinates ,2); 
                 for (const auto &neigh : closest_neighbors ){ 
-                    std::cout << "    " << neigh ; 
+                    std::cout << "          " << neigh ; 
                 }
             } 
             
