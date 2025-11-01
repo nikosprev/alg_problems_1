@@ -27,8 +27,13 @@ clean:
 	rm -rf $(BUILD_DIR) ex
 
 run_lsh_sift:
-	./ex -lsh -q ./data/sift/sift_query.fvecs -d ./data/sift/sift_base.fvecs -o out.txt -N 5 -k 4 -L 5 -w 5 -seed 1 
+	./ex  -q ./data/sift/sift_query.fvecs -d ./data/sift/sift_base.fvecs -o out.txt -N 5 -k 4 -L 5 -w 5 -seed 1 
 
 
 run_lsh_mnist: 
-	valgrind ./ex  -q ./data/mnist/train-images.idx3-ubyte -d ./data/mnist/train-images.idx3-ubyte -o out.txt -N 5 -k 4 -L 5 -w 5 -seed 1
+	./ex -lsh -q ./data/mnist/train-images.idx3-ubyte -d ./data/mnist/train-images.idx3-ubyte -o out.txt -N 5 -k 4 -L 5 -w 5 -seed 1
+
+
+
+run_hypercube_sift: 
+	./ex -hypercube -q ./data/sift/sift_query.fvecs -d ./data/sift/sift_base.fvecs -o out.txt -N 5 -k 4 -M 100 -w 3 -kproj 14 -probes 100 -seed 1

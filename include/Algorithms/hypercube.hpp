@@ -17,55 +17,100 @@
 
 
 
+
+template <typename NumType>
+class HypercubeProjection{ 
+    HashFunction hf; 
+    int t = 0; //default median 
+    
+    /*
+        Note that if the vector is even sized it will return the wrong mathematically median 
+        but because we expect the sample to be big enough we will get the correct pretty much every 
+        time. 
+    */
+    int median(std::vector<int>& data) {
+        size_t k = data.size() / 2;
+        std::nth_element(data.begin(), data.begin() + k, data.end());
+        return data[k];
+    }
+
+    public: 
+        /*
+            Constructor of the f function that maps a point to {0,1}
+            It requires the points ,the dimension of a point and a float w window for the E2LSH 
+            function.
+        */
+        HypercubeProjection(size_t dim ,float w_ ,int seed ,std::vector<std::vector<NumType>>& points) :
+            hf(dim ,seed , w_) {
+                std::vector<int> values; 
+                for (auto& point : points ){ 
+                    int val = hf.calculate(point); 
+                    values.push_back(val); 
+                }
+                t = median(values); 
+            }
+        
+
+        int calculate(const std::vector<NumType>& point) const{ 
+          return (hf.calculate(point) > t) ? 1 : 0; 
+        }
+};
+
 template <typename NumType>
 class HyperCube{ 
-    std::vector<HashFunction> hf_table;   //HashFunction table to use for finding the slot of a point 
-    std::unordered_map<uint64_t ,std::vector<NumType>> bit_table; //A map that stores the points to the appropiate slot  
+    std::vector<HypercubeProjection<NumType>> hp_table;   //HashFunction table to use for finding the slot of a point 
+    std::unordered_map<uint64_t ,std::vector<std::vector<NumType>>> bit_table; //A map that stores the points to the appropiate slot  
     float w; 
 
-    size_t k_proj; //How many hashfunctions are needed     
+    //How many hashfunctions are needed  
+    size_t k_proj;    
 
     size_t vec_dim;  //Dimenstion of the point to be saved
-    int seed; 
 
-    uint64_t find_slot(std::vector<NumType>& p){ 
+    int seed; //seed for defining the E2LSH  functions  
+
+    uint64_t find_slot(const std::vector<NumType>& p) const{ 
         uint64_t mask = 0; 
-        for(int i = 0 ; i < hf_table.size() ; ++i ) { 
-            if (hf_table[i].calculate(p) > 0){ 
-                mask += 1 ; 
-            }
-            mask <<= 1; 
+        for (size_t i = 0; i < hp_table.size(); ++i) {
+            mask = (mask << 1) | static_cast<std::uint64_t>(hp_table[i].calculate(p));
         }
         return mask; 
     }
 
-    uint64_t next_bit(uint64_t v) {
+    uint64_t next_bit(uint64_t v) const {
         uint64_t t = v | (v - 1); // t gets v's least significant 0 bits set to 1
         // Next set to 1 the most significant bit to change, 
         // set to 0 the least significant ones, and add the necessary 1 bits.
         return (t + 1) | (((~t & -~t) - 1) >> (__builtin_ctz(v) + 1));  
     }
 
+    /*
+        Helper function that adds a point to the dataset
+    */
+    void insertPoint(const std::vector<NumType>& point) {
+        std::uint64_t slot = find_slot(point);
+        bit_table[slot].push_back(point);
+    }
+
     public:
 
-        HyperCube(size_t k_proj_ ,float w_, size_t vec_dim_, int seed)
-            : k_proj(k_proj_), HashFunction_size(k_proj_), w(w_), vec_dim(vec_dim_) {
-        //Initialize HashFunctions
-            hf_table.reserve(k_proj_); 
+        HyperCube(std::vector<std::vector<NumType>>& points,size_t k_proj_ ,float w_, size_t vec_dim_, int seed)
+            : k_proj(k_proj_),  w(w_), vec_dim(vec_dim_) {
+            //Initialize HashFunctions
+            hp_table.reserve(k_proj_); 
             for (size_t i = 0; i < k_proj_; ++i)
-                hf_table.emplace_back(vec_dim, seed + static_cast<int>(i), w);
+                hp_table.emplace_back(vec_dim, w, seed + static_cast<int>(i), points);
+            
+
+            //Add every point to the appropiate slot 
+            for (const auto& p : points) {
+                insertPoint(p);
+            }
 
         }
-
-
-        void insertPoint(const std::vector<NumType> &p){ 
-            uint64_t slot = find_slot(p); 
-            bit_table[slot].push_back(p);
-        }
-
 
         
-    std::vector<Neighbor<NumType>> returnANN(const std::vector<NumType>& p, int M , int k,
+    std::vector<Neighbor<NumType>> returnANN(const std::vector<NumType>& p, int M , int k, int probe = 3 ,
                                              bool range_bool = false, float range = 0.0) const {
 
 
@@ -73,59 +118,67 @@ class HyperCube{
         std::priority_queue<Neighbor<NumType>> topKNeighbors; 
         uint64_t base_slot = find_slot(p); //
         int hammingDist = 0; 
-        int exploredCount = 0;                
+        int exploredCount = 0;        
+        int exploredProbesCount = 0;        
         uint64_t border = (1ULL << k_proj); 
         bool explorationLimitReached = false; 
+        bool probeLimitReached = false; 
+
         while(hammingDist < k_proj){ //If we reach that point we are cooked  
+
             if (hammingDist == 0){ //When Hamming Dist is 0 we first explore the values in this slot 
-                for(const auto& entry : bit_table[base_slot]){ 
-                    double dist = euclidean_distance(p, entry);
-                    if (!range_bool || dist < range) {
-                        topK.emplace(entry, dist);
+                if (bit_table.find(base_slot) != bit_table.end()){
+                    //Traverse the whole bucket 
+                    for(const auto& entry : bit_table.at(base_slot)){ 
+                        double dist = euclidean_distance(p, entry); // calculate the dist 
+                        if (!range_bool || dist < range) {          // if we have a range decide whether to take the point according to the range 
+                            topKNeighbors.emplace(entry, dist);
+                        }
+                        if ( (++exploredCount) > M ) {explorationLimitReached = true; break; };   //if we have explored more points than the limit end 
                     }
-                    if ( (++exploredCount) > M ) {explorationLimitReached = true; break};  
-                    
                 }
-                while (topK.size() > static_cast<size_t>(k) && !range_bool) topK.pop();
+                while (topKNeighbors.size() > static_cast<size_t>(k) && !range_bool) topKNeighbors.pop(); //pop unwanted neighbors here 
                 if (explorationLimitReached) break;
+                hammingDist++; 
+                exploredProbesCount++; 
+                if (exploredProbesCount == probe){probeLimitReached = true; break;}
                 continue; 
             }
             uint64_t currentSlot; 
             uint64_t hammingMask = 0 ; 
-            for(int i = 0 ; i < hammingDist ;++i){ 
-                hammingMask << 1; 
+            for(int i = 0 ; i < hammingDist ;++i){ //build 
+                hammingMask <<= 1; 
                 hammingMask |= 1; 
             }
             while (hammingMask <=  border){ 
                 currentSlot = base_slot ^ hammingMask; 
-                for(const auto& entry : bit_table[currentSlot]){ 
-                    double dist = euclidean_distance(p, entry);
-                    if (!range_bool || dist < range) {
-                        topK.emplace(entry, dist);
+                if (bit_table.find(currentSlot) != bit_table.end() ) { 
+                    for(const auto& entry : bit_table.at(currentSlot)){ 
+                        double dist = euclidean_distance(p, entry);
+                        if (!range_bool || dist < range) {
+                            topKNeighbors.emplace(entry, dist);
+                        }
+                        if ( (++exploredCount) > M ) {explorationLimitReached = true; break;}
                     }
-                    if ( (++exploredCount) > M ) {explorationLimitReached = true; break}; 
                 }
-                while (topK.size() > static_cast<size_t>(k) && !range_bool) topK.pop();
+                while (topKNeighbors.size() > static_cast<size_t>(k) && !range_bool) topKNeighbors.pop();
                 hammingMask = next_bit(hammingMask); 
                 if (explorationLimitReached) break;
+                exploredProbesCount ++;
+                if (exploredProbesCount == probe){probeLimitReached = true; break;}
             }
-            if (explorationLimitReached) break;
-            hammingMask ++ ;
-
-
+            if (explorationLimitReached || probeLimitReached) break;
+            hammingDist ++ ;
     }
     std::vector<Neighbor<NumType>> neighbors;
-    while (!topK.empty()) {
-        neighbors.push_back(topK.top());
-        topK.pop();
+    while (!topKNeighbors.empty()) {
+        neighbors.push_back(topKNeighbors.top());
+        topKNeighbors.pop();
     }
     std::reverse(neighbors.begin(), neighbors.end());
     return neighbors;
 }
 
-
-
-    
 }; 
 
 

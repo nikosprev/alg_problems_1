@@ -147,7 +147,7 @@ public:
         }
     }
 
-    std::vector<Neighbor<NumType>> returnANN(const std::vector<NumType>& p, int k,
+    std::vector<Neighbor<NumType>> returnANN(const std::vector<NumType>& p, int k, 
                                              bool range_bool = false, float range = 0.0) const {
         std::priority_queue<Neighbor<NumType>> topK;
         std::unordered_set<size_t> idx_seen;
