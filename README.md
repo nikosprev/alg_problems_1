@@ -1,5 +1,7 @@
 # alg_problems_1
 Software project for algorithmic problems
+
+
 ```
 project1/
 ├── src/
@@ -16,7 +18,7 @@ project1/
 └── readme
 ```
 
-Πρεβόλης Νίκος ΑΜ : 1115.... 
+Πρεβόλης Νίκος ΑΜ : 1115202000172 
 Κατσαρός Χρήστος ΑΜ : 1115202200068
 
 Step 1: Read data and make input file
