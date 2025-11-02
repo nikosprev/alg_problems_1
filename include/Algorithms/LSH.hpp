@@ -169,7 +169,6 @@ public:
             }
             while (topK.size() > static_cast<size_t>(k) && !range_bool) topK.pop();
         }
-           std::cout << "Candidates seen: " << idx_seen.size() << std::endl;  // <-- NEW
         std::vector<Neighbor> neighbors;
         while (!topK.empty()) {
             neighbors.push_back(topK.top());

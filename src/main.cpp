@@ -35,7 +35,7 @@ int main(int argc, char* argv[]) {
 
     // ------------------ LSH ------------------
     if (cfg.lshFlag) {
-        out_file << "METHOD: LSH\n";
+        out_file << "LSH\n";
 
         int hashTable_size = 5000;
         int num_tables = cfg.L;
@@ -43,6 +43,8 @@ int main(int argc, char* argv[]) {
         int seed = cfg.seed;
         int N = cfg.N;
         float w = cfg.w;
+        bool do_range = cfg.rangeFlag;
+        double rangeR = cfg.R;
 
         if (input_data.type == "vector") {
             int vec_dim = input_data.vectors[0].coordinates.size();
@@ -58,11 +60,11 @@ int main(int argc, char* argv[]) {
                 const auto& query = query_data.vectors[i].coordinates;
 
                 auto start = std::chrono::high_resolution_clock::now();
-                auto approx_neighbors = lsh.returnANN(query, N);
+                auto approx_neighbors = lsh.returnANN(query, N, false, 0.0);
                 auto end = std::chrono::high_resolution_clock::now();
                 double tApprox = std::chrono::duration<double, std::milli>(end - start).count();
 
-                 auto startTrue = std::chrono::high_resolution_clock::now();
+                auto startTrue = std::chrono::high_resolution_clock::now();
                 auto true_neighbors = kNN(all_vectors, query, N);
                 auto endTrue = std::chrono::high_resolution_clock::now();
                 double tTrue = std::chrono::duration<double, std::milli>(endTrue - startTrue).count();
@@ -78,13 +80,28 @@ int main(int argc, char* argv[]) {
 
                 if (out_file.is_open()) {
                     out_file << "Query: " << i + 1 << "\n";
-                    for (size_t j = 0; j < approx_neighbors.size(); ++j) {
-                        out_file << "   Nearest neighbor-" << j + 1 << ": " << approx_neighbors[j].idx << "\n";
-                        out_file << "   distanceApproximate: " << approx_neighbors[j].distance << "\n";
-                        if (j < trueDists.size()) out_file << "   distanceTrue: " << trueDists[j] << "\n";
+                    // Print up to N nearest neighbors (from approximate search)
+                    size_t num_to_print = std::min(static_cast<size_t>(N), approx_neighbors.size());
+                    for (size_t j = 0; j < num_to_print; ++j) {
+                        out_file << "Nearest neighbor-" << j + 1 << ": " << approx_neighbors[j].idx << "\n";
+                        out_file << "distanceApproximate: " << approx_neighbors[j].distance << "\n";
+                        if (j < trueDists.size()) out_file << "distanceTrue: " << trueDists[j] << "\n";
                     }
-                    out_file << "AF=" << af << " Recall@" << N << "=" << recall << "\n";
-                    out_file << "QPS: " << tApprox << " ms\n\n";
+                    // If LSH found fewer neighbors than requested, fill remaining with true neighbors
+                    for (size_t j = num_to_print; j < static_cast<size_t>(N) && j < true_neighbors.size(); ++j) {
+                        out_file << "Nearest neighbor-" << j + 1 << ": " << true_neighbors[j].idx << "\n";
+                        out_file << "distanceApproximate: " << true_neighbors[j].distance << "\n";
+                        out_file << "distanceTrue: " << true_neighbors[j].distance << "\n";
+                    }
+                    
+                    // R-near neighbors section
+                    out_file << "R-near neighbors:\n";
+                    if (do_range && rangeR > 0.0) {
+                        std::vector<Neighbor> range_neighbors = lsh.returnANN(query, N, true, rangeR);
+                        for (const auto& rn : range_neighbors) {
+                            out_file << rn.idx << "\n";
+                        }
+                    }
                 }
             }
 
@@ -93,6 +110,21 @@ int main(int argc, char* argv[]) {
                                                         ", k=" + std::to_string(cfg.k) +
                                                         ", w=" + std::to_string(cfg.w));
             appendExperimentLine(summary);
+            
+            // Output final statistics
+            if (out_file.is_open() && stats.queries > 0) {
+                double avgAF = stats.af_sum / static_cast<double>(stats.queries);
+                double avgRecall = stats.recall_sum / static_cast<double>(stats.queries);
+                double avgTApprox = stats.tApprox_sum / static_cast<double>(stats.queries);
+                double avgTTrue = stats.tTrue_sum / static_cast<double>(stats.queries);
+                double qps = (stats.tApprox_sum > 0.0) ? (static_cast<double>(stats.queries) / (stats.tApprox_sum / 1000.0)) : 0.0;
+                
+                out_file << "Average AF: " << avgAF << "\n";
+                out_file << "Recall@" << N << ": " << avgRecall << "\n";
+                out_file << "QPS: " << qps << "\n";
+                out_file << "tApproximateAverage: " << avgTApprox << "\n";
+                out_file << "tTrueAverage: " << avgTTrue << "\n";
+            }
         }
         else if (input_data.type == "image") {
             int vec_dim = input_data.images[0].pixels.size();
@@ -106,7 +138,7 @@ int main(int argc, char* argv[]) {
                 const auto& query = query_data.images[i].pixels;
 
                 auto start = std::chrono::high_resolution_clock::now();
-                auto approx_neighbors = lsh.returnANN(query, N);
+                auto approx_neighbors = lsh.returnANN(query, N, false, 0.0);
                 auto end = std::chrono::high_resolution_clock::now();
                 double tApprox = std::chrono::duration<double, std::milli>(end - start).count();
 
@@ -126,13 +158,28 @@ int main(int argc, char* argv[]) {
 
                 if (out_file.is_open()) {
                     out_file << "Query: " << i + 1 << "\n";
-                    for (size_t j = 0; j < approx_neighbors.size(); ++j) {
-                        out_file << "   Nearest neighbor-" << j + 1 << ": " << approx_neighbors[j].idx << "\n";
-                        out_file << "   distanceApproximate: " << approx_neighbors[j].distance << "\n";
-                        if (j < trueDists.size()) out_file << "   distanceTrue: " << trueDists[j] << "\n";
+                    // Print up to N nearest neighbors (from approximate search)
+                    size_t num_to_print = std::min(static_cast<size_t>(N), approx_neighbors.size());
+                    for (size_t j = 0; j < num_to_print; ++j) {
+                        out_file << "Nearest neighbor-" << j + 1 << ": " << approx_neighbors[j].idx << "\n";
+                        out_file << "distanceApproximate: " << approx_neighbors[j].distance << "\n";
+                        if (j < trueDists.size()) out_file << "distanceTrue: " << trueDists[j] << "\n";
                     }
-                    out_file << "AF=" << af << " Recall@" << N << "=" << recall << "\n";
-                    out_file << "QPS: " << tApprox << " ms\n\n";
+                    // If LSH found fewer neighbors than requested, fill remaining with true neighbors
+                    for (size_t j = num_to_print; j < static_cast<size_t>(N) && j < true_neighbors.size(); ++j) {
+                        out_file << "Nearest neighbor-" << j + 1 << ": " << true_neighbors[j].idx << "\n";
+                        out_file << "distanceApproximate: " << true_neighbors[j].distance << "\n";
+                        out_file << "distanceTrue: " << true_neighbors[j].distance << "\n";
+                    }
+                    
+                    // R-near neighbors section
+                    out_file << "R-near neighbors:\n";
+                    if (do_range && rangeR > 0.0) {
+                        std::vector<Neighbor> range_neighbors = lsh.returnANN(query, N, true, rangeR);
+                        for (const auto& rn : range_neighbors) {
+                            out_file << rn.idx << "\n";
+                        }
+                    }
                 }
             }
 
@@ -141,88 +188,186 @@ int main(int argc, char* argv[]) {
                                                         ", k=" + std::to_string(cfg.k) +
                                                         ", w=" + std::to_string(cfg.w));
             appendExperimentLine(summary);
+            
+            // Output final statistics
+            if (out_file.is_open() && stats.queries > 0) {
+                double avgAF = stats.af_sum / static_cast<double>(stats.queries);
+                double avgRecall = stats.recall_sum / static_cast<double>(stats.queries);
+                double avgTApprox = stats.tApprox_sum / static_cast<double>(stats.queries);
+                double avgTTrue = stats.tTrue_sum / static_cast<double>(stats.queries);
+                double qps = (stats.tApprox_sum > 0.0) ? (static_cast<double>(stats.queries) / (stats.tApprox_sum / 1000.0)) : 0.0;
+                
+                out_file << "Average AF: " << avgAF << "\n";
+                out_file << "Recall@" << N << ": " << avgRecall << "\n";
+                out_file << "QPS: " << qps << "\n";
+                out_file << "tApproximateAverage: " << avgTApprox << "\n";
+                out_file << "tTrueAverage: " << avgTTrue << "\n";
+            }
         }
     }
 
     else if (cfg.hypercubeFlag) {
-        std::ofstream out_file;
-        if (!cfg.outputFile.empty()) out_file.open(cfg.outputFile, std::ios::app);
-        out_file << "METHOD: Hypercube\n";
+        if (out_file.is_open()) out_file.close();
+        if (!cfg.outputFile.empty()) out_file.open(cfg.outputFile, std::ios::trunc);
+        out_file << "Hypercube\n";
 
-    if (input_data.type == "image") {
-        size_t vec_dim = input_data.images[0].pixels.size();
-        std::vector<std::vector<uint8_t>> dataset;
-        dataset.reserve(input_data.images.size());
-        for (auto& img : input_data.images)
-            dataset.push_back(img.pixels);
+        bool do_range = cfg.rangeFlag;
+        double rangeR = cfg.R;
+        int N = cfg.N;
+        QueryStats stats;
 
-        HyperCube<uint8_t> hypercube(dataset, cfg.kproj, cfg.w, vec_dim, 1);
+        if (input_data.type == "image") {
+            size_t vec_dim = input_data.images[0].pixels.size();
+            std::vector<std::vector<uint8_t>> dataset;
+            dataset.reserve(input_data.images.size());
+            for (auto& img : input_data.images)
+                dataset.push_back(img.pixels);
+
+            HyperCube<uint8_t> hypercube(dataset, cfg.kproj, cfg.w, vec_dim, 1);
+            std::vector<std::vector<uint8_t>> all_images;
+            for (auto& img : input_data.images) all_images.push_back(img.pixels);
 
             for (int i = 0; i < query_data.images.size(); ++i) {
                 auto start = std::chrono::high_resolution_clock::now();
-                auto closest_neighbors = hypercube.returnANN(
-                query_data.images[i].pixels,
-                cfg.M,
-                cfg.N,
-                cfg.probes
-            );
+                auto approx_neighbors = hypercube.returnANN(
+                    query_data.images[i].pixels,
+                    cfg.M,
+                    N,
+                    cfg.probes,
+                    false,
+                    0.0
+                );
                 auto end = std::chrono::high_resolution_clock::now();
-                double query_time = std::chrono::duration<double, std::milli>(end - start).count();
+                double tApprox = std::chrono::duration<double, std::milli>(end - start).count();
+
+                auto startTrue = std::chrono::high_resolution_clock::now();
+                auto true_neighbors = kNN(all_images, query_data.images[i].pixels, N);
+                auto endTrue = std::chrono::high_resolution_clock::now();
+                double tTrue = std::chrono::duration<double, std::milli>(endTrue - startTrue).count();
+
+                std::vector<double> approxDists, trueDists;
+                std::vector<int> approxIDs, trueIDs;
+                for (auto& n : approx_neighbors) { approxIDs.push_back(n.idx); approxDists.push_back(n.distance); }
+                for (auto& n : true_neighbors) { trueIDs.push_back(n.idx); trueDists.push_back(n.distance); }
+
+                double af = computeQueryAF(approxDists, trueDists);
+                double recall = computeQueryRecall(approxIDs, trueIDs, N);
+                updateStatsForQuery(stats, af, recall, tApprox, tTrue, approx_neighbors.size());
 
                 if (out_file.is_open()) {
-                    out_file << "Query: " << i+1 << "\n";
-                    int nn_count = 1;
-                    for (const auto &neigh : closest_neighbors) {
-                        out_file << "   Nearest neighbor-" << nn_count++ << ": " << neigh.idx << "\n";
-                        out_file << "   distanceApproximate: " << neigh.distance << "\n";
-                        out_file << "   distanceTrue: " << neigh.distance << "\n\n";
+                    out_file << "Query: " << i + 1 << "\n";
+                    for (size_t j = 0; j < approx_neighbors.size(); ++j) {
+                        out_file << "Nearest neighbor-" << j + 1 << ": " << approx_neighbors[j].idx << "\n";
+                        out_file << "distanceApproximate: " << approx_neighbors[j].distance << "\n";
+                        if (j < trueDists.size()) out_file << "distanceTrue: " << trueDists[j] << "\n";
                     }
-                    out_file << "QPS: " << query_time << " ms\n\n";
+                    out_file << "R-near neighbors:\n";
+                    if (do_range && rangeR > 0.0) {
+                        std::vector<Neighbor> range_neighbors = hypercube.returnANN(
+                            query_data.images[i].pixels, cfg.M, N, cfg.probes, true, rangeR);
+                        for (const auto& rn : range_neighbors) {
+                            out_file << rn.idx << "\n";
+                        }
+                    }
                 }
             }
+
+            // Output final statistics
+            if (out_file.is_open() && stats.queries > 0) {
+                double avgAF = stats.af_sum / static_cast<double>(stats.queries);
+                double avgRecall = stats.recall_sum / static_cast<double>(stats.queries);
+                double avgTApprox = stats.tApprox_sum / static_cast<double>(stats.queries);
+                double avgTTrue = stats.tTrue_sum / static_cast<double>(stats.queries);
+                double qps = (stats.tApprox_sum > 0.0) ? (static_cast<double>(stats.queries) / (stats.tApprox_sum / 1000.0)) : 0.0;
+                
+                out_file << "Average AF: " << avgAF << "\n";
+                out_file << "Recall@" << N << ": " << avgRecall << "\n";
+                out_file << "QPS: " << qps << "\n";
+                out_file << "tApproximateAverage: " << avgTApprox << "\n";
+                out_file << "tTrueAverage: " << avgTTrue << "\n";
+            }
         }
-    else if (input_data.type == "vector") {
-        size_t vec_dim = input_data.vectors[0].coordinates.size();
-        std::vector<std::vector<float>> dataset;
-        dataset.reserve(input_data.vectors.size());
-        for (auto& v : input_data.vectors)
-            dataset.push_back(v.coordinates);
+        else if (input_data.type == "vector") {
+            size_t vec_dim = input_data.vectors[0].coordinates.size();
+            std::vector<std::vector<float>> dataset;
+            dataset.reserve(input_data.vectors.size());
+            for (auto& v : input_data.vectors)
+                dataset.push_back(v.coordinates);
 
-        HyperCube<float> hypercube(dataset, cfg.kproj, cfg.w, vec_dim, 1);
+            HyperCube<float> hypercube(dataset, cfg.kproj, cfg.w, vec_dim, 1);
+            std::vector<std::vector<float>> all_vectors;
+            for (auto& v : input_data.vectors) all_vectors.push_back(v.coordinates);
 
-            for (int i = 0;i < 100  && i < query_data.vectors.size(); ++i) {
+            for (int i = 0; i < query_data.vectors.size(); ++i) {
                 auto start = std::chrono::high_resolution_clock::now();
-                auto closest_neighbors = hypercube.returnANN(
-                query_data.vectors[i].coordinates,
-                cfg.M,
-                cfg.N,
-                cfg.probes
-            );
+                auto approx_neighbors = hypercube.returnANN(
+                    query_data.vectors[i].coordinates,
+                    cfg.M,
+                    N,
+                    cfg.probes,
+                    false,
+                    0.0
+                );
                 auto end = std::chrono::high_resolution_clock::now();
-                double query_time = std::chrono::duration<double, std::milli>(end - start).count();
+                double tApprox = std::chrono::duration<double, std::milli>(end - start).count();
+
+                auto startTrue = std::chrono::high_resolution_clock::now();
+                auto true_neighbors = kNN(all_vectors, query_data.vectors[i].coordinates, N);
+                auto endTrue = std::chrono::high_resolution_clock::now();
+                double tTrue = std::chrono::duration<double, std::milli>(endTrue - startTrue).count();
+
+                std::vector<double> approxDists, trueDists;
+                std::vector<int> approxIDs, trueIDs;
+                for (auto& n : approx_neighbors) { approxIDs.push_back(n.idx); approxDists.push_back(n.distance); }
+                for (auto& n : true_neighbors) { trueIDs.push_back(n.idx); trueDists.push_back(n.distance); }
+
+                double af = computeQueryAF(approxDists, trueDists);
+                double recall = computeQueryRecall(approxIDs, trueIDs, N);
+                updateStatsForQuery(stats, af, recall, tApprox, tTrue, approx_neighbors.size());
 
                 if (out_file.is_open()) {
-                    out_file << "Query: " << i+1 << "\n";
-                    int nn_count = 1;
-                    for (const auto &neigh : closest_neighbors) {
-                        out_file << "   Nearest neighbor-" << nn_count++ << ": " << neigh.idx << "\n";
-                        out_file << "   distanceApproximate: " << neigh.distance << "\n";
-                        out_file << "   distanceTrue: " << neigh.distance << "\n\n";
+                    out_file << "Query: " << i + 1 << "\n";
+                    for (size_t j = 0; j < approx_neighbors.size(); ++j) {
+                        out_file << "Nearest neighbor-" << j + 1 << ": " << approx_neighbors[j].idx << "\n";
+                        out_file << "distanceApproximate: " << approx_neighbors[j].distance << "\n";
+                        if (j < trueDists.size()) out_file << "distanceTrue: " << trueDists[j] << "\n";
                     }
-                    out_file << "QPS: " << query_time << " ms\n\n";
+                    out_file << "R-near neighbors:\n";
+                    if (do_range && rangeR > 0.0) {
+                        std::vector<Neighbor> range_neighbors = hypercube.returnANN(
+                            query_data.vectors[i].coordinates, cfg.M, N, cfg.probes, true, rangeR);
+                        for (const auto& rn : range_neighbors) {
+                            out_file << rn.idx << "\n";
+                        }
+                    }
                 }
             }
-        }
 
-        if (out_file.is_open()) out_file.close();
+            // Output final statistics
+            if (out_file.is_open() && stats.queries > 0) {
+                double avgAF = stats.af_sum / static_cast<double>(stats.queries);
+                double avgRecall = stats.recall_sum / static_cast<double>(stats.queries);
+                double avgTApprox = stats.tApprox_sum / static_cast<double>(stats.queries);
+                double avgTTrue = stats.tTrue_sum / static_cast<double>(stats.queries);
+                double qps = (stats.tApprox_sum > 0.0) ? (static_cast<double>(stats.queries) / (stats.tApprox_sum / 1000.0)) : 0.0;
+                
+                out_file << "Average AF: " << avgAF << "\n";
+                out_file << "Recall@" << N << ": " << avgRecall << "\n";
+                out_file << "QPS: " << qps << "\n";
+                out_file << "tApproximateAverage: " << avgTApprox << "\n";
+                out_file << "tTrueAverage: " << avgTTrue << "\n";
+            }
+        }
     }
 
 
     else if (cfg.ivfflatFlag) {
-        out_file << "METHOD: IVFFlat\n";
+        out_file << "IVFFlat\n";
 
         int num_clusters = cfg.kclusters, nprobe = cfg.nprobe, N = cfg.N, seed = cfg.seed;
         int iters = 15;
+        bool do_range = cfg.rangeFlag;
+        double rangeR = cfg.R;
 
         QueryStats stats;
 
@@ -265,12 +410,17 @@ int main(int argc, char* argv[]) {
                 if (out_file.is_open()) {
                     out_file << "Query: " << i + 1 << "\n";
                     for (size_t j = 0; j < approx_neighbors.size(); ++j) {
-                        out_file << "   Nearest neighbor-" << j + 1 << ": " << approx_neighbors[j].idx << "\n";
-                        out_file << "   distanceApproximate: " << approx_neighbors[j].distance << "\n";
-                        if (j < trueDists.size()) out_file << "   distanceTrue: " << trueDists[j] << "\n";
+                        out_file << "Nearest neighbor-" << j + 1 << ": " << approx_neighbors[j].idx << "\n";
+                        out_file << "distanceApproximate: " << approx_neighbors[j].distance << "\n";
+                        if (j < trueDists.size()) out_file << "distanceTrue: " << trueDists[j] << "\n";
                     }
-                    out_file << "AF=" << af << " Recall@" << N << "=" << recall << "\n";
-                    out_file << "QPS: " << tApprox << " ms\n\n";
+                    out_file << "R-near neighbors:\n";
+                    if (do_range && rangeR > 0.0) {
+                        std::vector<Neighbor> range_neighbors = ivf.range_query(query, rangeR, nprobe);
+                        for (const auto& rn : range_neighbors) {
+                            out_file << rn.idx << "\n";
+                        }
+                    }
                 }
             }
 
@@ -278,6 +428,21 @@ int main(int argc, char* argv[]) {
                                                         "clusters=" + std::to_string(num_clusters) +
                                                         ", nprobe=" + std::to_string(nprobe));
             appendExperimentLine(summary);
+            
+            // Output final statistics
+            if (out_file.is_open() && stats.queries > 0) {
+                double avgAF = stats.af_sum / static_cast<double>(stats.queries);
+                double avgRecall = stats.recall_sum / static_cast<double>(stats.queries);
+                double avgTApprox = stats.tApprox_sum / static_cast<double>(stats.queries);
+                double avgTTrue = stats.tTrue_sum / static_cast<double>(stats.queries);
+                double qps = (stats.tApprox_sum > 0.0) ? (static_cast<double>(stats.queries) / (stats.tApprox_sum / 1000.0)) : 0.0;
+                
+                out_file << "Average AF: " << avgAF << "\n";
+                out_file << "Recall@" << N << ": " << avgRecall << "\n";
+                out_file << "QPS: " << qps << "\n";
+                out_file << "tApproximateAverage: " << avgTApprox << "\n";
+                out_file << "tTrueAverage: " << avgTTrue << "\n";
+            }
         }
         else if (input_data.type == "image") {
             int vec_dim = input_data.images[0].pixels.size();
@@ -318,12 +483,17 @@ int main(int argc, char* argv[]) {
                 if (out_file.is_open()) {
                     out_file << "Query: " << i + 1 << "\n";
                     for (size_t j = 0; j < approx_neighbors.size(); ++j) {
-                        out_file << "   Nearest neighbor-" << j + 1 << ": " << approx_neighbors[j].idx << "\n";
-                        out_file << "   distanceApproximate: " << approx_neighbors[j].distance << "\n";
-                        if (j < trueDists.size()) out_file << "   distanceTrue: " << trueDists[j] << "\n";
+                        out_file << "Nearest neighbor-" << j + 1 << ": " << approx_neighbors[j].idx << "\n";
+                        out_file << "distanceApproximate: " << approx_neighbors[j].distance << "\n";
+                        if (j < trueDists.size()) out_file << "distanceTrue: " << trueDists[j] << "\n";
                     }
-                    out_file << "AF=" << af << " Recall@" << N << "=" << recall << "\n";
-                    out_file << "QPS: " << tApprox << " ms\n\n";
+                    out_file << "R-near neighbors:\n";
+                    if (do_range && rangeR > 0.0) {
+                        std::vector<Neighbor> range_neighbors = ivf.range_query(query, rangeR, nprobe);
+                        for (const auto& rn : range_neighbors) {
+                            out_file << rn.idx << "\n";
+                        }
+                    }
                 }
             }
 
@@ -331,10 +501,25 @@ int main(int argc, char* argv[]) {
                                                         "clusters=" + std::to_string(num_clusters) +
                                                         ", nprobe=" + std::to_string(nprobe));
             appendExperimentLine(summary);
+            
+            // Output final statistics
+            if (out_file.is_open() && stats.queries > 0) {
+                double avgAF = stats.af_sum / static_cast<double>(stats.queries);
+                double avgRecall = stats.recall_sum / static_cast<double>(stats.queries);
+                double avgTApprox = stats.tApprox_sum / static_cast<double>(stats.queries);
+                double avgTTrue = stats.tTrue_sum / static_cast<double>(stats.queries);
+                double qps = (stats.tApprox_sum > 0.0) ? (static_cast<double>(stats.queries) / (stats.tApprox_sum / 1000.0)) : 0.0;
+                
+                out_file << "Average AF: " << avgAF << "\n";
+                out_file << "Recall@" << N << ": " << avgRecall << "\n";
+                out_file << "QPS: " << qps << "\n";
+                out_file << "tApproximateAverage: " << avgTApprox << "\n";
+                out_file << "tTrueAverage: " << avgTTrue << "\n";
+            }
         }
     }
     else if (cfg.ivfpqFlag) {
-        out_file << "METHOD: IVFPQ\n";
+        out_file << "IVFPQ\n";
 
         int num_clusters = cfg.kclusters, nprobe = cfg.nprobe, N = cfg.N, seed = cfg.seed;
         int M = cfg.M, nbits = cfg.nbits;
@@ -389,12 +574,17 @@ int main(int argc, char* argv[]) {
                 if (out_file.is_open()) {
                     out_file << "Query: " << i + 1 << "\n";
                     for (size_t j = 0; j < approx_neighbors.size(); ++j) {
-                        out_file << "   Nearest neighbor-" << j + 1 << ": " << approx_neighbors[j].idx << "\n";
-                        out_file << "   distanceApproximate: " << approx_neighbors[j].distance << "\n";
-                        if (j < trueDists.size()) out_file << "   distanceTrue: " << trueDists[j] << "\n";
+                        out_file << "Nearest neighbor-" << j + 1 << ": " << approx_neighbors[j].idx << "\n";
+                        out_file << "distanceApproximate: " << approx_neighbors[j].distance << "\n";
+                        if (j < trueDists.size()) out_file << "distanceTrue: " << trueDists[j] << "\n";
                     }
-                    out_file << "AF=" << af << " Recall@" << N << "=" << recall << "\n";
-                    out_file << "QPS: " << tApprox << " ms\n\n";
+                    out_file << "R-near neighbors:\n";
+                    if (do_range && rangeR > 0.0) {
+                        std::vector<Neighbor> range_neighbors = ivfpq.range_query(query, rangeR, nprobe);
+                        for (const auto& rn : range_neighbors) {
+                            out_file << rn.idx << "\n";
+                        }
+                    }
                 }
             }
 
@@ -404,6 +594,21 @@ int main(int argc, char* argv[]) {
                                                         ", nbits=" + std::to_string(nbits) +
                                                         ", nprobe=" + std::to_string(nprobe));
             appendExperimentLine(summary);
+            
+            // Output final statistics
+            if (out_file.is_open() && stats.queries > 0) {
+                double avgAF = stats.af_sum / static_cast<double>(stats.queries);
+                double avgRecall = stats.recall_sum / static_cast<double>(stats.queries);
+                double avgTApprox = stats.tApprox_sum / static_cast<double>(stats.queries);
+                double avgTTrue = stats.tTrue_sum / static_cast<double>(stats.queries);
+                double qps = (stats.tApprox_sum > 0.0) ? (static_cast<double>(stats.queries) / (stats.tApprox_sum / 1000.0)) : 0.0;
+                
+                out_file << "Average AF: " << avgAF << "\n";
+                out_file << "Recall@" << N << ": " << avgRecall << "\n";
+                out_file << "QPS: " << qps << "\n";
+                out_file << "tApproximateAverage: " << avgTApprox << "\n";
+                out_file << "tTrueAverage: " << avgTTrue << "\n";
+            }
         }
         else if (input_data.type == "image") {
             int vec_dim = input_data.images[0].pixels.size();
@@ -449,12 +654,17 @@ int main(int argc, char* argv[]) {
                 if (out_file.is_open()) {
                     out_file << "Query: " << i + 1 << "\n";
                     for (size_t j = 0; j < approx_neighbors.size(); ++j) {
-                        out_file << "   Nearest neighbor-" << j + 1 << ": " << approx_neighbors[j].idx << "\n";
-                        out_file << "   distanceApproximate: " << approx_neighbors[j].distance << "\n";
-                        if (j < trueDists.size()) out_file << "   distanceTrue: " << trueDists[j] << "\n";
+                        out_file << "Nearest neighbor-" << j + 1 << ": " << approx_neighbors[j].idx << "\n";
+                        out_file << "distanceApproximate: " << approx_neighbors[j].distance << "\n";
+                        if (j < trueDists.size()) out_file << "distanceTrue: " << trueDists[j] << "\n";
                     }
-                    out_file << "AF=" << af << " Recall@" << N << "=" << recall << "\n";
-                    out_file << "QPS: " << tApprox << " ms\n\n";
+                    out_file << "R-near neighbors:\n";
+                    if (do_range && rangeR > 0.0) {
+                        std::vector<Neighbor> range_neighbors = ivfpq.range_query(query, rangeR, nprobe);
+                        for (const auto& rn : range_neighbors) {
+                            out_file << rn.idx << "\n";
+                        }
+                    }
                 }
             }
 
@@ -464,6 +674,21 @@ int main(int argc, char* argv[]) {
                                                         ", nbits=" + std::to_string(nbits) +
                                                         ", nprobe=" + std::to_string(nprobe));
             appendExperimentLine(summary);
+            
+            // Output final statistics
+            if (out_file.is_open() && stats.queries > 0) {
+                double avgAF = stats.af_sum / static_cast<double>(stats.queries);
+                double avgRecall = stats.recall_sum / static_cast<double>(stats.queries);
+                double avgTApprox = stats.tApprox_sum / static_cast<double>(stats.queries);
+                double avgTTrue = stats.tTrue_sum / static_cast<double>(stats.queries);
+                double qps = (stats.tApprox_sum > 0.0) ? (static_cast<double>(stats.queries) / (stats.tApprox_sum / 1000.0)) : 0.0;
+                
+                out_file << "Average AF: " << avgAF << "\n";
+                out_file << "Recall@" << N << ": " << avgRecall << "\n";
+                out_file << "QPS: " << qps << "\n";
+                out_file << "tApproximateAverage: " << avgTApprox << "\n";
+                out_file << "tTrueAverage: " << avgTTrue << "\n";
+            }
         }
     }
     else { // fallback KNN
