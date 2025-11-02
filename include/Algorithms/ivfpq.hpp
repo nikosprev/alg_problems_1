@@ -338,6 +338,10 @@ public:
         return result;
     }
 
+    // Expose read-only accessors for silhouette calculation
+    const std::vector<std::vector<float>>& get_coarse_centroids() const { return coarse_centroids; }
+    const std::vector<std::vector<std::pair<size_t, std::vector<uint8_t>>>>& get_inverted_lists() const { return inverted_lists; }
+
 private:
     /**
      * Compute Euclidean distance from a vector to a centroid.

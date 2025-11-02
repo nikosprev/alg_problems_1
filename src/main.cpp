@@ -348,6 +348,7 @@ int main(int argc, char* argv[]) {
 
 
     else if (cfg.ivfflatFlag) {
+        // Method name output commented out for parameter testing
         out_file << "IVFFlat\n";
 
         int num_clusters = cfg.kclusters, nprobe = cfg.nprobe, N = cfg.N, seed = cfg.seed;
@@ -393,29 +394,37 @@ int main(int argc, char* argv[]) {
                 double recall = computeQueryRecall(approxIDs, trueIDs, N);
                 updateStatsForQuery(stats, af, recall, tApprox, tTrue, approx_neighbors.size());
 
-                if (out_file.is_open()) {
-                    out_file << "Query: " << i + 1 << "\n";
-                    for (size_t j = 0; j < approx_neighbors.size(); ++j) {
-                        out_file << "Nearest neighbor-" << j + 1 << ": " << approx_neighbors[j].idx << "\n";
-                        out_file << "distanceApproximate: " << approx_neighbors[j].distance << "\n";
-                        if (j < trueDists.size()) out_file << "distanceTrue: " << trueDists[j] << "\n";
-                    }
-                    out_file << "R-near neighbors:\n";
-                    if (do_range && rangeR > 0.0) {
-                        std::vector<Neighbor> range_neighbors = ivf.range_query(query, rangeR, nprobe);
-                        for (const auto& rn : range_neighbors) {
-                            out_file << rn.idx << "\n";
-                        }
-                    }
-                }
+                // Query output 
+                 if (out_file.is_open()) {
+                     out_file << "Query: " << i + 1 << "\n";
+                     for (size_t j = 0; j < approx_neighbors.size(); ++j) {
+                         out_file << "Nearest neighbor-" << j + 1 << ": " << approx_neighbors[j].idx << "\n";
+                         out_file << "distanceApproximate: " << approx_neighbors[j].distance << "\n";
+                         if (j < trueDists.size()) out_file << "distanceTrue: " << trueDists[j] << "\n";
+                     }
+                 out_file << "R-near neighbors:\n";
+                     if (do_range && rangeR > 0.0) {
+                         std::vector<Neighbor> range_neighbors = ivf.range_query(query, rangeR, nprobe);
+                         for (const auto& rn : range_neighbors) {
+                             out_file << rn.idx << "\n";
+                         }
+                     }
+                 }
             }
+
+            // Calculate silhouette score
+            double silhouette_score = computeSilhouetteScore<float>(
+                ivf.get_centroids(), ivf.get_inverted_lists(), all_vectors);
 
             ExperimentSummary summary = finalizeSummary(stats, "vector_dataset", "IVFFlat",
                                                         "clusters=" + std::to_string(num_clusters) +
-                                                        ", nprobe=" + std::to_string(nprobe));
+                                                        ", nprobe=" + std::to_string(nprobe) +
+                                                        ", N=" + std::to_string(N) +
+                                                        ", R=" + std::to_string(rangeR));
+            summary.silhouette = silhouette_score;
             appendExperimentLine(summary);
             
-            // Output final statistics
+           // Final statistics output 
             if (out_file.is_open() && stats.queries > 0) {
                 double avgAF = stats.af_sum / static_cast<double>(stats.queries);
                 double avgRecall = stats.recall_sum / static_cast<double>(stats.queries);
@@ -466,6 +475,7 @@ int main(int argc, char* argv[]) {
                 double recall = computeQueryRecall(approxIDs, trueIDs, N);
                 updateStatsForQuery(stats, af, recall, tApprox, tTrue, approx_neighbors.size());
 
+               
                 if (out_file.is_open()) {
                     out_file << "Query: " << i + 1 << "\n";
                     for (size_t j = 0; j < approx_neighbors.size(); ++j) {
@@ -483,9 +493,16 @@ int main(int argc, char* argv[]) {
                 }
             }
 
+            // Calculate silhouette score
+            double silhouette_score = computeSilhouetteScore<uint8_t>(
+                ivf.get_centroids(), ivf.get_inverted_lists(), all_images);
+
             ExperimentSummary summary = finalizeSummary(stats, "image_dataset", "IVFFlat",
                                                         "clusters=" + std::to_string(num_clusters) +
-                                                        ", nprobe=" + std::to_string(nprobe));
+                                                        ", nprobe=" + std::to_string(nprobe) +
+                                                        ", N=" + std::to_string(N) +
+                                                        ", R=" + std::to_string(rangeR));
+            summary.silhouette = silhouette_score;
             appendExperimentLine(summary);
             
             // Output final statistics
@@ -505,6 +522,7 @@ int main(int argc, char* argv[]) {
         }
     }
     else if (cfg.ivfpqFlag) {
+        // Method name output commented out for parameter testing
         out_file << "IVFPQ\n";
 
         int num_clusters = cfg.kclusters, nprobe = cfg.nprobe, N = cfg.N, seed = cfg.seed;
@@ -557,6 +575,7 @@ int main(int argc, char* argv[]) {
                 double recall = computeQueryRecall(approxIDs, trueIDs, N);
                 updateStatsForQuery(stats, af, recall, tApprox, tTrue, approx_neighbors.size());
 
+                // Query output 
                 if (out_file.is_open()) {
                     out_file << "Query: " << i + 1 << "\n";
                     for (size_t j = 0; j < approx_neighbors.size(); ++j) {
@@ -574,14 +593,37 @@ int main(int argc, char* argv[]) {
                 }
             }
 
+            // Calculate silhouette score using coarse centroids
+            // For IVFPQ, we use coarse clustering for silhouette (same as IVFFlat)
+            // Build inverted lists structure from coarse clusters for silhouette calculation
+            auto& coarse_centroids = ivfpq.get_coarse_centroids();
+            auto& ivfpq_lists = ivfpq.get_inverted_lists();
+            
+            // Convert IVFPQ inverted lists to format compatible with silhouette function
+            // We create a structure similar to IVFFlat: (idx, reconstructed_vector)
+            // For silhouette, we use the original vectors and their cluster assignments from inverted lists
+            std::vector<std::vector<std::pair<size_t, std::vector<float>>>> silhouette_lists(coarse_centroids.size());
+            for (size_t c = 0; c < ivfpq_lists.size(); ++c) {
+                for (const auto& [idx, code] : ivfpq_lists[c]) {
+                    if (idx < all_vectors.size()) {
+                        silhouette_lists[c].emplace_back(idx, all_vectors[idx]);
+                    }
+                }
+            }
+            
+            double silhouette_score = computeSilhouetteScore<float>(
+                coarse_centroids, silhouette_lists, all_vectors);
+
             ExperimentSummary summary = finalizeSummary(stats, "vector_dataset", "IVFPQ",
                                                         "clusters=" + std::to_string(num_clusters) +
-                                                        ", M=" + std::to_string(M) +
+                                                        ", nprobe=" + std::to_string(nprobe) +
                                                         ", nbits=" + std::to_string(nbits) +
-                                                        ", nprobe=" + std::to_string(nprobe));
+                                                        ", N=" + std::to_string(N) +
+                                                        ", R=" + std::to_string(rangeR));
+            summary.silhouette = silhouette_score;
             appendExperimentLine(summary);
             
-            // Output final statistics
+          //  Final statistics output 
             if (out_file.is_open() && stats.queries > 0) {
                 double avgAF = stats.af_sum / static_cast<double>(stats.queries);
                 double avgRecall = stats.recall_sum / static_cast<double>(stats.queries);
@@ -637,6 +679,7 @@ int main(int argc, char* argv[]) {
                 double recall = computeQueryRecall(approxIDs, trueIDs, N);
                 updateStatsForQuery(stats, af, recall, tApprox, tTrue, approx_neighbors.size());
 
+                // Query output commented out for parameter testing
                 if (out_file.is_open()) {
                     out_file << "Query: " << i + 1 << "\n";
                     for (size_t j = 0; j < approx_neighbors.size(); ++j) {
@@ -654,11 +697,30 @@ int main(int argc, char* argv[]) {
                 }
             }
 
+            // Calculate silhouette score using coarse centroids
+            auto& coarse_centroids = ivfpq.get_coarse_centroids();
+            auto& ivfpq_lists = ivfpq.get_inverted_lists();
+            
+            // Convert IVFPQ inverted lists to format compatible with silhouette function
+            std::vector<std::vector<std::pair<size_t, std::vector<uint8_t>>>> silhouette_lists(coarse_centroids.size());
+            for (size_t c = 0; c < ivfpq_lists.size(); ++c) {
+                for (const auto& [idx, code] : ivfpq_lists[c]) {
+                    if (idx < all_images.size()) {
+                        silhouette_lists[c].emplace_back(idx, all_images[idx]);
+                    }
+                }
+            }
+            
+            double silhouette_score = computeSilhouetteScore<uint8_t>(
+                coarse_centroids, silhouette_lists, all_images);
+
             ExperimentSummary summary = finalizeSummary(stats, "image_dataset", "IVFPQ",
                                                         "clusters=" + std::to_string(num_clusters) +
-                                                        ", M=" + std::to_string(M) +
+                                                        ", nprobe=" + std::to_string(nprobe) +
                                                         ", nbits=" + std::to_string(nbits) +
-                                                        ", nprobe=" + std::to_string(nprobe));
+                                                        ", N=" + std::to_string(N) +
+                                                        ", R=" + std::to_string(rangeR));
+            summary.silhouette = silhouette_score;
             appendExperimentLine(summary);
             
             // Output final statistics

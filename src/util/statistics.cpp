@@ -2,6 +2,9 @@
 #include <fstream>
 #include <iomanip>
 #include <algorithm>
+#include <limits>
+#include <cmath>
+#include "../../include/Algorithms/metrics.hpp"
 
 double computeQueryAF(const std::vector<double>& approxDistances,
                       const std::vector<double>& trueDistances) {
@@ -76,6 +79,80 @@ ExperimentSummary finalizeSummary(const QueryStats& stats,
     return s;
 }
 
+// Silhouette score calculation (template implementation)
+template<typename NumType>
+double computeSilhouetteScore(const std::vector<std::vector<float>>& centroids,
+                              const std::vector<std::vector<std::pair<size_t, std::vector<NumType>>>>& inverted_lists,
+                              const std::vector<std::vector<NumType>>& vectors) {
+    if (centroids.empty() || inverted_lists.empty() || vectors.empty()) return 0.0;
+    
+    size_t num_clusters = centroids.size();
+    double total_silhouette = 0.0;
+    size_t total_points = 0;
+    
+    // For each point, calculate its silhouette score
+    for (size_t c = 0; c < num_clusters; ++c) {
+        const auto& cluster = inverted_lists[c];
+        if (cluster.empty()) continue;
+        
+        for (const auto& [idx, vec] : cluster) {
+            // a_i: mean distance to other points in same cluster
+            double a_i = 0.0;
+            size_t same_cluster_count = 0;
+            for (const auto& [other_idx, other_vec] : cluster) {
+                if (other_idx != idx) {
+                    a_i += euclidean_distance(vec, other_vec);
+                    same_cluster_count++;
+                }
+            }
+            if (same_cluster_count > 0) {
+                a_i /= static_cast<double>(same_cluster_count);
+            }
+            
+            // b_i: mean distance to nearest other cluster
+            double b_i = std::numeric_limits<double>::max();
+            for (size_t other_c = 0; other_c < num_clusters; ++other_c) {
+                if (other_c == c || inverted_lists[other_c].empty()) continue;
+                
+                // Calculate mean distance to points in other cluster
+                double mean_dist = 0.0;
+                size_t count = 0;
+                for (const auto& [other_idx, other_vec] : inverted_lists[other_c]) {
+                    mean_dist += euclidean_distance(vec, other_vec);
+                    count++;
+                }
+                if (count > 0) {
+                    mean_dist /= static_cast<double>(count);
+                    if (mean_dist < b_i) {
+                        b_i = mean_dist;
+                    }
+                }
+            }
+            
+            // Silhouette for this point: s_i = (b_i - a_i) / max(a_i, b_i)
+            if (std::max(a_i, b_i) > 0.0) {
+                double s_i = (b_i - a_i) / std::max(a_i, b_i);
+                total_silhouette += s_i;
+                total_points++;
+            }
+        }
+    }
+    
+    if (total_points == 0) return 0.0;
+    return total_silhouette / static_cast<double>(total_points);
+}
+
+// Explicit template instantiations
+template double computeSilhouetteScore<float>(
+    const std::vector<std::vector<float>>&,
+    const std::vector<std::vector<std::pair<size_t, std::vector<float>>>>&,
+    const std::vector<std::vector<float>>&);
+
+template double computeSilhouetteScore<uint8_t>(
+    const std::vector<std::vector<float>>&,
+    const std::vector<std::vector<std::pair<size_t, std::vector<uint8_t>>>>&,
+    const std::vector<std::vector<uint8_t>>&);
+
 bool appendExperimentLine(const ExperimentSummary& s) {
     std::string fname = s.method_name + "experiments.txt";
     std::ofstream ofs(fname, std::ios::app);
@@ -87,6 +164,7 @@ bool appendExperimentLine(const ExperimentSummary& s) {
         << " tApprox=" << std::fixed << std::setprecision(3) << s.avgTApprox << "ms"
         << " tTrue=" << std::fixed << std::setprecision(3) << s.avgTTrue << "ms"
         << " QPS=" << std::fixed << std::setprecision(2) << s.qps
+        << " Silhouette=" << std::fixed << std::setprecision(6) << s.silhouette
         << "\n";
 
     ofs.close();

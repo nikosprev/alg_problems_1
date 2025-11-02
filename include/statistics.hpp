@@ -28,6 +28,7 @@ struct ExperimentSummary {
     double avgTTrue = 0.0;    // ms
 
     double qps = 0.0;         // queries per second (based on approx times)
+    double silhouette = 0.0;  // silhouette score
 };
 
 // Compute per-query AF using the "paired-by-rank" approach:
@@ -60,10 +61,20 @@ ExperimentSummary finalizeSummary(const QueryStats& stats,
                                   const std::string& method_name,
                                   const std::string& params);
 
+// Compute silhouette score for IVFFlat/IVFPQ clustering
+// Silhouette score measures how similar an object is to its own cluster compared to other clusters
+// Returns average silhouette score: (b - a) / max(a, b)
+// where a = mean intra-cluster distance, b = mean nearest-cluster distance
+// Template implementation is in statistics.cpp with explicit instantiations
+template<typename NumType>
+double computeSilhouetteScore(const std::vector<std::vector<float>>& centroids,
+                              const std::vector<std::vector<std::pair<size_t, std::vector<NumType>>>>& inverted_lists,
+                              const std::vector<std::vector<NumType>>& vectors);
+
 // Append a single-line experiment result to
 // <method_name>experiments.txt (e.g. LSHexperiments.txt)
 // The line format (single line appended):
-// <dataset> <method> <params> AvgAF=<double> Recall=<double> tApprox=<double>ms tTrue=<double>ms QPS=<double>\n
+// <dataset> <method> <params> AvgAF=<double> Recall=<double> tApprox=<double>ms tTrue=<double>ms QPS=<double> Silhouette=<double>\n
 bool appendExperimentLine(const ExperimentSummary& s);
 
 #endif // STATISTICS 
