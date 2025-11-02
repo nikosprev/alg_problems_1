@@ -47,16 +47,16 @@ h_i(p) =  {\floor}{(p*v + t)/w}
 */
 class HashFunction {
     std::vector<float> w;//The random vector 
-    int window; //The window 
+    float window; //The window 
     float t;
     size_t dim; // The dimension of the vectors 
 
 public:
-    HashFunction(size_t dim_, int seed, int window_)
+    HashFunction(size_t dim_, int seed, float  window_)
         : dim(dim_), window(window_) {
         w = GaussianProjection(dim_, &seed);
         std::mt19937 gen(seed);
-        std::uniform_real_distribution<float> dist(2.0f, static_cast<float>(window_  + 50));
+        std::uniform_real_distribution<float> dist(0.0f, static_cast<float>(window_ ));
         t = dist(gen);
     }
 
@@ -82,7 +82,7 @@ class AmplifiedHashFunction {
     std::vector<int> r_table;
 
 public:
-    AmplifiedHashFunction(size_t size, size_t dim, int seed, int window) {
+    AmplifiedHashFunction(size_t size, size_t dim, int seed, float window) {
         hf_table.reserve(size);
         for (size_t i = 0; i < size; ++i)
             hf_table.emplace_back(dim, seed + static_cast<int>(i), window);
@@ -119,12 +119,12 @@ class LSH {
     size_t hashTable_size;
     int num_tables;
     int HashFunction_size;
-    int w;
+    float w;
     size_t vec_dim;
 
 public:
     LSH(size_t hashTable_size_, int num_tables_, int HashFunction_size_,
-        int w_, size_t vec_dim_, int seed)
+        float w_, size_t vec_dim_, int seed)
         : hashTable_size(hashTable_size_), num_tables(num_tables_),
           HashFunction_size(HashFunction_size_), w(w_), vec_dim(vec_dim_) {
 
