@@ -80,18 +80,11 @@ int main(int argc, char* argv[]) {
 
                 if (out_file.is_open()) {
                     out_file << "Query: " << i + 1 << "\n";
-                    // Print up to N nearest neighbors (from approximate search)
-                    size_t num_to_print = std::min(static_cast<size_t>(N), approx_neighbors.size());
-                    for (size_t j = 0; j < num_to_print; ++j) {
+                    // Print only what LSH actually found
+                    for (size_t j = 0; j < approx_neighbors.size(); ++j) {
                         out_file << "Nearest neighbor-" << j + 1 << ": " << approx_neighbors[j].idx << "\n";
                         out_file << "distanceApproximate: " << approx_neighbors[j].distance << "\n";
                         if (j < trueDists.size()) out_file << "distanceTrue: " << trueDists[j] << "\n";
-                    }
-                    // If LSH found fewer neighbors than requested, fill remaining with true neighbors
-                    for (size_t j = num_to_print; j < static_cast<size_t>(N) && j < true_neighbors.size(); ++j) {
-                        out_file << "Nearest neighbor-" << j + 1 << ": " << true_neighbors[j].idx << "\n";
-                        out_file << "distanceApproximate: " << true_neighbors[j].distance << "\n";
-                        out_file << "distanceTrue: " << true_neighbors[j].distance << "\n";
                     }
                     
                     // R-near neighbors section
@@ -158,18 +151,11 @@ int main(int argc, char* argv[]) {
 
                 if (out_file.is_open()) {
                     out_file << "Query: " << i + 1 << "\n";
-                    // Print up to N nearest neighbors (from approximate search)
-                    size_t num_to_print = std::min(static_cast<size_t>(N), approx_neighbors.size());
-                    for (size_t j = 0; j < num_to_print; ++j) {
+                    // Print only what LSH actually found
+                    for (size_t j = 0; j < approx_neighbors.size(); ++j) {
                         out_file << "Nearest neighbor-" << j + 1 << ": " << approx_neighbors[j].idx << "\n";
                         out_file << "distanceApproximate: " << approx_neighbors[j].distance << "\n";
                         if (j < trueDists.size()) out_file << "distanceTrue: " << trueDists[j] << "\n";
-                    }
-                    // If LSH found fewer neighbors than requested, fill remaining with true neighbors
-                    for (size_t j = num_to_print; j < static_cast<size_t>(N) && j < true_neighbors.size(); ++j) {
-                        out_file << "Nearest neighbor-" << j + 1 << ": " << true_neighbors[j].idx << "\n";
-                        out_file << "distanceApproximate: " << true_neighbors[j].distance << "\n";
-                        out_file << "distanceTrue: " << true_neighbors[j].distance << "\n";
                     }
                     
                     // R-near neighbors section
