@@ -1,0 +1,1496 @@
+IVF Algorithm Parameter Testing Results
+================================================================================
+Generated: 2025-11-02 21:40:50
+
+Parameters tested:
+  IVFFlat: 4 kclusters × 3 nprobe × 4 N × 3 R = 144 combinations
+  IVFPQ: 2 kclusters × 2 nprobe × 2 nbits × 4 N × 3 R = 96 combinations
+  Datasets: 2
+  Total tests: 480
+
+
+================================================================================
+IVFFlat on MNIST
+================================================================================
+
+Test: kclusters=25, nprobe=1, N=1, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 1 -o out_ivfflat_mnist_k25_np1_N1_R1000.0.txt -N 1 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=1, N=1, R=1000.000000 AvgAF=1.031895 Recall=0.760000 tApprox=0.245ms tTrue=3.995ms QPS=4086.50 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=1, N=1, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 1 -o out_ivfflat_mnist_k25_np1_N1_R5000.0.txt -N 1 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=1, N=1, R=5000.000000 AvgAF=1.031895 Recall=0.760000 tApprox=0.245ms tTrue=3.992ms QPS=4088.64 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=1, N=1, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 1 -o out_ivfflat_mnist_k25_np1_N1_R10000.0.txt -N 1 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=1, N=1, R=10000.000000 AvgAF=1.031895 Recall=0.760000 tApprox=0.246ms tTrue=4.026ms QPS=4057.65 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=1, N=5, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 1 -o out_ivfflat_mnist_k25_np1_N5_R1000.0.txt -N 5 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=1, N=5, R=1000.000000 AvgAF=1.036504 Recall=0.716000 tApprox=0.250ms tTrue=4.100ms QPS=4000.34 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=1, N=5, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 1 -o out_ivfflat_mnist_k25_np1_N5_R5000.0.txt -N 5 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=1, N=5, R=5000.000000 AvgAF=1.036504 Recall=0.716000 tApprox=0.252ms tTrue=4.099ms QPS=3966.53 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=1, N=5, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 1 -o out_ivfflat_mnist_k25_np1_N5_R10000.0.txt -N 5 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=1, N=5, R=10000.000000 AvgAF=1.036504 Recall=0.716000 tApprox=0.262ms tTrue=4.336ms QPS=3817.31 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=1, N=10, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 1 -o out_ivfflat_mnist_k25_np1_N10_R1000.0.txt -N 10 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=1, N=10, R=1000.000000 AvgAF=1.037718 Recall=0.693000 tApprox=0.251ms tTrue=4.091ms QPS=3983.30 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=1, N=10, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 1 -o out_ivfflat_mnist_k25_np1_N10_R5000.0.txt -N 10 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=1, N=10, R=5000.000000 AvgAF=1.037718 Recall=0.693000 tApprox=0.254ms tTrue=4.113ms QPS=3941.10 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=1, N=10, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 1 -o out_ivfflat_mnist_k25_np1_N10_R10000.0.txt -N 10 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=1, N=10, R=10000.000000 AvgAF=1.037718 Recall=0.693000 tApprox=0.250ms tTrue=4.072ms QPS=3999.54 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=1, N=20, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 1 -o out_ivfflat_mnist_k25_np1_N20_R1000.0.txt -N 20 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=1, N=20, R=1000.000000 AvgAF=1.039121 Recall=0.663500 tApprox=0.253ms tTrue=4.095ms QPS=3948.93 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=1, N=20, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 1 -o out_ivfflat_mnist_k25_np1_N20_R5000.0.txt -N 20 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=1, N=20, R=5000.000000 AvgAF=1.039121 Recall=0.663500 tApprox=0.252ms tTrue=4.087ms QPS=3969.60 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=1, N=20, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 1 -o out_ivfflat_mnist_k25_np1_N20_R10000.0.txt -N 20 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=1, N=20, R=10000.000000 AvgAF=1.039121 Recall=0.663500 tApprox=0.261ms tTrue=4.256ms QPS=3832.09 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=5, N=1, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 5 -o out_ivfflat_mnist_k25_np5_N1_R1000.0.txt -N 1 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=5, N=1, R=1000.000000 AvgAF=1.001006 Recall=0.990000 tApprox=1.080ms tTrue=4.052ms QPS=925.72 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=5, N=1, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 5 -o out_ivfflat_mnist_k25_np5_N1_R5000.0.txt -N 1 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=5, N=1, R=5000.000000 AvgAF=1.001006 Recall=0.990000 tApprox=1.082ms tTrue=4.053ms QPS=924.35 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=5, N=1, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 5 -o out_ivfflat_mnist_k25_np5_N1_R10000.0.txt -N 1 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=5, N=1, R=10000.000000 AvgAF=1.001006 Recall=0.990000 tApprox=1.088ms tTrue=4.074ms QPS=919.03 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=5, N=5, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 5 -o out_ivfflat_mnist_k25_np5_N5_R1000.0.txt -N 5 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=5, N=5, R=1000.000000 AvgAF=1.001649 Recall=0.980000 tApprox=1.145ms tTrue=4.343ms QPS=873.20 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=5, N=5, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 5 -o out_ivfflat_mnist_k25_np5_N5_R5000.0.txt -N 5 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=5, N=5, R=5000.000000 AvgAF=1.001649 Recall=0.980000 tApprox=1.324ms tTrue=5.062ms QPS=755.24 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=5, N=5, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 5 -o out_ivfflat_mnist_k25_np5_N5_R10000.0.txt -N 5 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=5, N=5, R=10000.000000 AvgAF=1.001649 Recall=0.980000 tApprox=1.083ms tTrue=4.072ms QPS=923.14 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=5, N=10, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 5 -o out_ivfflat_mnist_k25_np5_N10_R1000.0.txt -N 10 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=5, N=10, R=1000.000000 AvgAF=1.001491 Recall=0.978000 tApprox=1.110ms tTrue=4.144ms QPS=900.86 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=5, N=10, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 5 -o out_ivfflat_mnist_k25_np5_N10_R5000.0.txt -N 10 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=5, N=10, R=5000.000000 AvgAF=1.001491 Recall=0.978000 tApprox=1.152ms tTrue=4.356ms QPS=867.88 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=5, N=10, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 5 -o out_ivfflat_mnist_k25_np5_N10_R10000.0.txt -N 10 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=5, N=10, R=10000.000000 AvgAF=1.001491 Recall=0.978000 tApprox=1.096ms tTrue=4.100ms QPS=912.81 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=5, N=20, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 5 -o out_ivfflat_mnist_k25_np5_N20_R1000.0.txt -N 20 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=5, N=20, R=1000.000000 AvgAF=1.001569 Recall=0.968000 tApprox=1.093ms tTrue=4.075ms QPS=914.76 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=5, N=20, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 5 -o out_ivfflat_mnist_k25_np5_N20_R5000.0.txt -N 20 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=5, N=20, R=5000.000000 AvgAF=1.001569 Recall=0.968000 tApprox=1.091ms tTrue=4.062ms QPS=916.65 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=5, N=20, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 5 -o out_ivfflat_mnist_k25_np5_N20_R10000.0.txt -N 20 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=5, N=20, R=10000.000000 AvgAF=1.001569 Recall=0.968000 tApprox=1.112ms tTrue=4.142ms QPS=899.04 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=10, N=1, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 10 -o out_ivfflat_mnist_k25_np10_N1_R1000.0.txt -N 1 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=10, N=1, R=1000.000000 AvgAF=1.000000 Recall=1.000000 tApprox=2.274ms tTrue=4.433ms QPS=439.79 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=10, N=1, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 10 -o out_ivfflat_mnist_k25_np10_N1_R5000.0.txt -N 1 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=10, N=1, R=5000.000000 AvgAF=1.000000 Recall=1.000000 tApprox=2.036ms tTrue=4.013ms QPS=491.07 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=10, N=1, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 10 -o out_ivfflat_mnist_k25_np10_N1_R10000.0.txt -N 1 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=10, N=1, R=10000.000000 AvgAF=1.000000 Recall=1.000000 tApprox=2.352ms tTrue=4.706ms QPS=425.14 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=10, N=5, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 10 -o out_ivfflat_mnist_k25_np10_N5_R1000.0.txt -N 5 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=10, N=5, R=1000.000000 AvgAF=1.000221 Recall=0.996000 tApprox=2.155ms tTrue=4.314ms QPS=464.11 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=10, N=5, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 10 -o out_ivfflat_mnist_k25_np10_N5_R5000.0.txt -N 5 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=10, N=5, R=5000.000000 AvgAF=1.000221 Recall=0.996000 tApprox=2.043ms tTrue=4.059ms QPS=489.36 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=10, N=5, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 10 -o out_ivfflat_mnist_k25_np10_N5_R10000.0.txt -N 5 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=10, N=5, R=10000.000000 AvgAF=1.000221 Recall=0.996000 tApprox=2.056ms tTrue=4.069ms QPS=486.48 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=10, N=10, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 10 -o out_ivfflat_mnist_k25_np10_N10_R1000.0.txt -N 10 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=10, N=10, R=1000.000000 AvgAF=1.000340 Recall=0.994000 tApprox=2.080ms tTrue=4.090ms QPS=480.71 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=10, N=10, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 10 -o out_ivfflat_mnist_k25_np10_N10_R5000.0.txt -N 10 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=10, N=10, R=5000.000000 AvgAF=1.000340 Recall=0.994000 tApprox=2.066ms tTrue=4.064ms QPS=484.04 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=10, N=10, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 10 -o out_ivfflat_mnist_k25_np10_N10_R10000.0.txt -N 10 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=10, N=10, R=10000.000000 AvgAF=1.000340 Recall=0.994000 tApprox=2.101ms tTrue=4.126ms QPS=475.90 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=10, N=20, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 10 -o out_ivfflat_mnist_k25_np10_N20_R1000.0.txt -N 20 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=10, N=20, R=1000.000000 AvgAF=1.000303 Recall=0.993000 tApprox=2.117ms tTrue=4.142ms QPS=472.42 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=10, N=20, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 10 -o out_ivfflat_mnist_k25_np10_N20_R5000.0.txt -N 20 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=10, N=20, R=5000.000000 AvgAF=1.000303 Recall=0.993000 tApprox=2.309ms tTrue=4.537ms QPS=433.17 Silhouette=0.068168
+
+Test: kclusters=25, nprobe=10, N=20, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 25 -nprobe 10 -o out_ivfflat_mnist_k25_np10_N20_R10000.0.txt -N 20 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=25, nprobe=10, N=20, R=10000.000000 AvgAF=1.000303 Recall=0.993000 tApprox=2.120ms tTrue=4.119ms QPS=471.80 Silhouette=0.068168
+
+Test: kclusters=50, nprobe=1, N=1, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -o out_ivfflat_mnist_k50_np1_N1_R1000.0.txt -N 1 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=1, N=1, R=1000.000000 AvgAF=1.029411 Recall=0.710000 tApprox=0.161ms tTrue=4.093ms QPS=6194.41 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=1, N=1, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -o out_ivfflat_mnist_k50_np1_N1_R5000.0.txt -N 1 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=1, N=1, R=5000.000000 AvgAF=1.029411 Recall=0.710000 tApprox=0.159ms tTrue=4.037ms QPS=6293.32 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=1, N=1, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -o out_ivfflat_mnist_k50_np1_N1_R10000.0.txt -N 1 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=1, N=1, R=10000.000000 AvgAF=1.029411 Recall=0.710000 tApprox=0.159ms tTrue=4.003ms QPS=6286.29 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=1, N=5, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -o out_ivfflat_mnist_k50_np1_N5_R1000.0.txt -N 5 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=1, N=5, R=1000.000000 AvgAF=1.035829 Recall=0.672000 tApprox=0.165ms tTrue=4.170ms QPS=6073.04 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=1, N=5, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -o out_ivfflat_mnist_k50_np1_N5_R5000.0.txt -N 5 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=1, N=5, R=5000.000000 AvgAF=1.035829 Recall=0.672000 tApprox=0.198ms tTrue=5.065ms QPS=5046.30 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=1, N=5, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -o out_ivfflat_mnist_k50_np1_N5_R10000.0.txt -N 5 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=1, N=5, R=10000.000000 AvgAF=1.035829 Recall=0.672000 tApprox=0.162ms tTrue=4.084ms QPS=6173.42 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=1, N=10, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -o out_ivfflat_mnist_k50_np1_N10_R1000.0.txt -N 10 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=1, N=10, R=1000.000000 AvgAF=1.039915 Recall=0.659000 tApprox=0.166ms tTrue=4.207ms QPS=6011.36 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=1, N=10, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -o out_ivfflat_mnist_k50_np1_N10_R5000.0.txt -N 10 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=1, N=10, R=5000.000000 AvgAF=1.039915 Recall=0.659000 tApprox=0.162ms tTrue=4.076ms QPS=6162.38 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=1, N=10, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -o out_ivfflat_mnist_k50_np1_N10_R10000.0.txt -N 10 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=1, N=10, R=10000.000000 AvgAF=1.039915 Recall=0.659000 tApprox=0.163ms tTrue=4.091ms QPS=6128.31 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=1, N=20, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -o out_ivfflat_mnist_k50_np1_N20_R1000.0.txt -N 20 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=1, N=20, R=1000.000000 AvgAF=1.044505 Recall=0.618500 tApprox=0.194ms tTrue=4.972ms QPS=5163.20 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=1, N=20, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -o out_ivfflat_mnist_k50_np1_N20_R5000.0.txt -N 20 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=1, N=20, R=5000.000000 AvgAF=1.044505 Recall=0.618500 tApprox=0.162ms tTrue=4.087ms QPS=6155.18 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=1, N=20, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -o out_ivfflat_mnist_k50_np1_N20_R10000.0.txt -N 20 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=1, N=20, R=10000.000000 AvgAF=1.044505 Recall=0.618500 tApprox=0.176ms tTrue=4.453ms QPS=5677.22 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, N=1, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -o out_ivfflat_mnist_k50_np5_N1_R1000.0.txt -N 1 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=5, N=1, R=1000.000000 AvgAF=1.000000 Recall=1.000000 tApprox=0.662ms tTrue=4.363ms QPS=1509.47 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, N=1, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -o out_ivfflat_mnist_k50_np5_N1_R5000.0.txt -N 1 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=5, N=1, R=5000.000000 AvgAF=1.000000 Recall=1.000000 tApprox=0.645ms tTrue=4.317ms QPS=1550.17 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, N=1, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -o out_ivfflat_mnist_k50_np5_N1_R10000.0.txt -N 1 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=5, N=1, R=10000.000000 AvgAF=1.000000 Recall=1.000000 tApprox=0.629ms tTrue=4.138ms QPS=1590.47 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, N=5, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -o out_ivfflat_mnist_k50_np5_N5_R1000.0.txt -N 5 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=5, N=5, R=1000.000000 AvgAF=1.000530 Recall=0.984000 tApprox=0.634ms tTrue=4.216ms QPS=1576.35 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, N=5, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -o out_ivfflat_mnist_k50_np5_N5_R5000.0.txt -N 5 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=5, N=5, R=5000.000000 AvgAF=1.000530 Recall=0.984000 tApprox=0.629ms tTrue=4.181ms QPS=1589.76 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, N=5, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -o out_ivfflat_mnist_k50_np5_N5_R10000.0.txt -N 5 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=5, N=5, R=10000.000000 AvgAF=1.000530 Recall=0.984000 tApprox=0.616ms tTrue=4.088ms QPS=1622.63 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, N=10, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -o out_ivfflat_mnist_k50_np5_N10_R1000.0.txt -N 10 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=5, N=10, R=1000.000000 AvgAF=1.001163 Recall=0.968000 tApprox=0.607ms tTrue=4.058ms QPS=1646.61 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, N=10, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -o out_ivfflat_mnist_k50_np5_N10_R5000.0.txt -N 10 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=5, N=10, R=5000.000000 AvgAF=1.001163 Recall=0.968000 tApprox=0.630ms tTrue=4.205ms QPS=1588.15 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, N=10, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -o out_ivfflat_mnist_k50_np5_N10_R10000.0.txt -N 10 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=5, N=10, R=10000.000000 AvgAF=1.001163 Recall=0.968000 tApprox=0.658ms tTrue=4.324ms QPS=1519.19 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, N=20, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -o out_ivfflat_mnist_k50_np5_N20_R1000.0.txt -N 20 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=5, N=20, R=1000.000000 AvgAF=1.001813 Recall=0.950000 tApprox=0.655ms tTrue=4.384ms QPS=1526.16 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, N=20, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -o out_ivfflat_mnist_k50_np5_N20_R5000.0.txt -N 20 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=5, N=20, R=5000.000000 AvgAF=1.001813 Recall=0.950000 tApprox=0.653ms tTrue=4.383ms QPS=1531.29 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, N=20, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -o out_ivfflat_mnist_k50_np5_N20_R10000.0.txt -N 20 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=5, N=20, R=10000.000000 AvgAF=1.001813 Recall=0.950000 tApprox=0.624ms tTrue=4.125ms QPS=1603.84 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=10, N=1, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 10 -o out_ivfflat_mnist_k50_np10_N1_R1000.0.txt -N 1 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=10, N=1, R=1000.000000 AvgAF=1.000000 Recall=1.000000 tApprox=1.140ms tTrue=4.158ms QPS=877.28 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=10, N=1, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 10 -o out_ivfflat_mnist_k50_np10_N1_R5000.0.txt -N 1 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=10, N=1, R=5000.000000 AvgAF=1.000000 Recall=1.000000 tApprox=1.100ms tTrue=3.995ms QPS=909.07 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=10, N=1, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 10 -o out_ivfflat_mnist_k50_np10_N1_R10000.0.txt -N 1 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=10, N=1, R=10000.000000 AvgAF=1.000000 Recall=1.000000 tApprox=1.197ms tTrue=4.449ms QPS=835.16 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=10, N=5, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 10 -o out_ivfflat_mnist_k50_np10_N5_R1000.0.txt -N 5 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=10, N=5, R=1000.000000 AvgAF=1.000131 Recall=0.996000 tApprox=1.113ms tTrue=4.069ms QPS=898.26 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=10, N=5, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 10 -o out_ivfflat_mnist_k50_np10_N5_R5000.0.txt -N 5 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=10, N=5, R=5000.000000 AvgAF=1.000131 Recall=0.996000 tApprox=1.108ms tTrue=4.049ms QPS=902.46 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=10, N=5, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 10 -o out_ivfflat_mnist_k50_np10_N5_R10000.0.txt -N 5 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=10, N=5, R=10000.000000 AvgAF=1.000131 Recall=0.996000 tApprox=1.109ms tTrue=4.045ms QPS=901.32 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=10, N=10, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 10 -o out_ivfflat_mnist_k50_np10_N10_R1000.0.txt -N 10 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=10, N=10, R=1000.000000 AvgAF=1.000379 Recall=0.990000 tApprox=1.121ms tTrue=4.066ms QPS=892.26 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=10, N=10, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 10 -o out_ivfflat_mnist_k50_np10_N10_R5000.0.txt -N 10 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=10, N=10, R=5000.000000 AvgAF=1.000379 Recall=0.990000 tApprox=1.650ms tTrue=5.727ms QPS=606.04 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=10, N=10, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 10 -o out_ivfflat_mnist_k50_np10_N10_R10000.0.txt -N 10 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=10, N=10, R=10000.000000 AvgAF=1.000379 Recall=0.990000 tApprox=1.172ms tTrue=4.253ms QPS=853.24 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=10, N=20, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 10 -o out_ivfflat_mnist_k50_np10_N20_R1000.0.txt -N 20 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=10, N=20, R=1000.000000 AvgAF=1.000474 Recall=0.985500 tApprox=1.151ms tTrue=4.109ms QPS=868.48 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=10, N=20, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 10 -o out_ivfflat_mnist_k50_np10_N20_R5000.0.txt -N 20 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=10, N=20, R=5000.000000 AvgAF=1.000474 Recall=0.985500 tApprox=1.149ms tTrue=4.127ms QPS=870.06 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=10, N=20, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 10 -o out_ivfflat_mnist_k50_np10_N20_R10000.0.txt -N 20 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=50, nprobe=10, N=20, R=10000.000000 AvgAF=1.000474 Recall=0.985500 tApprox=1.302ms tTrue=4.758ms QPS=767.88 Silhouette=0.063716
+
+Test: kclusters=100, nprobe=1, N=1, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 1 -o out_ivfflat_mnist_k100_np1_N1_R1000.0.txt -N 1 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=1, N=1, R=1000.000000 AvgAF=1.048583 Recall=0.560000 tApprox=0.145ms tTrue=4.111ms QPS=6898.45 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=1, N=1, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 1 -o out_ivfflat_mnist_k100_np1_N1_R5000.0.txt -N 1 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=1, N=1, R=5000.000000 AvgAF=1.048583 Recall=0.560000 tApprox=0.146ms tTrue=4.157ms QPS=6835.71 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=1, N=1, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 1 -o out_ivfflat_mnist_k100_np1_N1_R10000.0.txt -N 1 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=1, N=1, R=10000.000000 AvgAF=1.048583 Recall=0.560000 tApprox=0.146ms tTrue=4.143ms QPS=6837.65 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=1, N=5, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 1 -o out_ivfflat_mnist_k100_np1_N5_R1000.0.txt -N 5 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=1, N=5, R=1000.000000 AvgAF=1.053465 Recall=0.606000 tApprox=0.143ms tTrue=4.055ms QPS=6980.20 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=1, N=5, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 1 -o out_ivfflat_mnist_k100_np1_N5_R5000.0.txt -N 5 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=1, N=5, R=5000.000000 AvgAF=1.053465 Recall=0.606000 tApprox=0.145ms tTrue=4.105ms QPS=6896.04 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=1, N=5, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 1 -o out_ivfflat_mnist_k100_np1_N5_R10000.0.txt -N 5 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=1, N=5, R=10000.000000 AvgAF=1.053465 Recall=0.606000 tApprox=0.185ms tTrue=5.287ms QPS=5396.35 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=1, N=10, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 1 -o out_ivfflat_mnist_k100_np1_N10_R1000.0.txt -N 10 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=1, N=10, R=1000.000000 AvgAF=1.060612 Recall=0.555000 tApprox=0.144ms tTrue=4.113ms QPS=6920.75 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=1, N=10, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 1 -o out_ivfflat_mnist_k100_np1_N10_R5000.0.txt -N 10 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=1, N=10, R=5000.000000 AvgAF=1.060612 Recall=0.555000 tApprox=0.143ms tTrue=4.086ms QPS=6973.80 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=1, N=10, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 1 -o out_ivfflat_mnist_k100_np1_N10_R10000.0.txt -N 10 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=1, N=10, R=10000.000000 AvgAF=1.060612 Recall=0.555000 tApprox=0.145ms tTrue=4.128ms QPS=6898.64 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=1, N=20, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 1 -o out_ivfflat_mnist_k100_np1_N20_R1000.0.txt -N 20 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=1, N=20, R=1000.000000 AvgAF=1.074444 Recall=0.489000 tApprox=0.146ms tTrue=4.113ms QPS=6865.56 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=1, N=20, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 1 -o out_ivfflat_mnist_k100_np1_N20_R5000.0.txt -N 20 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=1, N=20, R=5000.000000 AvgAF=1.074444 Recall=0.489000 tApprox=0.152ms tTrue=4.334ms QPS=6593.20 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=1, N=20, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 1 -o out_ivfflat_mnist_k100_np1_N20_R10000.0.txt -N 20 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=1, N=20, R=10000.000000 AvgAF=1.074444 Recall=0.489000 tApprox=0.160ms tTrue=4.373ms QPS=6248.66 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=5, N=1, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 5 -o out_ivfflat_mnist_k100_np5_N1_R1000.0.txt -N 1 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=5, N=1, R=1000.000000 AvgAF=1.001044 Recall=0.960000 tApprox=0.401ms tTrue=4.330ms QPS=2496.86 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=5, N=1, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 5 -o out_ivfflat_mnist_k100_np5_N1_R5000.0.txt -N 1 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=5, N=1, R=5000.000000 AvgAF=1.001044 Recall=0.960000 tApprox=0.373ms tTrue=4.056ms QPS=2677.42 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=5, N=1, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 5 -o out_ivfflat_mnist_k100_np5_N1_R10000.0.txt -N 1 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=5, N=1, R=10000.000000 AvgAF=1.001044 Recall=0.960000 tApprox=0.426ms tTrue=4.739ms QPS=2345.14 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=5, N=5, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 5 -o out_ivfflat_mnist_k100_np5_N5_R1000.0.txt -N 5 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=5, N=5, R=1000.000000 AvgAF=1.002392 Recall=0.946000 tApprox=0.381ms tTrue=4.149ms QPS=2624.88 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=5, N=5, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 5 -o out_ivfflat_mnist_k100_np5_N5_R5000.0.txt -N 5 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=5, N=5, R=5000.000000 AvgAF=1.002392 Recall=0.946000 tApprox=0.376ms tTrue=4.096ms QPS=2656.37 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=5, N=5, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 5 -o out_ivfflat_mnist_k100_np5_N5_R10000.0.txt -N 5 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=5, N=5, R=10000.000000 AvgAF=1.002392 Recall=0.946000 tApprox=0.377ms tTrue=4.103ms QPS=2655.26 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=5, N=10, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 5 -o out_ivfflat_mnist_k100_np5_N10_R1000.0.txt -N 10 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=5, N=10, R=1000.000000 AvgAF=1.003924 Recall=0.925000 tApprox=0.403ms tTrue=4.358ms QPS=2479.96 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=5, N=10, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 5 -o out_ivfflat_mnist_k100_np5_N10_R5000.0.txt -N 10 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=5, N=10, R=5000.000000 AvgAF=1.003924 Recall=0.925000 tApprox=0.380ms tTrue=4.127ms QPS=2631.13 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=5, N=10, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 5 -o out_ivfflat_mnist_k100_np5_N10_R10000.0.txt -N 10 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=5, N=10, R=10000.000000 AvgAF=1.003924 Recall=0.925000 tApprox=0.415ms tTrue=4.615ms QPS=2408.76 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=5, N=20, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 5 -o out_ivfflat_mnist_k100_np5_N20_R1000.0.txt -N 20 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=5, N=20, R=1000.000000 AvgAF=1.005158 Recall=0.899000 tApprox=0.385ms tTrue=4.163ms QPS=2599.07 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=5, N=20, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 5 -o out_ivfflat_mnist_k100_np5_N20_R5000.0.txt -N 20 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=5, N=20, R=5000.000000 AvgAF=1.005158 Recall=0.899000 tApprox=0.398ms tTrue=4.279ms QPS=2513.06 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=5, N=20, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 5 -o out_ivfflat_mnist_k100_np5_N20_R10000.0.txt -N 20 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=5, N=20, R=10000.000000 AvgAF=1.005158 Recall=0.899000 tApprox=0.392ms tTrue=4.211ms QPS=2551.56 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=10, N=1, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 10 -o out_ivfflat_mnist_k100_np10_N1_R1000.0.txt -N 1 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=10, N=1, R=1000.000000 AvgAF=1.000211 Recall=0.990000 tApprox=0.669ms tTrue=4.332ms QPS=1494.93 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=10, N=1, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 10 -o out_ivfflat_mnist_k100_np10_N1_R5000.0.txt -N 1 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=10, N=1, R=5000.000000 AvgAF=1.000211 Recall=0.990000 tApprox=0.650ms tTrue=4.188ms QPS=1538.34 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=10, N=1, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 10 -o out_ivfflat_mnist_k100_np10_N1_R10000.0.txt -N 1 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=10, N=1, R=10000.000000 AvgAF=1.000211 Recall=0.990000 tApprox=0.653ms tTrue=4.145ms QPS=1530.68 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=10, N=5, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 10 -o out_ivfflat_mnist_k100_np10_N5_R1000.0.txt -N 5 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=10, N=5, R=1000.000000 AvgAF=1.000217 Recall=0.992000 tApprox=0.641ms tTrue=4.154ms QPS=1559.83 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=10, N=5, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 10 -o out_ivfflat_mnist_k100_np10_N5_R5000.0.txt -N 5 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=10, N=5, R=5000.000000 AvgAF=1.000217 Recall=0.992000 tApprox=0.642ms tTrue=4.134ms QPS=1558.12 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=10, N=5, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 10 -o out_ivfflat_mnist_k100_np10_N5_R10000.0.txt -N 5 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=10, N=5, R=10000.000000 AvgAF=1.000217 Recall=0.992000 tApprox=0.636ms tTrue=4.084ms QPS=1572.29 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=10, N=10, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 10 -o out_ivfflat_mnist_k100_np10_N10_R1000.0.txt -N 10 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=10, N=10, R=1000.000000 AvgAF=1.000589 Recall=0.980000 tApprox=0.645ms tTrue=4.128ms QPS=1549.73 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=10, N=10, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 10 -o out_ivfflat_mnist_k100_np10_N10_R5000.0.txt -N 10 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=10, N=10, R=5000.000000 AvgAF=1.000589 Recall=0.980000 tApprox=0.641ms tTrue=4.130ms QPS=1560.91 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=10, N=10, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 10 -o out_ivfflat_mnist_k100_np10_N10_R10000.0.txt -N 10 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=10, N=10, R=10000.000000 AvgAF=1.000589 Recall=0.980000 tApprox=0.669ms tTrue=4.358ms QPS=1494.32 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=10, N=20, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 10 -o out_ivfflat_mnist_k100_np10_N20_R1000.0.txt -N 20 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=10, N=20, R=1000.000000 AvgAF=1.001034 Recall=0.968500 tApprox=0.648ms tTrue=4.144ms QPS=1542.17 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=10, N=20, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 10 -o out_ivfflat_mnist_k100_np10_N20_R5000.0.txt -N 20 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=10, N=20, R=5000.000000 AvgAF=1.001034 Recall=0.968500 tApprox=0.655ms tTrue=4.167ms QPS=1527.33 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=10, N=20, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 10 -o out_ivfflat_mnist_k100_np10_N20_R10000.0.txt -N 20 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=100, nprobe=10, N=20, R=10000.000000 AvgAF=1.001034 Recall=0.968500 tApprox=0.653ms tTrue=4.182ms QPS=1531.47 Silhouette=0.061305
+
+Test: kclusters=200, nprobe=1, N=1, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 1 -o out_ivfflat_mnist_k200_np1_N1_R1000.0.txt -N 1 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=1, N=1, R=1000.000000 AvgAF=1.041001 Recall=0.650000 tApprox=0.196ms tTrue=4.044ms QPS=5089.41 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=1, N=1, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 1 -o out_ivfflat_mnist_k200_np1_N1_R5000.0.txt -N 1 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=1, N=1, R=5000.000000 AvgAF=1.041001 Recall=0.650000 tApprox=0.216ms tTrue=4.508ms QPS=4621.79 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=1, N=1, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 1 -o out_ivfflat_mnist_k200_np1_N1_R10000.0.txt -N 1 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=1, N=1, R=10000.000000 AvgAF=1.041001 Recall=0.650000 tApprox=0.197ms tTrue=4.130ms QPS=5078.77 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=1, N=5, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 1 -o out_ivfflat_mnist_k200_np1_N5_R1000.0.txt -N 5 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=1, N=5, R=1000.000000 AvgAF=1.062292 Recall=0.538000 tApprox=0.198ms tTrue=4.184ms QPS=5052.19 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=1, N=5, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 1 -o out_ivfflat_mnist_k200_np1_N5_R5000.0.txt -N 5 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=1, N=5, R=5000.000000 AvgAF=1.062292 Recall=0.538000 tApprox=0.193ms tTrue=4.067ms QPS=5187.45 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=1, N=5, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 1 -o out_ivfflat_mnist_k200_np1_N5_R10000.0.txt -N 5 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=1, N=5, R=10000.000000 AvgAF=1.062292 Recall=0.538000 tApprox=0.198ms tTrue=4.188ms QPS=5039.70 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=1, N=10, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 1 -o out_ivfflat_mnist_k200_np1_N10_R1000.0.txt -N 10 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=1, N=10, R=1000.000000 AvgAF=1.082375 Recall=0.471000 tApprox=0.195ms tTrue=4.119ms QPS=5135.02 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=1, N=10, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 1 -o out_ivfflat_mnist_k200_np1_N10_R5000.0.txt -N 10 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=1, N=10, R=5000.000000 AvgAF=1.082375 Recall=0.471000 tApprox=0.196ms tTrue=4.185ms QPS=5093.39 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=1, N=10, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 1 -o out_ivfflat_mnist_k200_np1_N10_R10000.0.txt -N 10 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=1, N=10, R=10000.000000 AvgAF=1.082375 Recall=0.471000 tApprox=0.196ms tTrue=4.144ms QPS=5098.79 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=1, N=20, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 1 -o out_ivfflat_mnist_k200_np1_N20_R1000.0.txt -N 20 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=1, N=20, R=1000.000000 AvgAF=1.112253 Recall=0.390000 tApprox=0.198ms tTrue=4.181ms QPS=5059.14 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=1, N=20, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 1 -o out_ivfflat_mnist_k200_np1_N20_R5000.0.txt -N 20 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=1, N=20, R=5000.000000 AvgAF=1.112253 Recall=0.390000 tApprox=0.225ms tTrue=4.657ms QPS=4443.06 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=1, N=20, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 1 -o out_ivfflat_mnist_k200_np1_N20_R10000.0.txt -N 20 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=1, N=20, R=10000.000000 AvgAF=1.112253 Recall=0.390000 tApprox=0.197ms tTrue=4.185ms QPS=5072.10 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=5, N=1, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 5 -o out_ivfflat_mnist_k200_np5_N1_R1000.0.txt -N 1 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=5, N=1, R=1000.000000 AvgAF=1.002662 Recall=0.930000 tApprox=0.322ms tTrue=4.101ms QPS=3107.05 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=5, N=1, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 5 -o out_ivfflat_mnist_k200_np5_N1_R5000.0.txt -N 1 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=5, N=1, R=5000.000000 AvgAF=1.002662 Recall=0.930000 tApprox=0.322ms tTrue=4.060ms QPS=3101.04 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=5, N=1, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 5 -o out_ivfflat_mnist_k200_np5_N1_R10000.0.txt -N 1 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=5, N=1, R=10000.000000 AvgAF=1.002662 Recall=0.930000 tApprox=0.324ms tTrue=4.086ms QPS=3085.49 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=5, N=5, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 5 -o out_ivfflat_mnist_k200_np5_N5_R1000.0.txt -N 5 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=5, N=5, R=1000.000000 AvgAF=1.005252 Recall=0.916000 tApprox=0.339ms tTrue=4.400ms QPS=2952.13 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=5, N=5, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 5 -o out_ivfflat_mnist_k200_np5_N5_R5000.0.txt -N 5 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=5, N=5, R=5000.000000 AvgAF=1.005252 Recall=0.916000 tApprox=0.327ms tTrue=4.121ms QPS=3059.49 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=5, N=5, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 5 -o out_ivfflat_mnist_k200_np5_N5_R10000.0.txt -N 5 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=5, N=5, R=10000.000000 AvgAF=1.005252 Recall=0.916000 tApprox=0.323ms tTrue=4.097ms QPS=3096.88 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=5, N=10, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 5 -o out_ivfflat_mnist_k200_np5_N10_R1000.0.txt -N 10 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=5, N=10, R=1000.000000 AvgAF=1.006758 Recall=0.883000 tApprox=0.330ms tTrue=4.184ms QPS=3034.59 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=5, N=10, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 5 -o out_ivfflat_mnist_k200_np5_N10_R5000.0.txt -N 10 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=5, N=10, R=5000.000000 AvgAF=1.006758 Recall=0.883000 tApprox=0.330ms tTrue=4.205ms QPS=3034.14 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=5, N=10, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 5 -o out_ivfflat_mnist_k200_np5_N10_R10000.0.txt -N 10 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=5, N=10, R=10000.000000 AvgAF=1.006758 Recall=0.883000 tApprox=0.358ms tTrue=4.389ms QPS=2792.20 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=5, N=20, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 5 -o out_ivfflat_mnist_k200_np5_N20_R1000.0.txt -N 20 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=5, N=20, R=1000.000000 AvgAF=1.009717 Recall=0.831500 tApprox=0.325ms tTrue=4.086ms QPS=3075.17 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=5, N=20, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 5 -o out_ivfflat_mnist_k200_np5_N20_R5000.0.txt -N 20 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=5, N=20, R=5000.000000 AvgAF=1.009717 Recall=0.831500 tApprox=0.327ms tTrue=4.165ms QPS=3054.69 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=5, N=20, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 5 -o out_ivfflat_mnist_k200_np5_N20_R10000.0.txt -N 20 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=5, N=20, R=10000.000000 AvgAF=1.009717 Recall=0.831500 tApprox=0.333ms tTrue=4.207ms QPS=3006.88 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=10, N=1, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 10 -o out_ivfflat_mnist_k200_np10_N1_R1000.0.txt -N 1 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=10, N=1, R=1000.000000 AvgAF=1.001191 Recall=0.980000 tApprox=0.532ms tTrue=4.801ms QPS=1879.98 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=10, N=1, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 10 -o out_ivfflat_mnist_k200_np10_N1_R5000.0.txt -N 1 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=10, N=1, R=5000.000000 AvgAF=1.001191 Recall=0.980000 tApprox=0.462ms tTrue=4.092ms QPS=2166.37 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=10, N=1, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 10 -o out_ivfflat_mnist_k200_np10_N1_R10000.0.txt -N 1 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=10, N=1, R=10000.000000 AvgAF=1.001191 Recall=0.980000 tApprox=0.471ms tTrue=4.071ms QPS=2122.74 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=10, N=5, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 10 -o out_ivfflat_mnist_k200_np10_N5_R1000.0.txt -N 5 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=10, N=5, R=1000.000000 AvgAF=1.001224 Recall=0.980000 tApprox=0.464ms tTrue=4.140ms QPS=2153.60 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=10, N=5, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 10 -o out_ivfflat_mnist_k200_np10_N5_R5000.0.txt -N 5 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=10, N=5, R=5000.000000 AvgAF=1.001224 Recall=0.980000 tApprox=0.483ms tTrue=4.263ms QPS=2072.39 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=10, N=5, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 10 -o out_ivfflat_mnist_k200_np10_N5_R10000.0.txt -N 5 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=10, N=5, R=10000.000000 AvgAF=1.001224 Recall=0.980000 tApprox=0.456ms tTrue=4.038ms QPS=2194.12 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=10, N=10, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 10 -o out_ivfflat_mnist_k200_np10_N10_R1000.0.txt -N 10 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=10, N=10, R=1000.000000 AvgAF=1.001476 Recall=0.964000 tApprox=0.467ms tTrue=4.114ms QPS=2141.99 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=10, N=10, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 10 -o out_ivfflat_mnist_k200_np10_N10_R5000.0.txt -N 10 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=10, N=10, R=5000.000000 AvgAF=1.001476 Recall=0.964000 tApprox=0.476ms tTrue=4.211ms QPS=2099.75 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=10, N=10, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 10 -o out_ivfflat_mnist_k200_np10_N10_R10000.0.txt -N 10 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=10, N=10, R=10000.000000 AvgAF=1.001476 Recall=0.964000 tApprox=0.504ms tTrue=4.359ms QPS=1982.35 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=10, N=20, R=1000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 10 -o out_ivfflat_mnist_k200_np10_N20_R1000.0.txt -N 20 -R 1000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=10, N=20, R=1000.000000 AvgAF=1.002393 Recall=0.940000 tApprox=0.578ms tTrue=5.059ms QPS=1728.87 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=10, N=20, R=5000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 10 -o out_ivfflat_mnist_k200_np10_N20_R5000.0.txt -N 20 -R 5000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=10, N=20, R=5000.000000 AvgAF=1.002393 Recall=0.940000 tApprox=0.468ms tTrue=4.132ms QPS=2137.92 Silhouette=0.060126
+
+Test: kclusters=200, nprobe=10, N=20, R=10000.0
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 200 -nprobe 10 -o out_ivfflat_mnist_k200_np10_N20_R10000.0.txt -N 20 -R 10000.0 -type mnist -range false -ivfflat -seed 42
+Result: image_dataset IVFFlat clusters=200, nprobe=10, N=20, R=10000.000000 AvgAF=1.002393 Recall=0.940000 tApprox=0.460ms tTrue=4.060ms QPS=2174.58 Silhouette=0.060126
+
+
+================================================================================
+IVFFlat on SIFT
+================================================================================
+
+Test: kclusters=25, nprobe=1, N=1, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 1 -o out_ivfflat_sift_k25_np1_N1_R1000.0.txt -N 1 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=1, N=1, R=1000.000000 AvgAF=1.022586 Recall=0.671000 tApprox=0.074ms tTrue=0.860ms QPS=13514.60 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=1, N=1, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 1 -o out_ivfflat_sift_k25_np1_N1_R5000.0.txt -N 1 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=1, N=1, R=5000.000000 AvgAF=1.022586 Recall=0.671000 tApprox=0.072ms tTrue=0.857ms QPS=13823.77 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=1, N=1, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 1 -o out_ivfflat_sift_k25_np1_N1_R10000.0.txt -N 1 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=1, N=1, R=10000.000000 AvgAF=1.022586 Recall=0.671000 tApprox=0.085ms tTrue=1.056ms QPS=11825.76 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=1, N=5, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 1 -o out_ivfflat_sift_k25_np1_N5_R1000.0.txt -N 5 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=1, N=5, R=1000.000000 AvgAF=1.027966 Recall=0.608400 tApprox=0.095ms tTrue=1.117ms QPS=10485.58 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=1, N=5, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 1 -o out_ivfflat_sift_k25_np1_N5_R5000.0.txt -N 5 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=1, N=5, R=5000.000000 AvgAF=1.027966 Recall=0.608400 tApprox=0.085ms tTrue=0.938ms QPS=11827.42 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=1, N=5, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 1 -o out_ivfflat_sift_k25_np1_N5_R10000.0.txt -N 5 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=1, N=5, R=10000.000000 AvgAF=1.027966 Recall=0.608400 tApprox=0.085ms tTrue=1.021ms QPS=11730.58 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=1, N=10, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 1 -o out_ivfflat_sift_k25_np1_N10_R1000.0.txt -N 10 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=1, N=10, R=1000.000000 AvgAF=1.030848 Recall=0.590900 tApprox=0.087ms tTrue=1.088ms QPS=11448.40 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=1, N=10, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 1 -o out_ivfflat_sift_k25_np1_N10_R5000.0.txt -N 10 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=1, N=10, R=5000.000000 AvgAF=1.030848 Recall=0.590900 tApprox=0.086ms tTrue=1.050ms QPS=11627.15 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=1, N=10, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 1 -o out_ivfflat_sift_k25_np1_N10_R10000.0.txt -N 10 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=1, N=10, R=10000.000000 AvgAF=1.030848 Recall=0.590900 tApprox=0.094ms tTrue=1.062ms QPS=10625.61 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=1, N=20, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 1 -o out_ivfflat_sift_k25_np1_N20_R1000.0.txt -N 20 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=1, N=20, R=1000.000000 AvgAF=1.034837 Recall=0.569850 tApprox=0.083ms tTrue=0.999ms QPS=12063.25 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=1, N=20, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 1 -o out_ivfflat_sift_k25_np1_N20_R5000.0.txt -N 20 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=1, N=20, R=5000.000000 AvgAF=1.034837 Recall=0.569850 tApprox=0.084ms tTrue=1.015ms QPS=11973.98 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=1, N=20, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 1 -o out_ivfflat_sift_k25_np1_N20_R10000.0.txt -N 20 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=1, N=20, R=10000.000000 AvgAF=1.034837 Recall=0.569850 tApprox=0.096ms tTrue=1.169ms QPS=10420.12 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=5, N=1, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 5 -o out_ivfflat_sift_k25_np5_N1_R1000.0.txt -N 1 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=5, N=1, R=1000.000000 AvgAF=1.000845 Recall=0.978000 tApprox=0.375ms tTrue=1.030ms QPS=2665.85 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=5, N=1, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 5 -o out_ivfflat_sift_k25_np5_N1_R5000.0.txt -N 1 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=5, N=1, R=5000.000000 AvgAF=1.000845 Recall=0.978000 tApprox=0.358ms tTrue=0.998ms QPS=2793.00 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=5, N=1, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 5 -o out_ivfflat_sift_k25_np5_N1_R10000.0.txt -N 1 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=5, N=1, R=10000.000000 AvgAF=1.000845 Recall=0.978000 tApprox=0.330ms tTrue=0.855ms QPS=3033.58 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=5, N=5, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 5 -o out_ivfflat_sift_k25_np5_N5_R1000.0.txt -N 5 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=5, N=5, R=1000.000000 AvgAF=1.001008 Recall=0.972000 tApprox=0.352ms tTrue=0.921ms QPS=2842.67 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=5, N=5, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 5 -o out_ivfflat_sift_k25_np5_N5_R5000.0.txt -N 5 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=5, N=5, R=5000.000000 AvgAF=1.001008 Recall=0.972000 tApprox=0.333ms tTrue=0.905ms QPS=3003.70 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=5, N=5, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 5 -o out_ivfflat_sift_k25_np5_N5_R10000.0.txt -N 5 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=5, N=5, R=10000.000000 AvgAF=1.001008 Recall=0.972000 tApprox=0.331ms tTrue=0.895ms QPS=3017.68 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=5, N=10, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 5 -o out_ivfflat_sift_k25_np5_N10_R1000.0.txt -N 10 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=5, N=10, R=1000.000000 AvgAF=1.001235 Recall=0.967000 tApprox=0.348ms tTrue=0.925ms QPS=2876.55 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=5, N=10, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 5 -o out_ivfflat_sift_k25_np5_N10_R5000.0.txt -N 10 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=5, N=10, R=5000.000000 AvgAF=1.001235 Recall=0.967000 tApprox=0.351ms tTrue=0.936ms QPS=2846.55 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=5, N=10, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 5 -o out_ivfflat_sift_k25_np5_N10_R10000.0.txt -N 10 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=5, N=10, R=10000.000000 AvgAF=1.001235 Recall=0.967000 tApprox=0.356ms tTrue=0.931ms QPS=2808.23 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=5, N=20, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 5 -o out_ivfflat_sift_k25_np5_N20_R1000.0.txt -N 20 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=5, N=20, R=1000.000000 AvgAF=1.001537 Recall=0.960250 tApprox=0.357ms tTrue=0.955ms QPS=2799.74 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=5, N=20, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 5 -o out_ivfflat_sift_k25_np5_N20_R5000.0.txt -N 20 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=5, N=20, R=5000.000000 AvgAF=1.001537 Recall=0.960250 tApprox=0.397ms tTrue=1.073ms QPS=2519.64 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=5, N=20, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 5 -o out_ivfflat_sift_k25_np5_N20_R10000.0.txt -N 20 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=5, N=20, R=10000.000000 AvgAF=1.001537 Recall=0.960250 tApprox=0.365ms tTrue=0.978ms QPS=2736.13 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=10, N=1, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 10 -o out_ivfflat_sift_k25_np10_N1_R1000.0.txt -N 1 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=10, N=1, R=1000.000000 AvgAF=1.000000 Recall=1.000000 tApprox=0.595ms tTrue=0.857ms QPS=1681.57 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=10, N=1, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 10 -o out_ivfflat_sift_k25_np10_N1_R5000.0.txt -N 1 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=10, N=1, R=5000.000000 AvgAF=1.000000 Recall=1.000000 tApprox=0.605ms tTrue=0.882ms QPS=1652.85 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=10, N=1, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 10 -o out_ivfflat_sift_k25_np10_N1_R10000.0.txt -N 1 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=10, N=1, R=10000.000000 AvgAF=1.000000 Recall=1.000000 tApprox=0.612ms tTrue=0.911ms QPS=1632.89 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=10, N=5, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 10 -o out_ivfflat_sift_k25_np10_N5_R1000.0.txt -N 5 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=10, N=5, R=1000.000000 AvgAF=1.000010 Recall=0.999400 tApprox=0.643ms tTrue=0.952ms QPS=1555.75 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=10, N=5, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 10 -o out_ivfflat_sift_k25_np10_N5_R5000.0.txt -N 5 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=10, N=5, R=5000.000000 AvgAF=1.000010 Recall=0.999400 tApprox=0.607ms tTrue=0.887ms QPS=1646.95 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=10, N=5, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 10 -o out_ivfflat_sift_k25_np10_N5_R10000.0.txt -N 5 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=10, N=5, R=10000.000000 AvgAF=1.000010 Recall=0.999400 tApprox=0.634ms tTrue=0.904ms QPS=1578.16 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=10, N=10, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 10 -o out_ivfflat_sift_k25_np10_N10_R1000.0.txt -N 10 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=10, N=10, R=1000.000000 AvgAF=1.000015 Recall=0.999500 tApprox=0.662ms tTrue=0.976ms QPS=1510.13 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=10, N=10, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 10 -o out_ivfflat_sift_k25_np10_N10_R5000.0.txt -N 10 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=10, N=10, R=5000.000000 AvgAF=1.000015 Recall=0.999500 tApprox=0.667ms tTrue=0.979ms QPS=1499.15 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=10, N=10, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 10 -o out_ivfflat_sift_k25_np10_N10_R10000.0.txt -N 10 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=10, N=10, R=10000.000000 AvgAF=1.000015 Recall=0.999500 tApprox=0.787ms tTrue=1.078ms QPS=1270.39 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=10, N=20, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 10 -o out_ivfflat_sift_k25_np10_N20_R1000.0.txt -N 20 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=10, N=20, R=1000.000000 AvgAF=1.000024 Recall=0.999250 tApprox=0.842ms tTrue=1.130ms QPS=1187.11 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=10, N=20, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 10 -o out_ivfflat_sift_k25_np10_N20_R5000.0.txt -N 20 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=10, N=20, R=5000.000000 AvgAF=1.000024 Recall=0.999250 tApprox=0.754ms tTrue=1.026ms QPS=1326.89 Silhouette=0.049606
+
+Test: kclusters=25, nprobe=10, N=20, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 25 -nprobe 10 -o out_ivfflat_sift_k25_np10_N20_R10000.0.txt -N 20 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=25, nprobe=10, N=20, R=10000.000000 AvgAF=1.000024 Recall=0.999250 tApprox=0.730ms tTrue=1.017ms QPS=1369.58 Silhouette=0.049606
+
+Test: kclusters=50, nprobe=1, N=1, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 1 -o out_ivfflat_sift_k50_np1_N1_R1000.0.txt -N 1 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=1, N=1, R=1000.000000 AvgAF=1.028035 Recall=0.602000 tApprox=0.053ms tTrue=0.973ms QPS=18914.71 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=1, N=1, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 1 -o out_ivfflat_sift_k50_np1_N1_R5000.0.txt -N 1 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=1, N=1, R=5000.000000 AvgAF=1.028035 Recall=0.602000 tApprox=0.058ms tTrue=1.042ms QPS=17297.51 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=1, N=1, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 1 -o out_ivfflat_sift_k50_np1_N1_R10000.0.txt -N 1 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=1, N=1, R=10000.000000 AvgAF=1.028035 Recall=0.602000 tApprox=0.050ms tTrue=0.886ms QPS=20176.69 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=1, N=5, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 1 -o out_ivfflat_sift_k50_np1_N5_R1000.0.txt -N 5 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=1, N=5, R=1000.000000 AvgAF=1.036291 Recall=0.526200 tApprox=0.052ms tTrue=0.917ms QPS=19109.72 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=1, N=5, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 1 -o out_ivfflat_sift_k50_np1_N5_R5000.0.txt -N 5 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=1, N=5, R=5000.000000 AvgAF=1.036291 Recall=0.526200 tApprox=0.059ms tTrue=1.099ms QPS=16887.99 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=1, N=5, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 1 -o out_ivfflat_sift_k50_np1_N5_R10000.0.txt -N 5 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=1, N=5, R=10000.000000 AvgAF=1.036291 Recall=0.526200 tApprox=0.048ms tTrue=0.918ms QPS=20710.31 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=1, N=10, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 1 -o out_ivfflat_sift_k50_np1_N10_R1000.0.txt -N 10 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=1, N=10, R=1000.000000 AvgAF=1.041576 Recall=0.500700 tApprox=0.060ms tTrue=1.130ms QPS=16594.26 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=1, N=10, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 1 -o out_ivfflat_sift_k50_np1_N10_R5000.0.txt -N 10 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=1, N=10, R=5000.000000 AvgAF=1.041576 Recall=0.500700 tApprox=0.049ms tTrue=0.936ms QPS=20580.42 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=1, N=10, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 1 -o out_ivfflat_sift_k50_np1_N10_R10000.0.txt -N 10 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=1, N=10, R=10000.000000 AvgAF=1.041576 Recall=0.500700 tApprox=0.048ms tTrue=0.924ms QPS=20929.30 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=1, N=20, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 1 -o out_ivfflat_sift_k50_np1_N20_R1000.0.txt -N 20 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=1, N=20, R=1000.000000 AvgAF=1.049154 Recall=0.468950 tApprox=0.049ms tTrue=0.945ms QPS=20404.15 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=1, N=20, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 1 -o out_ivfflat_sift_k50_np1_N20_R5000.0.txt -N 20 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=1, N=20, R=5000.000000 AvgAF=1.049154 Recall=0.468950 tApprox=0.057ms tTrue=1.006ms QPS=17642.32 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=1, N=20, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 1 -o out_ivfflat_sift_k50_np1_N20_R10000.0.txt -N 20 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=1, N=20, R=10000.000000 AvgAF=1.049154 Recall=0.468950 tApprox=0.061ms tTrue=1.051ms QPS=16458.44 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=5, N=1, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 5 -o out_ivfflat_sift_k50_np5_N1_R1000.0.txt -N 1 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=5, N=1, R=1000.000000 AvgAF=1.002316 Recall=0.947000 tApprox=0.212ms tTrue=0.920ms QPS=4708.11 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=5, N=1, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 5 -o out_ivfflat_sift_k50_np5_N1_R5000.0.txt -N 1 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=5, N=1, R=5000.000000 AvgAF=1.002316 Recall=0.947000 tApprox=0.219ms tTrue=1.026ms QPS=4555.88 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=5, N=1, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 5 -o out_ivfflat_sift_k50_np5_N1_R10000.0.txt -N 1 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=5, N=1, R=10000.000000 AvgAF=1.002316 Recall=0.947000 tApprox=0.213ms tTrue=1.001ms QPS=4685.16 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=5, N=5, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 5 -o out_ivfflat_sift_k50_np5_N5_R1000.0.txt -N 5 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=5, N=5, R=1000.000000 AvgAF=1.003032 Recall=0.926400 tApprox=0.257ms tTrue=1.176ms QPS=3883.93 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=5, N=5, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 5 -o out_ivfflat_sift_k50_np5_N5_R5000.0.txt -N 5 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=5, N=5, R=5000.000000 AvgAF=1.003032 Recall=0.926400 tApprox=0.219ms tTrue=0.951ms QPS=4557.70 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=5, N=5, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 5 -o out_ivfflat_sift_k50_np5_N5_R10000.0.txt -N 5 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=5, N=5, R=10000.000000 AvgAF=1.003032 Recall=0.926400 tApprox=0.213ms tTrue=0.933ms QPS=4688.81 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=5, N=10, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 5 -o out_ivfflat_sift_k50_np5_N10_R1000.0.txt -N 10 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=5, N=10, R=1000.000000 AvgAF=1.003637 Recall=0.913600 tApprox=0.204ms tTrue=0.964ms QPS=4901.98 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=5, N=10, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 5 -o out_ivfflat_sift_k50_np5_N10_R5000.0.txt -N 10 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=5, N=10, R=5000.000000 AvgAF=1.003637 Recall=0.913600 tApprox=0.192ms tTrue=0.925ms QPS=5214.16 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=5, N=10, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 5 -o out_ivfflat_sift_k50_np5_N10_R10000.0.txt -N 10 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=5, N=10, R=10000.000000 AvgAF=1.003637 Recall=0.913600 tApprox=0.202ms tTrue=0.988ms QPS=4955.28 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=5, N=20, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 5 -o out_ivfflat_sift_k50_np5_N20_R1000.0.txt -N 20 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=5, N=20, R=1000.000000 AvgAF=1.004444 Recall=0.896650 tApprox=0.258ms tTrue=1.133ms QPS=3875.61 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=5, N=20, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 5 -o out_ivfflat_sift_k50_np5_N20_R5000.0.txt -N 20 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=5, N=20, R=5000.000000 AvgAF=1.004444 Recall=0.896650 tApprox=0.223ms tTrue=1.006ms QPS=4491.30 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=5, N=20, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 5 -o out_ivfflat_sift_k50_np5_N20_R10000.0.txt -N 20 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=5, N=20, R=10000.000000 AvgAF=1.004444 Recall=0.896650 tApprox=0.221ms tTrue=1.005ms QPS=4523.02 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=10, N=1, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 10 -o out_ivfflat_sift_k50_np10_N1_R1000.0.txt -N 1 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=10, N=1, R=1000.000000 AvgAF=1.000115 Recall=0.994000 tApprox=0.382ms tTrue=0.928ms QPS=2616.63 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=10, N=1, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 10 -o out_ivfflat_sift_k50_np10_N1_R5000.0.txt -N 1 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=10, N=1, R=5000.000000 AvgAF=1.000115 Recall=0.994000 tApprox=0.372ms tTrue=0.905ms QPS=2688.54 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=10, N=1, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 10 -o out_ivfflat_sift_k50_np10_N1_R10000.0.txt -N 1 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=10, N=1, R=10000.000000 AvgAF=1.000115 Recall=0.994000 tApprox=0.370ms tTrue=0.896ms QPS=2701.52 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=10, N=5, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 10 -o out_ivfflat_sift_k50_np10_N5_R1000.0.txt -N 5 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=10, N=5, R=1000.000000 AvgAF=1.000315 Recall=0.990000 tApprox=0.405ms tTrue=0.977ms QPS=2471.92 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=10, N=5, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 10 -o out_ivfflat_sift_k50_np10_N5_R5000.0.txt -N 5 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=10, N=5, R=5000.000000 AvgAF=1.000315 Recall=0.990000 tApprox=0.386ms tTrue=0.930ms QPS=2588.35 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=10, N=5, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 10 -o out_ivfflat_sift_k50_np10_N5_R10000.0.txt -N 5 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=10, N=5, R=10000.000000 AvgAF=1.000315 Recall=0.990000 tApprox=0.401ms tTrue=0.947ms QPS=2492.83 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=10, N=10, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 10 -o out_ivfflat_sift_k50_np10_N10_R1000.0.txt -N 10 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=10, N=10, R=1000.000000 AvgAF=1.000413 Recall=0.986900 tApprox=0.386ms tTrue=0.950ms QPS=2593.22 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=10, N=10, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 10 -o out_ivfflat_sift_k50_np10_N10_R5000.0.txt -N 10 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=10, N=10, R=5000.000000 AvgAF=1.000413 Recall=0.986900 tApprox=0.371ms tTrue=0.932ms QPS=2692.50 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=10, N=10, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 10 -o out_ivfflat_sift_k50_np10_N10_R10000.0.txt -N 10 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=10, N=10, R=10000.000000 AvgAF=1.000413 Recall=0.986900 tApprox=0.399ms tTrue=1.021ms QPS=2504.95 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=10, N=20, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 10 -o out_ivfflat_sift_k50_np10_N20_R1000.0.txt -N 20 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=10, N=20, R=1000.000000 AvgAF=1.000556 Recall=0.983200 tApprox=0.373ms tTrue=0.970ms QPS=2678.89 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=10, N=20, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 10 -o out_ivfflat_sift_k50_np10_N20_R5000.0.txt -N 20 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=10, N=20, R=5000.000000 AvgAF=1.000556 Recall=0.983200 tApprox=0.386ms tTrue=1.032ms QPS=2592.95 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=10, N=20, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 10 -o out_ivfflat_sift_k50_np10_N20_R10000.0.txt -N 20 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=50, nprobe=10, N=20, R=10000.000000 AvgAF=1.000556 Recall=0.983200 tApprox=0.372ms tTrue=0.964ms QPS=2691.44 Silhouette=0.045545
+
+Test: kclusters=100, nprobe=1, N=1, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 1 -o out_ivfflat_sift_k100_np1_N1_R1000.0.txt -N 1 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=1, N=1, R=1000.000000 AvgAF=1.042891 Recall=0.514000 tApprox=0.036ms tTrue=0.851ms QPS=27710.36 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=1, N=1, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 1 -o out_ivfflat_sift_k100_np1_N1_R5000.0.txt -N 1 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=1, N=1, R=5000.000000 AvgAF=1.042891 Recall=0.514000 tApprox=0.036ms tTrue=0.854ms QPS=28006.69 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=1, N=1, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 1 -o out_ivfflat_sift_k100_np1_N1_R10000.0.txt -N 1 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=1, N=1, R=10000.000000 AvgAF=1.042891 Recall=0.514000 tApprox=0.036ms tTrue=0.846ms QPS=27476.47 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=1, N=5, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 1 -o out_ivfflat_sift_k100_np1_N5_R1000.0.txt -N 5 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=1, N=5, R=1000.000000 AvgAF=1.050782 Recall=0.445200 tApprox=0.037ms tTrue=0.886ms QPS=27196.10 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=1, N=5, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 1 -o out_ivfflat_sift_k100_np1_N5_R5000.0.txt -N 5 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=1, N=5, R=5000.000000 AvgAF=1.050782 Recall=0.445200 tApprox=0.036ms tTrue=0.880ms QPS=27665.05 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=1, N=5, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 1 -o out_ivfflat_sift_k100_np1_N5_R10000.0.txt -N 5 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=1, N=5, R=10000.000000 AvgAF=1.050782 Recall=0.445200 tApprox=0.041ms tTrue=0.946ms QPS=24353.39 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=1, N=10, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 1 -o out_ivfflat_sift_k100_np1_N10_R1000.0.txt -N 10 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=1, N=10, R=1000.000000 AvgAF=1.058345 Recall=0.414000 tApprox=0.050ms tTrue=1.176ms QPS=20060.07 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=1, N=10, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 1 -o out_ivfflat_sift_k100_np1_N10_R5000.0.txt -N 10 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=1, N=10, R=5000.000000 AvgAF=1.058345 Recall=0.414000 tApprox=0.038ms tTrue=0.925ms QPS=26282.29 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=1, N=10, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 1 -o out_ivfflat_sift_k100_np1_N10_R10000.0.txt -N 10 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=1, N=10, R=10000.000000 AvgAF=1.058345 Recall=0.414000 tApprox=0.038ms tTrue=0.933ms QPS=26179.53 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=1, N=20, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 1 -o out_ivfflat_sift_k100_np1_N20_R1000.0.txt -N 20 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=1, N=20, R=1000.000000 AvgAF=1.071041 Recall=0.380600 tApprox=0.037ms tTrue=0.933ms QPS=26877.77 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=1, N=20, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 1 -o out_ivfflat_sift_k100_np1_N20_R5000.0.txt -N 20 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=1, N=20, R=5000.000000 AvgAF=1.071041 Recall=0.380600 tApprox=0.038ms tTrue=0.937ms QPS=26039.67 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=1, N=20, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 1 -o out_ivfflat_sift_k100_np1_N20_R10000.0.txt -N 20 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=1, N=20, R=10000.000000 AvgAF=1.071041 Recall=0.380600 tApprox=0.039ms tTrue=0.944ms QPS=25792.52 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=5, N=1, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 5 -o out_ivfflat_sift_k100_np5_N1_R1000.0.txt -N 1 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=5, N=1, R=1000.000000 AvgAF=1.004558 Recall=0.888000 tApprox=0.110ms tTrue=0.846ms QPS=9089.38 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=5, N=1, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 5 -o out_ivfflat_sift_k100_np5_N1_R5000.0.txt -N 1 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=5, N=1, R=5000.000000 AvgAF=1.004558 Recall=0.888000 tApprox=0.111ms tTrue=0.851ms QPS=9000.09 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=5, N=1, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 5 -o out_ivfflat_sift_k100_np5_N1_R10000.0.txt -N 1 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=5, N=1, R=10000.000000 AvgAF=1.004558 Recall=0.888000 tApprox=0.120ms tTrue=0.880ms QPS=8344.47 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=5, N=5, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 5 -o out_ivfflat_sift_k100_np5_N5_R1000.0.txt -N 5 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=5, N=5, R=1000.000000 AvgAF=1.006491 Recall=0.855800 tApprox=0.131ms tTrue=1.033ms QPS=7659.63 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=5, N=5, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 5 -o out_ivfflat_sift_k100_np5_N5_R5000.0.txt -N 5 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=5, N=5, R=5000.000000 AvgAF=1.006491 Recall=0.855800 tApprox=0.115ms tTrue=0.890ms QPS=8719.87 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=5, N=5, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 5 -o out_ivfflat_sift_k100_np5_N5_R10000.0.txt -N 5 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=5, N=5, R=10000.000000 AvgAF=1.006491 Recall=0.855800 tApprox=0.148ms tTrue=1.053ms QPS=6757.50 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=5, N=10, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 5 -o out_ivfflat_sift_k100_np5_N10_R1000.0.txt -N 10 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=5, N=10, R=1000.000000 AvgAF=1.007920 Recall=0.830100 tApprox=0.139ms tTrue=0.988ms QPS=7203.77 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=5, N=10, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 5 -o out_ivfflat_sift_k100_np5_N10_R5000.0.txt -N 10 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=5, N=10, R=5000.000000 AvgAF=1.007920 Recall=0.830100 tApprox=0.141ms tTrue=1.023ms QPS=7077.17 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=5, N=10, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 5 -o out_ivfflat_sift_k100_np5_N10_R10000.0.txt -N 10 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=5, N=10, R=10000.000000 AvgAF=1.007920 Recall=0.830100 tApprox=0.150ms tTrue=1.101ms QPS=6666.49 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=5, N=20, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 5 -o out_ivfflat_sift_k100_np5_N20_R1000.0.txt -N 20 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=5, N=20, R=1000.000000 AvgAF=1.009799 Recall=0.799600 tApprox=0.151ms tTrue=1.136ms QPS=6608.72 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=5, N=20, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 5 -o out_ivfflat_sift_k100_np5_N20_R5000.0.txt -N 20 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=5, N=20, R=5000.000000 AvgAF=1.009799 Recall=0.799600 tApprox=0.138ms tTrue=1.107ms QPS=7225.43 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=5, N=20, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 5 -o out_ivfflat_sift_k100_np5_N20_R10000.0.txt -N 20 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=5, N=20, R=10000.000000 AvgAF=1.009799 Recall=0.799600 tApprox=0.121ms tTrue=0.955ms QPS=8270.39 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=10, N=1, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 10 -o out_ivfflat_sift_k100_np10_N1_R1000.0.txt -N 1 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=10, N=1, R=1000.000000 AvgAF=1.001083 Recall=0.973000 tApprox=0.222ms tTrue=0.922ms QPS=4496.79 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=10, N=1, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 10 -o out_ivfflat_sift_k100_np10_N1_R5000.0.txt -N 1 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=10, N=1, R=5000.000000 AvgAF=1.001083 Recall=0.973000 tApprox=0.223ms tTrue=0.990ms QPS=4476.53 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=10, N=1, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 10 -o out_ivfflat_sift_k100_np10_N1_R10000.0.txt -N 1 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=10, N=1, R=10000.000000 AvgAF=1.001083 Recall=0.973000 tApprox=0.214ms tTrue=0.892ms QPS=4665.87 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=10, N=5, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 10 -o out_ivfflat_sift_k100_np10_N5_R1000.0.txt -N 5 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=10, N=5, R=1000.000000 AvgAF=1.001334 Recall=0.962800 tApprox=0.201ms tTrue=0.891ms QPS=4964.00 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=10, N=5, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 10 -o out_ivfflat_sift_k100_np10_N5_R5000.0.txt -N 5 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=10, N=5, R=5000.000000 AvgAF=1.001334 Recall=0.962800 tApprox=0.204ms tTrue=0.887ms QPS=4901.32 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=10, N=5, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 10 -o out_ivfflat_sift_k100_np10_N5_R10000.0.txt -N 5 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=10, N=5, R=10000.000000 AvgAF=1.001334 Recall=0.962800 tApprox=0.213ms tTrue=0.954ms QPS=4694.32 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=10, N=10, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 10 -o out_ivfflat_sift_k100_np10_N10_R1000.0.txt -N 10 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=10, N=10, R=1000.000000 AvgAF=1.001745 Recall=0.950900 tApprox=0.216ms tTrue=0.928ms QPS=4631.11 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=10, N=10, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 10 -o out_ivfflat_sift_k100_np10_N10_R5000.0.txt -N 10 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=10, N=10, R=5000.000000 AvgAF=1.001745 Recall=0.950900 tApprox=0.223ms tTrue=0.999ms QPS=4487.51 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=10, N=10, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 10 -o out_ivfflat_sift_k100_np10_N10_R10000.0.txt -N 10 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=10, N=10, R=10000.000000 AvgAF=1.001745 Recall=0.950900 tApprox=0.221ms tTrue=0.976ms QPS=4517.50 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=10, N=20, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 10 -o out_ivfflat_sift_k100_np10_N20_R1000.0.txt -N 20 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=10, N=20, R=1000.000000 AvgAF=1.002342 Recall=0.934650 tApprox=0.225ms tTrue=1.011ms QPS=4451.60 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=10, N=20, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 10 -o out_ivfflat_sift_k100_np10_N20_R5000.0.txt -N 20 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=10, N=20, R=5000.000000 AvgAF=1.002342 Recall=0.934650 tApprox=0.231ms tTrue=1.065ms QPS=4322.09 Silhouette=0.041009
+
+Test: kclusters=100, nprobe=10, N=20, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 100 -nprobe 10 -o out_ivfflat_sift_k100_np10_N20_R10000.0.txt -N 20 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=100, nprobe=10, N=20, R=10000.000000 AvgAF=1.002342 Recall=0.934650 tApprox=0.232ms tTrue=1.031ms QPS=4305.12 Silhouette=0.041009
+
+Test: kclusters=200, nprobe=1, N=1, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 1 -o out_ivfflat_sift_k200_np1_N1_R1000.0.txt -N 1 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=1, N=1, R=1000.000000 AvgAF=1.047237 Recall=0.466000 tApprox=0.042ms tTrue=0.858ms QPS=23544.10 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=1, N=1, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 1 -o out_ivfflat_sift_k200_np1_N1_R5000.0.txt -N 1 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=1, N=1, R=5000.000000 AvgAF=1.047237 Recall=0.466000 tApprox=0.050ms tTrue=1.028ms QPS=19982.16 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=1, N=1, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 1 -o out_ivfflat_sift_k200_np1_N1_R10000.0.txt -N 1 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=1, N=1, R=10000.000000 AvgAF=1.047237 Recall=0.466000 tApprox=0.046ms tTrue=0.958ms QPS=21683.75 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=1, N=5, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 1 -o out_ivfflat_sift_k200_np1_N5_R1000.0.txt -N 5 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=1, N=5, R=1000.000000 AvgAF=1.060008 Recall=0.394800 tApprox=0.042ms tTrue=0.879ms QPS=23968.89 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=1, N=5, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 1 -o out_ivfflat_sift_k200_np1_N5_R5000.0.txt -N 5 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=1, N=5, R=5000.000000 AvgAF=1.060008 Recall=0.394800 tApprox=0.042ms tTrue=0.874ms QPS=23759.39 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=1, N=5, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 1 -o out_ivfflat_sift_k200_np1_N5_R10000.0.txt -N 5 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=1, N=5, R=10000.000000 AvgAF=1.060008 Recall=0.394800 tApprox=0.042ms tTrue=0.879ms QPS=23817.14 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=1, N=10, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 1 -o out_ivfflat_sift_k200_np1_N10_R1000.0.txt -N 10 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=1, N=10, R=1000.000000 AvgAF=1.072686 Recall=0.358000 tApprox=0.043ms tTrue=0.931ms QPS=23142.31 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=1, N=10, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 1 -o out_ivfflat_sift_k200_np1_N10_R5000.0.txt -N 10 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=1, N=10, R=5000.000000 AvgAF=1.072686 Recall=0.358000 tApprox=0.050ms tTrue=1.099ms QPS=20180.44 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=1, N=10, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 1 -o out_ivfflat_sift_k200_np1_N10_R10000.0.txt -N 10 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=1, N=10, R=10000.000000 AvgAF=1.072686 Recall=0.358000 tApprox=0.044ms tTrue=0.928ms QPS=22980.50 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=1, N=20, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 1 -o out_ivfflat_sift_k200_np1_N20_R1000.0.txt -N 20 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=1, N=20, R=1000.000000 AvgAF=1.094010 Recall=0.312600 tApprox=0.044ms tTrue=0.951ms QPS=22958.32 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=1, N=20, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 1 -o out_ivfflat_sift_k200_np1_N20_R5000.0.txt -N 20 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=1, N=20, R=5000.000000 AvgAF=1.094010 Recall=0.312600 tApprox=0.043ms tTrue=0.946ms QPS=23393.06 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=1, N=20, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 1 -o out_ivfflat_sift_k200_np1_N20_R10000.0.txt -N 20 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=1, N=20, R=10000.000000 AvgAF=1.094010 Recall=0.312600 tApprox=0.045ms tTrue=0.997ms QPS=22018.82 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=5, N=1, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 5 -o out_ivfflat_sift_k200_np5_N1_R1000.0.txt -N 1 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=5, N=1, R=1000.000000 AvgAF=1.005783 Recall=0.849000 tApprox=0.085ms tTrue=0.853ms QPS=11717.28 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=5, N=1, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 5 -o out_ivfflat_sift_k200_np5_N1_R5000.0.txt -N 1 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=5, N=1, R=5000.000000 AvgAF=1.005783 Recall=0.849000 tApprox=0.084ms tTrue=0.853ms QPS=11849.58 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=5, N=1, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 5 -o out_ivfflat_sift_k200_np5_N1_R10000.0.txt -N 1 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=5, N=1, R=10000.000000 AvgAF=1.005783 Recall=0.849000 tApprox=0.085ms tTrue=0.845ms QPS=11752.12 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=5, N=5, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 5 -o out_ivfflat_sift_k200_np5_N5_R1000.0.txt -N 5 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=5, N=5, R=1000.000000 AvgAF=1.009045 Recall=0.797400 tApprox=0.086ms tTrue=0.885ms QPS=11695.84 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=5, N=5, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 5 -o out_ivfflat_sift_k200_np5_N5_R5000.0.txt -N 5 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=5, N=5, R=5000.000000 AvgAF=1.009045 Recall=0.797400 tApprox=0.085ms tTrue=0.885ms QPS=11725.36 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=5, N=5, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 5 -o out_ivfflat_sift_k200_np5_N5_R10000.0.txt -N 5 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=5, N=5, R=10000.000000 AvgAF=1.009045 Recall=0.797400 tApprox=0.086ms tTrue=0.879ms QPS=11587.27 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=5, N=10, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 5 -o out_ivfflat_sift_k200_np5_N10_R1000.0.txt -N 10 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=5, N=10, R=1000.000000 AvgAF=1.011890 Recall=0.760100 tApprox=0.090ms tTrue=0.920ms QPS=11083.74 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=5, N=10, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 5 -o out_ivfflat_sift_k200_np5_N10_R5000.0.txt -N 10 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=5, N=10, R=5000.000000 AvgAF=1.011890 Recall=0.760100 tApprox=0.087ms tTrue=0.916ms QPS=11434.99 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=5, N=10, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 5 -o out_ivfflat_sift_k200_np5_N10_R10000.0.txt -N 10 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=5, N=10, R=10000.000000 AvgAF=1.011890 Recall=0.760100 tApprox=0.088ms tTrue=0.917ms QPS=11305.24 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=5, N=20, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 5 -o out_ivfflat_sift_k200_np5_N20_R1000.0.txt -N 20 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=5, N=20, R=1000.000000 AvgAF=1.015641 Recall=0.714750 tApprox=0.101ms tTrue=1.104ms QPS=9936.60 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=5, N=20, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 5 -o out_ivfflat_sift_k200_np5_N20_R5000.0.txt -N 20 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=5, N=20, R=5000.000000 AvgAF=1.015641 Recall=0.714750 tApprox=0.092ms tTrue=0.960ms QPS=10874.92 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=5, N=20, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 5 -o out_ivfflat_sift_k200_np5_N20_R10000.0.txt -N 20 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=5, N=20, R=10000.000000 AvgAF=1.015641 Recall=0.714750 tApprox=0.092ms tTrue=0.952ms QPS=10918.41 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=10, N=1, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 10 -o out_ivfflat_sift_k200_np10_N1_R1000.0.txt -N 1 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=10, N=1, R=1000.000000 AvgAF=1.001602 Recall=0.950000 tApprox=0.133ms tTrue=0.857ms QPS=7497.39 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=10, N=1, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 10 -o out_ivfflat_sift_k200_np10_N1_R5000.0.txt -N 1 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=10, N=1, R=5000.000000 AvgAF=1.001602 Recall=0.950000 tApprox=0.134ms tTrue=0.853ms QPS=7488.16 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=10, N=1, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 10 -o out_ivfflat_sift_k200_np10_N1_R10000.0.txt -N 1 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=10, N=1, R=10000.000000 AvgAF=1.001602 Recall=0.950000 tApprox=0.136ms tTrue=0.855ms QPS=7350.31 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=10, N=5, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 10 -o out_ivfflat_sift_k200_np10_N5_R1000.0.txt -N 5 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=10, N=5, R=1000.000000 AvgAF=1.002617 Recall=0.917000 tApprox=0.136ms tTrue=0.883ms QPS=7376.93 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=10, N=5, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 10 -o out_ivfflat_sift_k200_np10_N5_R5000.0.txt -N 5 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=10, N=5, R=5000.000000 AvgAF=1.002617 Recall=0.917000 tApprox=0.142ms tTrue=0.900ms QPS=7059.59 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=10, N=5, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 10 -o out_ivfflat_sift_k200_np10_N5_R10000.0.txt -N 5 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=10, N=5, R=10000.000000 AvgAF=1.002617 Recall=0.917000 tApprox=0.137ms tTrue=0.886ms QPS=7297.84 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=10, N=10, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 10 -o out_ivfflat_sift_k200_np10_N10_R1000.0.txt -N 10 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=10, N=10, R=1000.000000 AvgAF=1.003798 Recall=0.895800 tApprox=0.141ms tTrue=0.935ms QPS=7069.56 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=10, N=10, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 10 -o out_ivfflat_sift_k200_np10_N10_R5000.0.txt -N 10 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=10, N=10, R=5000.000000 AvgAF=1.003798 Recall=0.895800 tApprox=0.141ms tTrue=0.919ms QPS=7081.58 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=10, N=10, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 10 -o out_ivfflat_sift_k200_np10_N10_R10000.0.txt -N 10 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=10, N=10, R=10000.000000 AvgAF=1.003798 Recall=0.895800 tApprox=0.144ms tTrue=0.924ms QPS=6959.42 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=10, N=20, R=1000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 10 -o out_ivfflat_sift_k200_np10_N20_R1000.0.txt -N 20 -R 1000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=10, N=20, R=1000.000000 AvgAF=1.005258 Recall=0.869350 tApprox=0.147ms tTrue=0.964ms QPS=6790.31 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=10, N=20, R=5000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 10 -o out_ivfflat_sift_k200_np10_N20_R5000.0.txt -N 20 -R 5000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=10, N=20, R=5000.000000 AvgAF=1.005258 Recall=0.869350 tApprox=0.149ms tTrue=1.001ms QPS=6702.54 Silhouette=0.045518
+
+Test: kclusters=200, nprobe=10, N=20, R=10000.0
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 200 -nprobe 10 -o out_ivfflat_sift_k200_np10_N20_R10000.0.txt -N 20 -R 10000.0 -type vector -range false -ivfflat -seed 42
+Result: vector_dataset IVFFlat clusters=200, nprobe=10, N=20, R=10000.000000 AvgAF=1.005258 Recall=0.869350 tApprox=0.146ms tTrue=0.964ms QPS=6858.72 Silhouette=0.045518
+
+
+================================================================================
+IVFPQ on MNIST
+================================================================================
+
+Test: kclusters=50, nprobe=1, nbits=4, N=1, R=1000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -M 8 -nbits 4 -o out_ivfpq_mnist_k50_np1_nb4_N1_R1000.0.txt -N 1 -R 1000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=1, nbits=4, N=1, R=1000.000000 AvgAF=2.585938 Recall=0.030000 tApprox=0.068ms tTrue=4.060ms QPS=14608.55 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=1, nbits=4, N=1, R=5000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -M 8 -nbits 4 -o out_ivfpq_mnist_k50_np1_nb4_N1_R5000.0.txt -N 1 -R 5000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=1, nbits=4, N=1, R=5000.000000 AvgAF=2.585938 Recall=0.030000 tApprox=0.069ms tTrue=4.122ms QPS=14445.99 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=1, nbits=4, N=1, R=10000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -M 8 -nbits 4 -o out_ivfpq_mnist_k50_np1_nb4_N1_R10000.0.txt -N 1 -R 10000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=1, nbits=4, N=1, R=10000.000000 AvgAF=2.585938 Recall=0.030000 tApprox=0.069ms tTrue=4.011ms QPS=14588.98 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=1, nbits=4, N=5, R=1000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -M 8 -nbits 4 -o out_ivfpq_mnist_k50_np1_nb4_N5_R1000.0.txt -N 5 -R 1000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=1, nbits=4, N=5, R=1000.000000 AvgAF=2.336578 Recall=0.152000 tApprox=0.073ms tTrue=4.064ms QPS=13680.54 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=1, nbits=4, N=5, R=5000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -M 8 -nbits 4 -o out_ivfpq_mnist_k50_np1_nb4_N5_R5000.0.txt -N 5 -R 5000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=1, nbits=4, N=5, R=5000.000000 AvgAF=2.336578 Recall=0.152000 tApprox=0.072ms tTrue=4.072ms QPS=13800.70 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=1, nbits=4, N=5, R=10000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -M 8 -nbits 4 -o out_ivfpq_mnist_k50_np1_nb4_N5_R10000.0.txt -N 5 -R 10000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=1, nbits=4, N=5, R=10000.000000 AvgAF=2.336578 Recall=0.152000 tApprox=0.076ms tTrue=4.214ms QPS=13232.75 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=1, nbits=4, N=10, R=1000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -M 8 -nbits 4 -o out_ivfpq_mnist_k50_np1_nb4_N10_R1000.0.txt -N 10 -R 1000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=1, nbits=4, N=10, R=1000.000000 AvgAF=2.207988 Recall=0.202000 tApprox=0.074ms tTrue=4.082ms QPS=13528.07 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=1, nbits=4, N=10, R=5000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -M 8 -nbits 4 -o out_ivfpq_mnist_k50_np1_nb4_N10_R5000.0.txt -N 10 -R 5000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=1, nbits=4, N=10, R=5000.000000 AvgAF=2.207988 Recall=0.202000 tApprox=0.077ms tTrue=4.214ms QPS=12973.27 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=1, nbits=4, N=10, R=10000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -M 8 -nbits 4 -o out_ivfpq_mnist_k50_np1_nb4_N10_R10000.0.txt -N 10 -R 10000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=1, nbits=4, N=10, R=10000.000000 AvgAF=2.207988 Recall=0.202000 tApprox=0.074ms tTrue=4.114ms QPS=13534.76 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=1, nbits=4, N=20, R=1000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -M 8 -nbits 4 -o out_ivfpq_mnist_k50_np1_nb4_N20_R1000.0.txt -N 20 -R 1000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=1, nbits=4, N=20, R=1000.000000 AvgAF=2.080386 Recall=0.269000 tApprox=0.088ms tTrue=4.984ms QPS=11410.11 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=1, nbits=4, N=20, R=5000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -M 8 -nbits 4 -o out_ivfpq_mnist_k50_np1_nb4_N20_R5000.0.txt -N 20 -R 5000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=1, nbits=4, N=20, R=5000.000000 AvgAF=2.080386 Recall=0.269000 tApprox=0.073ms tTrue=4.084ms QPS=13620.96 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=1, nbits=4, N=20, R=10000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -M 8 -nbits 4 -o out_ivfpq_mnist_k50_np1_nb4_N20_R10000.0.txt -N 20 -R 10000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=1, nbits=4, N=20, R=10000.000000 AvgAF=2.080386 Recall=0.269000 tApprox=0.074ms tTrue=4.066ms QPS=13526.71 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=1, nbits=8, N=1, R=1000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -M 8 -nbits 8 -o out_ivfpq_mnist_k50_np1_nb8_N1_R1000.0.txt -N 1 -R 1000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=1, nbits=8, N=1, R=1000.000000 AvgAF=2.347512 Recall=0.080000 tApprox=0.220ms tTrue=3.998ms QPS=4549.71 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=1, nbits=8, N=1, R=5000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -M 8 -nbits 8 -o out_ivfpq_mnist_k50_np1_nb8_N1_R5000.0.txt -N 1 -R 5000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=1, nbits=8, N=1, R=5000.000000 AvgAF=2.347512 Recall=0.080000 tApprox=0.224ms tTrue=4.089ms QPS=4463.71 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=1, nbits=8, N=1, R=10000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -M 8 -nbits 8 -o out_ivfpq_mnist_k50_np1_nb8_N1_R10000.0.txt -N 1 -R 10000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=1, nbits=8, N=1, R=10000.000000 AvgAF=2.347512 Recall=0.080000 tApprox=0.221ms tTrue=4.040ms QPS=4517.47 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=1, nbits=8, N=5, R=1000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -M 8 -nbits 8 -o out_ivfpq_mnist_k50_np1_nb8_N5_R1000.0.txt -N 5 -R 1000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=1, nbits=8, N=5, R=1000.000000 AvgAF=2.126223 Recall=0.184000 tApprox=0.240ms tTrue=4.409ms QPS=4159.84 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=1, nbits=8, N=5, R=5000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -M 8 -nbits 8 -o out_ivfpq_mnist_k50_np1_nb8_N5_R5000.0.txt -N 5 -R 5000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=1, nbits=8, N=5, R=5000.000000 AvgAF=2.126223 Recall=0.184000 tApprox=0.325ms tTrue=4.803ms QPS=3077.66 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=1, nbits=8, N=5, R=10000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -M 8 -nbits 8 -o out_ivfpq_mnist_k50_np1_nb8_N5_R10000.0.txt -N 5 -R 10000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=1, nbits=8, N=5, R=10000.000000 AvgAF=2.126223 Recall=0.184000 tApprox=0.232ms tTrue=4.164ms QPS=4302.86 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=1, nbits=8, N=10, R=1000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -M 8 -nbits 8 -o out_ivfpq_mnist_k50_np1_nb8_N10_R1000.0.txt -N 10 -R 1000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=1, nbits=8, N=10, R=1000.000000 AvgAF=2.013469 Recall=0.247000 tApprox=0.226ms tTrue=4.077ms QPS=4431.77 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=1, nbits=8, N=10, R=5000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -M 8 -nbits 8 -o out_ivfpq_mnist_k50_np1_nb8_N10_R5000.0.txt -N 10 -R 5000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=1, nbits=8, N=10, R=5000.000000 AvgAF=2.013469 Recall=0.247000 tApprox=0.224ms tTrue=4.067ms QPS=4464.40 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=1, nbits=8, N=10, R=10000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -M 8 -nbits 8 -o out_ivfpq_mnist_k50_np1_nb8_N10_R10000.0.txt -N 10 -R 10000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=1, nbits=8, N=10, R=10000.000000 AvgAF=2.013469 Recall=0.247000 tApprox=0.225ms tTrue=4.073ms QPS=4453.64 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=1, nbits=8, N=20, R=1000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -M 8 -nbits 8 -o out_ivfpq_mnist_k50_np1_nb8_N20_R1000.0.txt -N 20 -R 1000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=1, nbits=8, N=20, R=1000.000000 AvgAF=1.901962 Recall=0.299500 tApprox=0.226ms tTrue=4.084ms QPS=4428.79 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=1, nbits=8, N=20, R=5000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -M 8 -nbits 8 -o out_ivfpq_mnist_k50_np1_nb8_N20_R5000.0.txt -N 20 -R 5000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=1, nbits=8, N=20, R=5000.000000 AvgAF=1.901962 Recall=0.299500 tApprox=0.283ms tTrue=5.150ms QPS=3533.71 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=1, nbits=8, N=20, R=10000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 1 -M 8 -nbits 8 -o out_ivfpq_mnist_k50_np1_nb8_N20_R10000.0.txt -N 20 -R 10000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=1, nbits=8, N=20, R=10000.000000 AvgAF=1.901962 Recall=0.299500 tApprox=0.226ms tTrue=4.096ms QPS=4425.44 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, nbits=4, N=1, R=1000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -M 8 -nbits 4 -o out_ivfpq_mnist_k50_np5_nb4_N1_R1000.0.txt -N 1 -R 1000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=5, nbits=4, N=1, R=1000.000000 AvgAF=2.501553 Recall=0.030000 tApprox=0.177ms tTrue=4.770ms QPS=5652.34 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, nbits=4, N=1, R=5000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -M 8 -nbits 4 -o out_ivfpq_mnist_k50_np5_nb4_N1_R5000.0.txt -N 1 -R 5000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=5, nbits=4, N=1, R=5000.000000 AvgAF=2.501553 Recall=0.030000 tApprox=0.136ms tTrue=3.993ms QPS=7342.82 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, nbits=4, N=1, R=10000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -M 8 -nbits 4 -o out_ivfpq_mnist_k50_np5_nb4_N1_R10000.0.txt -N 1 -R 10000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=5, nbits=4, N=1, R=10000.000000 AvgAF=2.501553 Recall=0.030000 tApprox=0.268ms tTrue=5.943ms QPS=3727.59 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, nbits=4, N=5, R=1000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -M 8 -nbits 4 -o out_ivfpq_mnist_k50_np5_nb4_N5_R1000.0.txt -N 5 -R 1000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=5, nbits=4, N=5, R=1000.000000 AvgAF=2.261481 Recall=0.078000 tApprox=0.155ms tTrue=4.033ms QPS=6450.56 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, nbits=4, N=5, R=5000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -M 8 -nbits 4 -o out_ivfpq_mnist_k50_np5_nb4_N5_R5000.0.txt -N 5 -R 5000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=5, nbits=4, N=5, R=5000.000000 AvgAF=2.261481 Recall=0.078000 tApprox=0.155ms tTrue=4.034ms QPS=6465.06 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, nbits=4, N=5, R=10000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -M 8 -nbits 4 -o out_ivfpq_mnist_k50_np5_nb4_N5_R10000.0.txt -N 5 -R 10000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=5, nbits=4, N=5, R=10000.000000 AvgAF=2.261481 Recall=0.078000 tApprox=0.163ms tTrue=4.247ms QPS=6124.02 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, nbits=4, N=10, R=1000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -M 8 -nbits 4 -o out_ivfpq_mnist_k50_np5_nb4_N10_R1000.0.txt -N 10 -R 1000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=5, nbits=4, N=10, R=1000.000000 AvgAF=2.137775 Recall=0.111000 tApprox=0.165ms tTrue=4.215ms QPS=6051.08 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, nbits=4, N=10, R=5000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -M 8 -nbits 4 -o out_ivfpq_mnist_k50_np5_nb4_N10_R5000.0.txt -N 10 -R 5000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=5, nbits=4, N=10, R=5000.000000 AvgAF=2.137775 Recall=0.111000 tApprox=0.193ms tTrue=4.716ms QPS=5179.84 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, nbits=4, N=10, R=10000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -M 8 -nbits 4 -o out_ivfpq_mnist_k50_np5_nb4_N10_R10000.0.txt -N 10 -R 10000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=5, nbits=4, N=10, R=10000.000000 AvgAF=2.137775 Recall=0.111000 tApprox=0.159ms tTrue=4.066ms QPS=6287.55 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, nbits=4, N=20, R=1000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -M 8 -nbits 4 -o out_ivfpq_mnist_k50_np5_nb4_N20_R1000.0.txt -N 20 -R 1000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=5, nbits=4, N=20, R=1000.000000 AvgAF=2.014382 Recall=0.170500 tApprox=0.164ms tTrue=4.099ms QPS=6100.61 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, nbits=4, N=20, R=5000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -M 8 -nbits 4 -o out_ivfpq_mnist_k50_np5_nb4_N20_R5000.0.txt -N 20 -R 5000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=5, nbits=4, N=20, R=5000.000000 AvgAF=2.014382 Recall=0.170500 tApprox=0.165ms tTrue=4.100ms QPS=6077.99 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, nbits=4, N=20, R=10000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -M 8 -nbits 4 -o out_ivfpq_mnist_k50_np5_nb4_N20_R10000.0.txt -N 20 -R 10000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=5, nbits=4, N=20, R=10000.000000 AvgAF=2.014382 Recall=0.170500 tApprox=0.178ms tTrue=4.378ms QPS=5609.13 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, nbits=8, N=1, R=1000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -M 8 -nbits 8 -o out_ivfpq_mnist_k50_np5_nb8_N1_R1000.0.txt -N 1 -R 1000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=5, nbits=8, N=1, R=1000.000000 AvgAF=2.281564 Recall=0.050000 tApprox=0.921ms tTrue=4.158ms QPS=1085.93 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, nbits=8, N=1, R=5000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -M 8 -nbits 8 -o out_ivfpq_mnist_k50_np5_nb8_N1_R5000.0.txt -N 1 -R 5000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=5, nbits=8, N=1, R=5000.000000 AvgAF=2.281564 Recall=0.050000 tApprox=0.997ms tTrue=4.539ms QPS=1002.53 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, nbits=8, N=1, R=10000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -M 8 -nbits 8 -o out_ivfpq_mnist_k50_np5_nb8_N1_R10000.0.txt -N 1 -R 10000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=5, nbits=8, N=1, R=10000.000000 AvgAF=2.281564 Recall=0.050000 tApprox=0.897ms tTrue=4.033ms QPS=1114.86 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, nbits=8, N=5, R=1000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -M 8 -nbits 8 -o out_ivfpq_mnist_k50_np5_nb8_N5_R1000.0.txt -N 5 -R 1000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=5, nbits=8, N=5, R=1000.000000 AvgAF=2.067009 Recall=0.116000 tApprox=1.038ms tTrue=4.652ms QPS=963.02 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, nbits=8, N=5, R=5000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -M 8 -nbits 8 -o out_ivfpq_mnist_k50_np5_nb8_N5_R5000.0.txt -N 5 -R 5000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=5, nbits=8, N=5, R=5000.000000 AvgAF=2.067009 Recall=0.116000 tApprox=0.915ms tTrue=4.057ms QPS=1093.45 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, nbits=8, N=5, R=10000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -M 8 -nbits 8 -o out_ivfpq_mnist_k50_np5_nb8_N5_R10000.0.txt -N 5 -R 10000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=5, nbits=8, N=5, R=10000.000000 AvgAF=2.067009 Recall=0.116000 tApprox=1.079ms tTrue=4.828ms QPS=926.84 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, nbits=8, N=10, R=1000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -M 8 -nbits 8 -o out_ivfpq_mnist_k50_np5_nb8_N10_R1000.0.txt -N 10 -R 1000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=5, nbits=8, N=10, R=1000.000000 AvgAF=1.957569 Recall=0.156000 tApprox=0.935ms tTrue=4.162ms QPS=1069.55 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, nbits=8, N=10, R=5000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -M 8 -nbits 8 -o out_ivfpq_mnist_k50_np5_nb8_N10_R5000.0.txt -N 10 -R 5000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=5, nbits=8, N=10, R=5000.000000 AvgAF=1.957569 Recall=0.156000 tApprox=0.975ms tTrue=4.347ms QPS=1025.53 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, nbits=8, N=10, R=10000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -M 8 -nbits 8 -o out_ivfpq_mnist_k50_np5_nb8_N10_R10000.0.txt -N 10 -R 10000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=5, nbits=8, N=10, R=10000.000000 AvgAF=1.957569 Recall=0.156000 tApprox=0.985ms tTrue=4.300ms QPS=1015.07 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, nbits=8, N=20, R=1000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -M 8 -nbits 8 -o out_ivfpq_mnist_k50_np5_nb8_N20_R1000.0.txt -N 20 -R 1000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=5, nbits=8, N=20, R=1000.000000 AvgAF=1.848597 Recall=0.207500 tApprox=0.984ms tTrue=4.361ms QPS=1016.37 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, nbits=8, N=20, R=5000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -M 8 -nbits 8 -o out_ivfpq_mnist_k50_np5_nb8_N20_R5000.0.txt -N 20 -R 5000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=5, nbits=8, N=20, R=5000.000000 AvgAF=1.848597 Recall=0.207500 tApprox=1.168ms tTrue=5.157ms QPS=855.92 Silhouette=0.063716
+
+Test: kclusters=50, nprobe=5, nbits=8, N=20, R=10000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 50 -nprobe 5 -M 8 -nbits 8 -o out_ivfpq_mnist_k50_np5_nb8_N20_R10000.0.txt -N 20 -R 10000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=50, nprobe=5, nbits=8, N=20, R=10000.000000 AvgAF=1.848597 Recall=0.207500 tApprox=1.159ms tTrue=5.154ms QPS=863.09 Silhouette=0.063716
+
+Test: kclusters=100, nprobe=1, nbits=4, N=1, R=1000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 1 -M 8 -nbits 4 -o out_ivfpq_mnist_k100_np1_nb4_N1_R1000.0.txt -N 1 -R 1000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=100, nprobe=1, nbits=4, N=1, R=1000.000000 AvgAF=2.217766 Recall=0.040000 tApprox=0.123ms tTrue=4.760ms QPS=8130.72 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=1, nbits=4, N=1, R=5000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 1 -M 8 -nbits 4 -o out_ivfpq_mnist_k100_np1_nb4_N1_R5000.0.txt -N 1 -R 5000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=100, nprobe=1, nbits=4, N=1, R=5000.000000 AvgAF=2.217766 Recall=0.040000 tApprox=0.142ms tTrue=5.043ms QPS=7061.40 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=1, nbits=4, N=1, R=10000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 1 -M 8 -nbits 4 -o out_ivfpq_mnist_k100_np1_nb4_N1_R10000.0.txt -N 1 -R 10000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=100, nprobe=1, nbits=4, N=1, R=10000.000000 AvgAF=2.217766 Recall=0.040000 tApprox=0.111ms tTrue=4.279ms QPS=8988.96 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=1, nbits=4, N=5, R=1000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 1 -M 8 -nbits 4 -o out_ivfpq_mnist_k100_np1_nb4_N5_R1000.0.txt -N 5 -R 1000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=100, nprobe=1, nbits=4, N=5, R=1000.000000 AvgAF=2.006774 Recall=0.164000 tApprox=0.143ms tTrue=5.457ms QPS=6979.06 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=1, nbits=4, N=5, R=5000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 1 -M 8 -nbits 4 -o out_ivfpq_mnist_k100_np1_nb4_N5_R5000.0.txt -N 5 -R 5000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=100, nprobe=1, nbits=4, N=5, R=5000.000000 AvgAF=2.006774 Recall=0.164000 tApprox=0.114ms tTrue=4.202ms QPS=8775.94 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=1, nbits=4, N=5, R=10000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 1 -M 8 -nbits 4 -o out_ivfpq_mnist_k100_np1_nb4_N5_R10000.0.txt -N 5 -R 10000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=100, nprobe=1, nbits=4, N=5, R=10000.000000 AvgAF=2.006774 Recall=0.164000 tApprox=0.129ms tTrue=4.753ms QPS=7751.93 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=1, nbits=4, N=10, R=1000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 1 -M 8 -nbits 4 -o out_ivfpq_mnist_k100_np1_nb4_N10_R1000.0.txt -N 10 -R 1000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=100, nprobe=1, nbits=4, N=10, R=1000.000000 AvgAF=1.898373 Recall=0.213000 tApprox=0.124ms tTrue=4.779ms QPS=8034.25 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=1, nbits=4, N=10, R=5000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 1 -M 8 -nbits 4 -o out_ivfpq_mnist_k100_np1_nb4_N10_R5000.0.txt -N 10 -R 5000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=100, nprobe=1, nbits=4, N=10, R=5000.000000 AvgAF=1.898373 Recall=0.213000 tApprox=0.117ms tTrue=4.440ms QPS=8513.90 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=1, nbits=4, N=10, R=10000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 1 -M 8 -nbits 4 -o out_ivfpq_mnist_k100_np1_nb4_N10_R10000.0.txt -N 10 -R 10000.0 -type mnist -range false -ivfpq -seed 42
+Result: image_dataset IVFPQ clusters=100, nprobe=1, nbits=4, N=10, R=10000.000000 AvgAF=1.898373 Recall=0.213000 tApprox=0.118ms tTrue=4.424ms QPS=8465.14 Silhouette=0.061305
+
+Test: kclusters=100, nprobe=1, nbits=4, N=20, R=1000.0, M=8
+Command: ./ex -d train-images-small.idx3-ubyte -q t10k-images-small.idx3-ubyte -kclusters 100 -nprobe 1 -M 8 -nbits 4 -o out_ivfpq_mnist_k100_np1_nb4_N20_R1000.0.txt -N 20 -R 1000.0 -type mnist -range false -ivfpq -seed 42
+
+
+
+
+
+================================================================================
+IVFPQ on SIFT
+================================================================================
+
+Test: kclusters=50, nprobe=1, nbits=4, N=1, R=1000.0, M=8
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 1 -M 8 -nbits 4 -o out_ivfpq_sift_k50_np1_nb4_N1_R1000.0.txt -N 1 -R 1000.0 -type vector -range false -ivfpq -seed 42
+Result: vector_dataset IVFPQ clusters=50, nprobe=1, nbits=4, N=1, R=1000.000000 AvgAF=0.984396 Recall=0.168000 tApprox=0.033ms tTrue=0.982ms QPS=30552.46 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=1, nbits=4, N=1, R=5000.0, M=8
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 1 -M 8 -nbits 4 -o out_ivfpq_sift_k50_np1_nb4_N1_R5000.0.txt -N 1 -R 5000.0 -type vector -range false -ivfpq -seed 42
+Result: vector_dataset IVFPQ clusters=50, nprobe=1, nbits=4, N=1, R=5000.000000 AvgAF=0.984396 Recall=0.168000 tApprox=0.032ms tTrue=0.949ms QPS=31426.45 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=1, nbits=4, N=1, R=10000.0, M=8
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 1 -M 8 -nbits 4 -o out_ivfpq_sift_k50_np1_nb4_N1_R10000.0.txt -N 1 -R 10000.0 -type vector -range false -ivfpq -seed 42
+Result: vector_dataset IVFPQ clusters=50, nprobe=1, nbits=4, N=1, R=10000.000000 AvgAF=0.984396 Recall=0.168000 tApprox=0.033ms tTrue=1.019ms QPS=29864.93 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=1, nbits=4, N=5, R=1000.0, M=8
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 1 -M 8 -nbits 4 -o out_ivfpq_sift_k50_np1_nb4_N5_R1000.0.txt -N 5 -R 1000.0 -type vector -range false -ivfpq -seed 42
+Result: vector_dataset IVFPQ clusters=50, nprobe=1, nbits=4, N=5, R=1000.000000 AvgAF=0.966739 Recall=0.259200 tApprox=0.034ms tTrue=0.969ms QPS=29159.18 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=1, nbits=4, N=5, R=5000.0, M=8
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 1 -M 8 -nbits 4 -o out_ivfpq_sift_k50_np1_nb4_N5_R5000.0.txt -N 5 -R 5000.0 -type vector -range false -ivfpq -seed 42
+Result: vector_dataset IVFPQ clusters=50, nprobe=1, nbits=4, N=5, R=5000.000000 AvgAF=0.966739 Recall=0.259200 tApprox=0.037ms tTrue=1.021ms QPS=26952.13 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=1, nbits=4, N=5, R=10000.0, M=8
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 1 -M 8 -nbits 4 -o out_ivfpq_sift_k50_np1_nb4_N5_R10000.0.txt -N 5 -R 10000.0 -type vector -range false -ivfpq -seed 42
+Result: vector_dataset IVFPQ clusters=50, nprobe=1, nbits=4, N=5, R=10000.000000 AvgAF=0.966739 Recall=0.259200 tApprox=0.034ms tTrue=0.986ms QPS=29222.68 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=1, nbits=4, N=10, R=1000.0, M=8
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 1 -M 8 -nbits 4 -o out_ivfpq_sift_k50_np1_nb4_N10_R1000.0.txt -N 10 -R 1000.0 -type vector -range false -ivfpq -seed 42
+Result: vector_dataset IVFPQ clusters=50, nprobe=1, nbits=4, N=10, R=1000.000000 AvgAF=0.958819 Recall=0.292800 tApprox=0.045ms tTrue=1.422ms QPS=22254.91 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=1, nbits=4, N=10, R=5000.0, M=8
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 1 -M 8 -nbits 4 -o out_ivfpq_sift_k50_np1_nb4_N10_R5000.0.txt -N 10 -R 5000.0 -type vector -range false -ivfpq -seed 42
+Result: vector_dataset IVFPQ clusters=50, nprobe=1, nbits=4, N=10, R=5000.000000 AvgAF=0.958819 Recall=0.292800 tApprox=0.035ms tTrue=0.999ms QPS=28643.22 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=1, nbits=4, N=10, R=10000.0, M=8
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 1 -M 8 -nbits 4 -o out_ivfpq_sift_k50_np1_nb4_N10_R10000.0.txt -N 10 -R 10000.0 -type vector -range false -ivfpq -seed 42
+Result: vector_dataset IVFPQ clusters=50, nprobe=1, nbits=4, N=10, R=10000.000000 AvgAF=0.958819 Recall=0.292800 tApprox=0.036ms tTrue=1.024ms QPS=27908.13 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=1, nbits=4, N=20, R=1000.0, M=8
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 1 -M 8 -nbits 4 -o out_ivfpq_sift_k50_np1_nb4_N20_R1000.0.txt -N 20 -R 1000.0 -type vector -range false -ivfpq -seed 42
+Result: vector_dataset IVFPQ clusters=50, nprobe=1, nbits=4, N=20, R=1000.000000 AvgAF=0.951986 Recall=0.319650 tApprox=0.037ms tTrue=1.063ms QPS=27287.65 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=1, nbits=4, N=20, R=5000.0, M=8
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 1 -M 8 -nbits 4 -o out_ivfpq_sift_k50_np1_nb4_N20_R5000.0.txt -N 20 -R 5000.0 -type vector -range false -ivfpq -seed 42
+Result: vector_dataset IVFPQ clusters=50, nprobe=1, nbits=4, N=20, R=5000.000000 AvgAF=0.951986 Recall=0.319650 tApprox=0.037ms tTrue=1.031ms QPS=27002.69 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=1, nbits=4, N=20, R=10000.0, M=8
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 1 -M 8 -nbits 4 -o out_ivfpq_sift_k50_np1_nb4_N20_R10000.0.txt -N 20 -R 10000.0 -type vector -range false -ivfpq -seed 42
+Result: vector_dataset IVFPQ clusters=50, nprobe=1, nbits=4, N=20, R=10000.000000 AvgAF=0.951986 Recall=0.319650 tApprox=0.036ms tTrue=1.022ms QPS=27607.54 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=1, nbits=8, N=1, R=1000.0, M=8
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 1 -M 8 -nbits 8 -o out_ivfpq_sift_k50_np1_nb8_N1_R1000.0.txt -N 1 -R 1000.0 -type vector -range false -ivfpq -seed 42
+Result: vector_dataset IVFPQ clusters=50, nprobe=1, nbits=8, N=1, R=1000.000000 AvgAF=0.997166 Recall=0.303000 tApprox=0.076ms tTrue=1.066ms QPS=13146.34 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=1, nbits=8, N=1, R=5000.0, M=8
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 1 -M 8 -nbits 8 -o out_ivfpq_sift_k50_np1_nb8_N1_R5000.0.txt -N 1 -R 5000.0 -type vector -range false -ivfpq -seed 42
+Result: vector_dataset IVFPQ clusters=50, nprobe=1, nbits=8, N=1, R=5000.000000 AvgAF=0.997166 Recall=0.303000 tApprox=0.099ms tTrue=1.302ms QPS=10132.55 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=1, nbits=8, N=1, R=10000.0, M=8
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 1 -M 8 -nbits 8 -o out_ivfpq_sift_k50_np1_nb8_N1_R10000.0.txt -N 1 -R 10000.0 -type vector -range false -ivfpq -seed 42
+Result: vector_dataset IVFPQ clusters=50, nprobe=1, nbits=8, N=1, R=10000.000000 AvgAF=0.997166 Recall=0.303000 tApprox=0.078ms tTrue=1.046ms QPS=12890.90 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=1, nbits=8, N=5, R=1000.0, M=8
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 1 -M 8 -nbits 8 -o out_ivfpq_sift_k50_np1_nb8_N5_R1000.0.txt -N 5 -R 1000.0 -type vector -range false -ivfpq -seed 42
+Result: vector_dataset IVFPQ clusters=50, nprobe=1, nbits=8, N=5, R=1000.000000 AvgAF=0.994746 Recall=0.375800 tApprox=0.063ms tTrue=0.941ms QPS=15877.37 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=1, nbits=8, N=5, R=5000.0, M=8
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 1 -M 8 -nbits 8 -o out_ivfpq_sift_k50_np1_nb8_N5_R5000.0.txt -N 5 -R 5000.0 -type vector -range false -ivfpq -seed 42
+Result: vector_dataset IVFPQ clusters=50, nprobe=1, nbits=8, N=5, R=5000.000000 AvgAF=0.994746 Recall=0.375800 tApprox=0.055ms tTrue=0.900ms QPS=18121.98 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=1, nbits=8, N=5, R=10000.0, M=8
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 1 -M 8 -nbits 8 -o out_ivfpq_sift_k50_np1_nb8_N5_R10000.0.txt -N 5 -R 10000.0 -type vector -range false -ivfpq -seed 42
+Result: vector_dataset IVFPQ clusters=50, nprobe=1, nbits=8, N=5, R=10000.000000 AvgAF=0.994746 Recall=0.375800 tApprox=0.066ms tTrue=0.972ms QPS=15131.39 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=1, nbits=8, N=10, R=1000.0, M=8
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 1 -M 8 -nbits 8 -o out_ivfpq_sift_k50_np1_nb8_N10_R1000.0.txt -N 10 -R 1000.0 -type vector -range false -ivfpq -seed 42
+Result: vector_dataset IVFPQ clusters=50, nprobe=1, nbits=8, N=10, R=1000.000000 AvgAF=0.994644 Recall=0.395400 tApprox=0.068ms tTrue=1.000ms QPS=14778.99 Silhouette=0.045545
+
+Test: kclusters=50, nprobe=1, nbits=8, N=10, R=5000.0, M=8
+Command: ./ex -d sift_base-small.fvecs -q query-small.fvecs -kclusters 50 -nprobe 1 -M 8 -nbits 8 -o out_ivfpq_sift_k50_np1_nb8_N10_R5000.0.txt -N 10 -R 5000.0 -type vector -range false -ivfpq -seed 42
+Result: vector_dataset IVFPQ clusters=50, nprobe=1, nbits=8, N=10, R=5000.000000 AvgAF=0.994644 Recall=0.395400 tApprox=0.074ms tTrue=1.054ms QPS=13476.42 Silhouette=0.045545
+
