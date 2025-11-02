@@ -24,7 +24,7 @@ struct Dataset {
     std::vector<Vector> vectors;
 };
 
-Dataset parseInputFile(const std::string &);
+Dataset parseInputFile(const std::string & ,bool early_exit = true);
 
 std::string detectDatasetType(const std::vector<std::string> &);// Detect dataset type based on keywords
 

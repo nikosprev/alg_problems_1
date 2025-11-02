@@ -27,7 +27,7 @@ inline std::vector<float> GaussianProjection(size_t size, int* seed) {
         r[i] = distribution(generator);
 
     // Normalize
-    normalize(r); 
+    //normalize(r); 
 
     return r;
 }
@@ -35,7 +35,7 @@ inline std::vector<float> GaussianProjection(size_t size, int* seed) {
 /*
 Mod function that returns always a positive -> built in returns also negatives 
 */
-inline int mod(int x, int m) {
+inline int mod(int64_t x, int64_t m) {
     int r = x % m;
     return (r < 0) ? r + m : r;
 }
@@ -56,7 +56,7 @@ public:
         : dim(dim_), window(window_) {
         w = GaussianProjection(dim_, &seed);
         std::mt19937 gen(seed);
-        std::uniform_real_distribution<float> dist(0.0f, static_cast<float>(window_));
+        std::uniform_real_distribution<float> dist(2.0f, static_cast<float>(window_  + 50));
         t = dist(gen);
     }
 
@@ -96,10 +96,10 @@ public:
 
     template <typename NumType>
     uint64_t calculate_ID(const std::vector<NumType>& p) const {
-        const uint64_t M = (1ULL << 16) - 5;
+        const uint64_t M = (1ULL << 32) - 5;
         uint64_t ID = 0;
         for (size_t i = 0; i < hf_table.size(); ++i) {
-            ID += mod(mod(static_cast<uint64_t>(hf_table[i].calculate(p)) * r_table[i], M), M);
+            ID = mod(mod(static_cast<uint64_t>(hf_table[i].calculate(p)) * r_table[i], M) + ID, M);
         }
         return ID;
     }
@@ -147,9 +147,9 @@ public:
         }
     }
 
-    std::vector<Neighbor<NumType>> returnANN(const std::vector<NumType>& p, int k, 
+    std::vector<Neighbor> returnANN(const std::vector<NumType>& p, int k, 
                                              bool range_bool = false, float range = 0.0) const {
-        std::priority_queue<Neighbor<NumType>> topK;
+        std::priority_queue<Neighbor> topK;
         std::unordered_set<size_t> idx_seen;
 
         for (int t = 0; t < num_tables; ++t) {
@@ -162,15 +162,15 @@ public:
                         idx_seen.insert(idx);
                         double dist = euclidean_distance(p, vectors[idx]);
                         if (!range_bool || dist < range) {
-                            topK.emplace(vectors[idx], dist);
+                            topK.emplace(idx, dist);
                         }
                     }
                 }
             }
             while (topK.size() > static_cast<size_t>(k) && !range_bool) topK.pop();
         }
-
-        std::vector<Neighbor<NumType>> neighbors;
+            std::cout << "Candidates seen: " << idx_seen.size() << std::endl;  // <-- NEW
+        std::vector<Neighbor> neighbors;
         while (!topK.empty()) {
             neighbors.push_back(topK.top());
             topK.pop();

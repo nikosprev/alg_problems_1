@@ -28,7 +28,7 @@ float read_float32_little(std::ifstream &f) {
 
 // Dataset Parsing 
 
-Dataset parseInputFile(const std::string &filename) {
+Dataset parseInputFile(const std::string &filename ,bool early_exit ) {
     Dataset dataset;
     std::ifstream f(filename, std::ios::binary);
     if (!f.is_open())
@@ -97,7 +97,7 @@ Dataset parseInputFile(const std::string &filename) {
         normalize(vec.coordinates); 
         dataset.vectors.push_back(std::move(vec));
         vectors_loaded++;
-        if (vectors_loaded >= MAX_VECTORS) break;
+        if (vectors_loaded >= MAX_VECTORS && early_exit) break;
     }
 
     std::cout << "Total vectors loaded: " << dataset.vectors.size() << "\n";
