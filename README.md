@@ -16,6 +16,8 @@ project1/
 └── readme
 ```
 
+Πρεβόλης Νίκος ΑΜ : 1115.... 
+Κατσαρός Χρήστος ΑΜ : 1115202200068
 
 Step 1: Read data and make input file
     MNIST reader:
@@ -37,6 +39,38 @@ Step 1: Read data and make input file
 
 
 Step 2: Algorithms:
+
+
+## Locality Sensitive Hashing (LSH)
+
+The hash functions are defined as:
+
+$$
+h(p) = \left\lfloor \frac{p \cdot w + t}{w} \right\rfloor
+$$
+
+$$
+g(p) = \left( r_1 h_1(p) + r_2 h_2(p) + \dots + r_k h_k(p) \right) \bmod M
+$$
+
+Build hash tables for dataset vectors.
+
+Query only compares vectors in the same bucket.
+
+Parameters: k (hashes per table), L (tables), w (bucket width).
+
+
+## Hypercube
+
+Projects vectors to k bits → vertices of a binary cube.
+
+Store dataset vectors at vertices.
+
+Query searches in vertex and neighbors (probes).
+
+Parameters: kproj (bits), probes (neighbor limit), M (max vectors per vertex).
+
+## IVFFLAT
 
 IVFFlat employs the following steps:
 
