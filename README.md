@@ -2,21 +2,7 @@
 Software project for algorithmic problems
 
 
-```
-project1/
-├── src/
-│ ├── algorithms/
-│ │ ├── lsh.c
-│ │ ├── hypercube.c
-│ └── main.c
-├── include/
-├── data/
-│ ├── input.dat (for MNIST/SIFT dataset)
-│ └── query.dat (for query set)
-├── Makefile
-├── .gitignore
-└── readme
-```
+
 
 Πρεβόλης Νίκος ΑΜ : 1115202000172 
 Κατσαρός Χρήστος ΑΜ : 1115202200068
@@ -76,12 +62,46 @@ Parameters: kproj (bits), probes (neighbor limit), M (max vectors per vertex).
 
 IVFFlat employs the following steps:
 
-    Calculate the distance between the query vector and each centroid in the index.
+Calculate the distance between the query vector and each centroid in the index.
     
-    Select the centroid with the smallest distance as the closest centroid to the query 
+Select the centroid with the smallest distance as the closest centroid to the query 
 
-    Retrieve the vectors associated with the region corresponding to the closest centroid from the inverted index.
+Retrieve the vectors associated with the region corresponding to the closest centroid from the inverted index.
 
-    Compute the distances between the query vector and each of the vectors in the retrieved set.
+Compute the distances between the query vector and each of the vectors in the retrieved set.
     
-    Select the K vectors with the smallest distances as the approximate nearest neighbors to the query.
+Select the K vectors with the smallest distances as the approximate nearest neighbors to the query.
+
+
+## IVFPQ
+IVFPQ combines inverted indexing (as in IVFFlat) with Product Quantization (PQ) to achieve efficient approximate nearest neighbor search.
+
+Steps:
+
+ Coarse Quantization:
+    Partition the dataset into regions (cells) using a coarse quantizer (e.g., k-means centroids).
+    Each vector is assigned to its nearest coarse centroid.
+
+ Residual Computation:
+    For each vector, compute the residual between the original vector and its assigned coarse centroid:
+
+                                        𝑟=𝑥−𝑐
+                                        
+    where c is the centroid.
+
+  Product Quantization:
+        Split the residual vector into m sub-vectors and quantize each sub-vector separately using its own codebook.
+        Each residual is then represented by a compact PQ code.
+
+  Index Construction:
+      Store, for each region (centroid), the PQ codes of all vectors assigned to it in an inverted list.
+
+  Query Search:
+
+    Compute the distance from the query vector to each coarse centroid.
+
+    Select the top nprobe closest centroids (regions) to search.
+
+    For vectors in these selected regions, reconstruct or approximate distances using their PQ codes.
+
+    Retrieve the K vectors with the smallest approximate distances as the nearest neighbors.
