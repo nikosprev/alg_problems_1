@@ -79,7 +79,7 @@ public:
     }
 
     // Return k approximate nearest neighbors of p by searching only nprobe lists.
-    std::vector<Neighbor<NumType>> query(const std::vector<NumType>& p, int k, int nprobe = 1) const {
+    std::vector<Neighbor> query(const std::vector<NumType>& p, int k, int nprobe = 1) const {
         if (p.size() != vec_dim) {
             std::cerr << "IVFFlat::query: vector dim mismatch" << std::endl;
             std::exit(EXIT_FAILURE);
@@ -101,19 +101,19 @@ public:
         centroid_dists.resize(nprobe);
 
         //  Scan chosen lists exactly and keep a min-heap of size k (largest on top for easy pop)
-        auto cmp = [](const Neighbor<NumType>& a, const Neighbor<NumType>& b) { return a.distance < b.distance; };
-        std::priority_queue<Neighbor<NumType>, std::vector<Neighbor<NumType>>, decltype(cmp)> topK(cmp);
+        auto cmp = [](const Neighbor& a, const Neighbor& b) { return a.distance < b.distance; };
+        std::priority_queue<Neighbor, std::vector<Neighbor>, decltype(cmp)> topK(cmp);
 
         for (const auto& [_, cid] : centroid_dists) {
             for (const auto& [idx, vec] : inverted_lists[cid]) {
                 double dist = euclidean_distance(p, vec);
-                topK.emplace(vec, dist);
+                topK.emplace(idx, dist);
                 if (static_cast<int>(topK.size()) > k) topK.pop();
             }
         }
 
         // Extract neighbors (ascending distance)
-        std::vector<Neighbor<NumType>> neighbors;
+        std::vector<Neighbor> neighbors;
         neighbors.reserve(topK.size());
         while (!topK.empty()) {
             neighbors.push_back(topK.top());
@@ -124,7 +124,7 @@ public:
     }
 
     // Range query over nprobe lists
-    std::vector<Neighbor<NumType>> range_query(const std::vector<NumType>& p, double range, int nprobe = 1) const {
+    std::vector<Neighbor> range_query(const std::vector<NumType>& p, double range, int nprobe = 1) const {
         if (p.size() != vec_dim) {
             std::cerr << "IVFFlat::range_query: vector dim mismatch" << std::endl;
             std::exit(EXIT_FAILURE);
@@ -140,11 +140,11 @@ public:
         std::nth_element(centroid_dists.begin(), centroid_dists.begin() + (nprobe - 1), centroid_dists.end());
         centroid_dists.resize(nprobe);
 
-        std::vector<Neighbor<NumType>> result;
+        std::vector<Neighbor> result;
         for (const auto& [_, cid] : centroid_dists) {
             for (const auto& [idx, vec] : inverted_lists[cid]) {
                 double dist = euclidean_distance(p, vec);
-                if (dist <= range) result.emplace_back(vec, dist);
+                if (dist <= range) result.emplace_back(idx, dist);
             }
         }
         std::sort(result.begin(), result.end(), [](const auto& a, const auto& b) { return a.distance < b.distance; });

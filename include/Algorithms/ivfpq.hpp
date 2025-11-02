@@ -118,7 +118,7 @@ public:
         }
     }
 
-    std::vector<Neighbor<NumType>> query(const std::vector<NumType>& q, int k, int nprobe = 1) const {
+    std::vector<Neighbor> query(const std::vector<NumType>& q, int k, int nprobe = 1) const {
         if (q.size() != vec_dim) {
             std::cerr << "IVFPQ::query: vector dim mismatch" << std::endl;
             std::exit(EXIT_FAILURE);
@@ -136,15 +136,20 @@ public:
         std::nth_element(coarse_dists.begin(), coarse_dists.begin() + (nprobe - 1), coarse_dists.end());
         coarse_dists.resize(nprobe);
 
-        // Precompute PQ distance tables for query residuals
+        // Precompute PQ distance tables and search across all probed centroids
         size_t subdim = vec_dim / M;
-        std::vector<std::vector<float>> pq_tables(M, std::vector<float>(Ks, 0.0f));
+        auto cmp = [](const Neighbor& a, const Neighbor& b) {
+            return a.distance < b.distance;
+        };
+        std::priority_queue<Neighbor, std::vector<Neighbor>, decltype(cmp)> topK(cmp);
 
         for (const auto& [_, cid] : coarse_dists) {
             std::vector<float> q_res(vec_dim);
             for (size_t j = 0; j < vec_dim; ++j)
                 q_res[j] = static_cast<float>(q[j]) - coarse_centroids[cid][j];
 
+            // Build PQ tables for this centroid's residual
+            std::vector<std::vector<float>> pq_tables(M, std::vector<float>(Ks, 0.0f));
             for (size_t m = 0; m < M; ++m) {
                 for (size_t k_ = 0; k_ < Ks; ++k_) {
                     double d = 0.0;
@@ -156,34 +161,28 @@ public:
                 }
             }
 
-            // Search encoded vectors
-            auto cmp = [](const Neighbor<NumType>& a, const Neighbor<NumType>& b) {
-                return a.distance < b.distance;
-            };
-            std::priority_queue<Neighbor<NumType>, std::vector<Neighbor<NumType>>, decltype(cmp)> topK(cmp);
-
+            // Search encoded vectors in this centroid's list
             for (const auto& [idx, code] : inverted_lists[cid]) {
                 double dist = 0.0;
                 for (size_t m = 0; m < M; ++m)
                     dist += pq_tables[m][code[m]];
-                topK.emplace(vectors[idx], std::sqrt(dist));
+                topK.emplace(idx, std::sqrt(dist));
                 if (static_cast<int>(topK.size()) > k) topK.pop();
             }
-
-            std::vector<Neighbor<NumType>> neighbors;
-            neighbors.reserve(topK.size());
-            while (!topK.empty()) {
-                neighbors.push_back(topK.top());
-                topK.pop();
-            }
-            std::reverse(neighbors.begin(), neighbors.end());
-            return neighbors;
         }
 
-        return {};
+        // Extract final results
+        std::vector<Neighbor> neighbors;
+        neighbors.reserve(topK.size());
+        while (!topK.empty()) {
+            neighbors.push_back(topK.top());
+            topK.pop();
+        }
+        std::reverse(neighbors.begin(), neighbors.end());
+        return neighbors;
     }
 
-    std::vector<Neighbor<NumType>> range_query(const std::vector<NumType>& q, double range, int nprobe = 1) const {
+    std::vector<Neighbor> range_query(const std::vector<NumType>& q, double range, int nprobe = 1) const {
         if (q.size() != vec_dim) {
             std::cerr << "IVFPQ::range_query: vector dim mismatch" << std::endl;
             std::exit(EXIT_FAILURE);
@@ -202,7 +201,7 @@ public:
         coarse_dists.resize(nprobe);
 
         size_t subdim = vec_dim / M;
-        std::vector<Neighbor<NumType>> result;
+        std::vector<Neighbor> result;
 
         for (const auto& [_, cid] : coarse_dists) {
             // Build PQ tables for this centroid's residual
@@ -226,7 +225,7 @@ public:
                 double dist = 0.0;
                 for (size_t m = 0; m < M; ++m) dist += pq_tables[m][code[m]];
                 dist = std::sqrt(dist);
-                if (dist <= range) result.emplace_back(vectors[idx], dist);
+                if (dist <= range) result.emplace_back(idx, dist);
             }
         }
 

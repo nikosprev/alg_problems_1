@@ -13,12 +13,12 @@
 template <typename NumType>
 std::vector<Neighbor> kNN(const std::vector<std::vector<NumType>> &points ,const std::vector<NumType> &p , int k){ 
     std::priority_queue<Neighbor>  topK;
-    int idx = 0; 
+    size_t idx = 0; 
     for (auto&  q : points){ 
        double dist_qp =  euclidean_distance(q ,p); 
-       Neighbor pq = {idx ,dist_qp}; 
+       Neighbor pq(static_cast<uint64_t>(idx), dist_qp); 
        topK.push(pq); 
-       if (topK.size() > k ) { 
+       if (topK.size() > static_cast<size_t>(k)) { 
         topK.pop() ; 
        }
        idx++; 
