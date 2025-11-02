@@ -52,12 +52,12 @@ h(p) = \left\lfloor \frac{p \cdot w + t}{w} \right\rfloor
 $$
 
 $$
-g(p) = \left( r_1 h_1(p) + r_2 h_2(p) + \dots + r_k h_k(p) \right) \bmod M
+g(p) = ID =  \left( r_1 h_1(p) + r_2 h_2(p) + \dots + r_k h_k(p) \right) \bmod M
 $$
 
 Build hash tables for dataset vectors.
 
-Query only compares vectors in the same bucket.
+Query only compares vectors in the same bucket , with same ID .
 
 Parameters: k (hashes per table), L (tables), w (bucket width).
 
